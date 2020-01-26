@@ -1,0 +1,37 @@
+@import "../../scss/variable";
+
+.header {
+  background: $whiteColor;
+  padding:    50px;
+  height:     80%;
+  .logo {
+    position:        relative;
+    display:         flex;
+    align-items:     center;
+    justify-content: flex-start;
+    .logoText {
+      position: relative;
+      p {
+        margin:         0;
+        position:       absolute;
+        left:           0;
+        bottom:         22px;
+        font-size:      13px;
+        line-height:    2.14;
+        color:          $mainColor;
+        text-transform: uppercase;
+        transform:      translateY(100%);
+        letter-spacing: 3px;
+      }
+    }
+    .logoImage {
+      margin-left: 5px;
+      margin-top:  6px;
+    }
+  }
+  .headerMenu {
+
+  }
+}
+
+

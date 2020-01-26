@@ -1,12 +1,14 @@
 import React from 'react';
-import styles from './App.scss';
+import styles from './App.module.scss';
+import {Header} from "..";
 
 export const App = () => {
     return (
         <div className={styles.app}>
-            <header className={styles.appHeader}>
-                header
-            </header>
+            <Header/>
+            <main className={styles.main}>
+                section 1
+            </main>
         </div>
     );
 };

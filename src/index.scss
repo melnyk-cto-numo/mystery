@@ -1,9 +1,42 @@
+@import "../src/scss/variable";
+
+
 body, html {
   margin:  0;
   padding: 0;
+  height:  100%;
+}
+
+body {
+  background: $bgColor;
 }
 
 * {
-  box-sizing: border-box;
+  box-sizing:  border-box;
+  font-family: 'Proxima Nova', sans-serif;
+  padding:     0;
+  margin:      0;
 }
 
+#root {
+  height: 100%;
+}
+
+h1 {
+  font-size:   34px;
+  line-height: 1.66;
+  font-weight: 800;
+  font-style:  italic;
+}
+
+ul {
+  list-style-type: none;
+  margin-top:      100px;
+  padding-left:    40px;
+  li {
+    font-size:     18px;
+    line-height:   1.67;
+    color:         $secondColor;
+    margin-bottom: 32px;
+  }
+}
