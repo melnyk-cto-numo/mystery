@@ -1,4 +1,3 @@
-# mystery
 Mystery Electronics.llc
 =======
 
