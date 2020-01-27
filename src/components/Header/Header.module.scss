@@ -11,6 +11,9 @@
     justify-content: flex-start;
     .logoText {
       position: relative;
+      h1 {
+        color: $blackColor;
+      }
       p {
         margin:         0;
         position:       absolute;
@@ -30,6 +33,12 @@
     }
   }
   .headerMenu {
+
+    .headerList {
+      margin-top:   0;
+      padding-left: 40px;
+      position:     relative;
+    }
 
   }
 }

@@ -34,3 +34,12 @@
   font-weight: 800;
   font-style:  italic;
 }
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src:         url('../font/ProximaNova/ProximaNova-Bold.eot?#iefix') format('embedded-opentype'),
+               url('../font/ProximaNova/ProximaNova-Bold.woff') format('woff'),
+               url('../font/ProximaNova/ProximaNova-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style:  normal;
+}

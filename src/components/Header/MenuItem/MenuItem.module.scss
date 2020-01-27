@@ -1,0 +1,29 @@
+@import "../../../scss/variable";
+
+.menuItem {
+  position: absolute;
+  left:     0;
+  @for $i from 0 through 7 {
+    &:nth-child(#{$i}) {
+      top: calc(60px * #{$i});
+    }
+  }
+  a {
+    display:         flex;
+    align-items:     center;
+    justify-content: left;
+    height:          30px;
+    svg {
+      width:        20px;
+      margin-right: 24px;
+    }
+    &.active {
+      font-size: 24px;
+      color:     $mainColor;
+      svg {
+        fill: $mainColor;
+      }
+    }
+  }
+}
+

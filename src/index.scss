@@ -1,5 +1,14 @@
 @import "../src/scss/variable";
 
+@media (any-hover: hover) {
+  a:hover span {
+    font-size: 24px;
+    color:     $mainColor;
+  }
+  a:hover svg {
+    fill: $mainColor;
+  }
+}
 
 body, html {
   margin:  0;
@@ -22,6 +31,26 @@ body {
   height: 100%;
 }
 
+a {
+  font-size:       18px;
+  text-decoration: none;
+  color:           $secondColor;
+  font-weight:     bold;
+  line-height:     1.25;
+  svg {
+    fill: $secondColor;
+  }
+  &:active span {
+    opacity:   .7;
+    font-size: 24px;
+    color:     $mainColor;
+  }
+  &:active svg {
+    opacity: .7;
+    fill:    $mainColor;
+  }
+}
+
 h1 {
   font-size:   34px;
   line-height: 1.66;
@@ -31,12 +60,9 @@ h1 {
 
 ul {
   list-style-type: none;
-  margin-top:      100px;
-  padding-left:    40px;
   li {
-    font-size:     18px;
-    line-height:   1.67;
-    color:         $secondColor;
-    margin-bottom: 32px;
+    font-size:   18px;
+    line-height: 1.67;
+    color:       $secondColor;
   }
 }
