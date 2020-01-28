@@ -3,7 +3,7 @@ import React from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 
 import {Status, Network, EMSetup, SiteSetup, Utilities, Update, Help} from "../Pages";
-import {Header} from "..";
+import {Header} from "../common";
 import {routes} from './routes';
 
 

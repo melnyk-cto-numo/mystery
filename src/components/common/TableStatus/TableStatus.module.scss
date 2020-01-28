@@ -1,0 +1,29 @@
+@import "../../../scss/variable";
+
+.wrapper {
+  background:    $whiteColor;
+  border-radius: 20px;
+  padding:       40px;
+  width:         100%;
+  margin-top:    30px;
+  .table {
+    .tableHeader {
+      font-size:   18px;
+      line-height: 1.66;
+    }
+    .tableBody {
+      font-weight: bold;
+      font-size:   20px;
+      line-height: 1.5;
+
+    }
+    .tableRow {
+      display:               grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      .tableCell {
+        margin: 12px 0;
+      }
+    }
+  }
+
+}

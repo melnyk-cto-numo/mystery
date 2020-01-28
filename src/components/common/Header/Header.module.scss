@@ -1,9 +1,9 @@
-@import "../../scss/variable";
+@import "../../../scss/variable";
 
 .header {
   background: $whiteColor;
   padding:    50px;
-  height:     80%;
+  height:     100%;
   .logo {
     position:        relative;
     display:         flex;

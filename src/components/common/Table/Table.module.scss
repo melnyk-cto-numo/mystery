@@ -1,0 +1,31 @@
+@import "../../../scss/variable";
+
+.wrapper {
+  background:    $whiteColor;
+  border-radius: 20px;
+  padding:       40px;
+  width:         100%;
+  margin-top:    30px;
+  .table {
+    .tableRow {
+      display:               grid;
+      grid-template-columns: 50% 50%;
+      padding-right:         10%;
+      margin:                24px 0;
+      min-height:            40px;
+      .macDns {
+        display:               grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap:                   20px;
+        .enable {
+          display:        flex;
+          flex-direction: row-reverse;
+          align-items:    center;
+        }
+      }
+    }
+    .networkValue {
+      width: 100%;
+    }
+  }
+}

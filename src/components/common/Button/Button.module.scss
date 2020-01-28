@@ -1,0 +1,28 @@
+@import "../../../scss/variable";
+
+.primaryBtn {
+  border-radius:   20px;
+  background:      $mainColor;
+  color:           $whiteColor;
+  min-width:       185px;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  height:          48px;
+  font-weight:     bold;
+  font-size:       20px;
+  line-height:     1.67px;
+  border:          1px solid $mainColor;
+  transition:      .2s ease-in-out;
+  cursor:          pointer;
+  margin-left:     50px;
+  &:hover {
+    background: transparent;
+    color:      $mainColor;
+  }
+  &:active {
+    background: transparent;
+    color:      $mainColor;
+    opacity:    .7;
+  }
+}
