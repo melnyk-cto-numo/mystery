@@ -6,6 +6,8 @@
   padding:       40px;
   width:         100%;
   margin-top:    30px;
+  position:      relative;
+  z-index:       1;
   .table {
     .tableRow {
       display:               grid;

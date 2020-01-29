@@ -88,6 +88,7 @@ input, select {
   padding:       12px 0 12px 70px;
   border:        none;
   border-radius: 10px;
+  font-size:     18px;
 }
 
 input[type='checkbox'] {
@@ -95,4 +96,10 @@ input[type='checkbox'] {
   width:         10px;
   height:        10px;
   border-radius: 10px;
+}
+
+
+.react-tabs__tab--selected {
+  color:      $lightBlackColor;
+  background: $whiteColor;
 }

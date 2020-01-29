@@ -6,6 +6,8 @@
   padding:       40px;
   width:         100%;
   margin-top:    30px;
+  position:      relative;
+  z-index:       1;
   .table {
     overflow: auto;
     .tableBody, .tableHeader {
@@ -15,7 +17,7 @@
       min-width:             1300px;
     }
     .tableHeader {
-      background-color: #dee8f0;
+      background-color: $lightBlueColor;
       &:nth-child(1) {
         font-weight: bold;
         font-size:   20px;
@@ -37,7 +39,7 @@
       }
     }
     .tableRow {
-      background-color: #dee8f0;
+      background-color: $lightBlueColor;
       &:nth-child(1) {
         font-size: 18px;
       }

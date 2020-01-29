@@ -1,0 +1,48 @@
+@import "../../../../assets/scss/variable";
+
+.wrapper {
+  background:    $whiteColor;
+  border-radius: 20px;
+  padding:       40px;
+  width:         100%;
+  margin-top:    30px;
+  overflow:      auto;
+  max-height:    560px;
+  position:      relative;
+  z-index:       1;
+  .table {
+    overflow: auto;
+    .tableHeader {
+      font-weight: bold;
+      color:       $mainColor;
+    }
+    .tableRow, .tableHeader {
+      font-size:             18px;
+      display:               grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 20%));
+      line-height:           1.67;
+      min-width:             1300px;
+      .tableCell {
+        margin:          5px 20px;
+        display:         flex;
+        justify-content: left;
+        background:      white;
+        border:          none;
+        min-height:      40px;
+        height:          40px;
+        line-height:     40px;
+        padding:         0;
+      }
+    }
+    .tableBody {
+      .tableRow {
+        border-bottom: 1px solid $lightBlueColor;
+        .tableCell {
+          background:   #f8fcff;
+          padding-left: 20px;
+          font-size:    18px;
+        }
+      }
+    }
+  }
+}
