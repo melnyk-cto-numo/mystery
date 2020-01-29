@@ -1,0 +1,21 @@
+.emSetupButtons, .emSetupTitle {
+  margin:          70px 0;
+  width:           100%;
+  text-align:      right;
+  display:         flex;
+  justify-content: flex-end;
+  align-items:     center;
+
+}
+
+.emSetupButtons {
+  margin: 110px 0;
+}
+
+.emSetupTitle {
+  justify-content: space-between;
+  h2 {
+    margin-top:    0;
+    margin-bottom: 0;
+  }
+}

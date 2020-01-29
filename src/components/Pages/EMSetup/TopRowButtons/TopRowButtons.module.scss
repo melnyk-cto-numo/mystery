@@ -1,0 +1,59 @@
+@import "../../../../assets/scss/variable";
+
+.wrapper {
+  background:    $whiteColor;
+  border-radius: 20px;
+  padding:       40px;
+  width:         100%;
+  margin-top:    30px;
+  .table {
+    overflow: auto;
+    .tableBody, .tableHeader {
+      display:               grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, auto));
+      line-height:           1.5;
+      min-width:             1300px;
+    }
+    .tableHeader {
+      background-color: #dee8f0;
+      &:nth-child(1) {
+        font-weight: bold;
+        font-size:   20px;
+        color:       $mainColor;
+        .tableCell {
+          align-items: center;
+        }
+      }
+      .tableCell {
+        margin:          1px;
+        background:      $whiteColor;
+        font-size:       16px;
+        line-height:     1.67;
+        min-height:      50px;
+        display:         flex;
+        flex-direction:  column;
+        align-items:     flex-start;
+        justify-content: center;
+      }
+    }
+    .tableRow {
+      background-color: #dee8f0;
+      &:nth-child(1) {
+        font-size: 18px;
+      }
+      .tableCell {
+        margin:          1px;
+        background:      $whiteColor;
+        font-size:       16px;
+        line-height:     1.67;
+        min-height:      50px;
+        display:         flex;
+        flex-direction:  column;
+        align-items:     flex-start;
+        justify-content: center;
+        padding-left:    10px;
+      }
+    }
+  }
+
+}

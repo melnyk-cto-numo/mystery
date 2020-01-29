@@ -1,4 +1,4 @@
-@import "../../../scss/variable";
+@import "../../../assets/scss/variable";
 
 .primaryBtn {
   border-radius:   20px;
@@ -16,6 +16,7 @@
   transition:      .2s ease-in-out;
   cursor:          pointer;
   margin-left:     50px;
+  padding:         0 20px;
   &:hover {
     background: transparent;
     color:      $mainColor;

@@ -1,0 +1,68 @@
+{
+    "Settings": {
+        "altFaderTimeout": "30",
+        "altToggleTimeout": "30"
+    },
+    "Buttons": [
+        {
+          "type": "type",
+          "levels": [ "level 1", "level 2", "level 3", "level 4" ]
+        },
+        {
+            "_comment1": "controlx's will be linked by number, not name.",
+            "_typeOptions": "control, ctrlSelector, advanced, bank, power",
+            "_controlOptions": "unused, controlx(1-16)",
+            "_ctrlSelectorOptions": "none",
+            "_advancedOptions": "unused, altFader1, altFader2, altFader3, altToggle",
+            "_bankOptions": "none",
+            "_powerOptions": "none",
+            "type": "control",
+            "levels": [ "control2", "control7", "", "" ]
+        },
+        {
+            "type": "control",
+            "levels": [ "control3", "control8", "", "" ]
+        },
+
+        {
+            "type": "control",
+            "levels": [ "control4", "control9", "", "" ]
+        },
+        {
+            "type": "control",
+            "levels": [ "control5", "control10", "", "" ]
+        },
+        {
+            "type": "control",
+            "levels": [ "control6", "control7", "", "" ]
+        },
+        {
+            "type": "control",
+            "levels": [ "control11", "control4", "", "" ]
+        },
+        {
+            "type": "ctrlSelector",
+            "levels": [ "", "", "", "" ]
+        },
+        {
+            "type": "control",
+            "levels": [ "control1", "", "", "" ]
+        },
+        {
+            "type": "control",
+            "levels": [ "control2", "", "", "" ]
+        },
+        {
+            "type": "advanced",
+            "levels": [ "altFader1", "altFader2", "altFader3", "" ]
+        },
+        {
+            "type": "bank",
+            "levels": [ "", "", "", "" ]
+        },
+        {
+            "type": "power",
+            "levels": [ "", "", "", "" ]
+        }
+    ]
+}
