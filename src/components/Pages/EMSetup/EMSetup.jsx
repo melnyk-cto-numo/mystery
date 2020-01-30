@@ -6,9 +6,7 @@ import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 
 //components
 import {Button, Table} from "../../common";
-import {TopRowButtons} from "./TopRowButtons/TopRowButtons";
-import {Faders} from "./Faders/Faders";
-
+import {TopRowButtons, Faders} from "./components";
 
 // styles
 import styles from './EMSetup.module.scss';
@@ -107,6 +105,11 @@ const faders = {
 };
 
 
+const titleTopRowButtons = {
+    header: ['Buttons', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    column: ['Type', 'Level 1', 'Level 2', 'Level 3', 'Level 4'],
+};
+
 export const EMSetup = () => {
 
     return (
@@ -125,7 +128,7 @@ export const EMSetup = () => {
                     <Table data={setup}/>
                 </TabPanel>
                 <TabPanel>
-                    <TopRowButtons data={emsetup.Buttons}/>
+                    <TopRowButtons data={emsetup.Buttons} title={titleTopRowButtons}/>
                 </TabPanel>
                 <TabPanel>
                     <Faders data={faders}/>

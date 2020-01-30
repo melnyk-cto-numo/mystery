@@ -1,14 +1,10 @@
 import React from 'react';
 
-import styles from './TopRowButtons.module.scss';
+import styles from './UtilitiesTable.module.scss';
+import {Button} from "../../../common";
 
 
-const title = {
-    header: ['Buttons', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    column: ['Type', 'Level 1', 'Level 2', 'Level 3', 'Level 4'],
-};
-
-export const TopRowButtons = ({data}) => {
+export const UtilitiesTable = ({data, title}) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.table}>
@@ -18,11 +14,18 @@ export const TopRowButtons = ({data}) => {
                     ))}
                 </div>
                 <div className={styles.tableBody}>
+                    <div className={styles.tableRow}>
+                        {title.column.map((column, index) => (
+                            <div key={index} className={styles.tableCell}>{column}</div>
+                        ))}
+                    </div>
                     {data.map((item, index) => (
                         <div key={index} className={styles.tableRow}>
                             <div className={styles.tableCell}>{item.type}</div>
-                            {item.levels.map((levels, index) => (
-                                <div key={index} className={styles.tableCell}>{levels}</div>
+                            {item.buttons.map((button, index) => (
+                                <div key={index} className={styles.tableCell}>
+                                    {button ? <Button text={'Go'} small/> : <Button empty/>}
+                                </div>
                             ))}
                         </div>
                     ))}

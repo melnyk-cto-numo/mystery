@@ -26,4 +26,18 @@
     color:      $mainColor;
     opacity:    .7;
   }
+  &.small {
+    padding:   0;
+    margin:    0 auto 0 auto;
+    min-width: 100px;
+  }
+  &.empty {
+    padding:    0;
+    margin:     0 auto 0 auto;
+    min-width:  100px;
+    background: $veryLightBlueColor;
+    border:     $veryLightBlueColor;
+    color:      $veryLightBlueColor;
+    cursor:     default;
+  }
 }
