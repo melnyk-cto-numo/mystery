@@ -1,0 +1,54 @@
+.help {
+  .helpTitle, .helpButtons {
+    margin:          70px 0;
+    width:           100%;
+    text-align:      right;
+    display:         flex;
+    justify-content: space-between;
+    align-items:     center;
+    h2 {
+      margin-top:    0;
+      margin-bottom: 0;
+    }
+  }
+  .helpInner {
+    margin-left: 50px;
+  }
+  .helpList {
+    color:         #9d9cc6;
+    font-weight:   bold;
+    font-size:     24px;
+    line-height:   1.5;
+    margin-bottom: 32px;
+    span {
+      font-weight:  100;
+      padding-left: 32px;
+    }
+    li {
+      position:     relative;
+      padding-left: 40px;
+    }
+    &.map li {
+      &:before {
+        content:   url("../../../assets/img/mapMarker.svg");
+        position:  absolute;
+        left:      0;
+        top:       50%;
+        transform: translateY(-50%);
+        width:     16px;
+      }
+    }
+    &.telephone li {
+      &:before {
+        content:   url("../../../assets/img/telephoneHandle.svg");
+        position:  absolute;
+        left:      0;
+        top:       50%;
+        transform: translateY(-50%);
+        width:     16px;
+      }
+    }
+  }
+}
+
+

@@ -13,7 +13,7 @@ export const Update = () => {
         <section className={styles.update}>
             <h2>Update</h2>
             <div className={styles.updateInner}>
-                <h4>Bootloader Version</h4>
+                <h3>Bootloader Version</h3>
                 <Input/>
                 <div className={styles.updateButtons}>
                     <Button text='Upload Firmware'/>
