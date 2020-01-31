@@ -4,6 +4,7 @@
     width:           100%;
     text-align:      right;
     display:         flex;
+    flex-wrap:       wrap;
     justify-content: space-between;
     align-items:     center;
     h2 {
@@ -52,3 +53,10 @@
 }
 
 
+@media screen and (max-width: 768px) {
+  .help {
+    .helpInner {
+      margin-left: 10px;
+    }
+  }
+}

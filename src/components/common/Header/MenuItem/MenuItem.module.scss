@@ -5,7 +5,7 @@
   left:     0;
   @for $i from 0 through 7 {
     &:nth-child(#{$i}) {
-      top: calc(60px * #{$i});
+      top: calc(70px + (60px * #{$i}));
     }
   }
   a {
@@ -23,7 +23,26 @@
       svg {
         fill: $mainColor;
       }
+      &:before {
+        content:       '';
+        position:      absolute;
+        background:    $mainColor;
+        width:         10px;
+        border-radius: 0 10px 10px 0;
+        height:        50px;
+        left:          -50px;
+        top:           -10px;
+      }
     }
   }
 }
 
+@media screen and (max-width: 567px) {
+  .menuItem {
+    @for $i from 0 through 7 {
+      &:nth-child(#{$i}) {
+        top: calc(60px * #{$i} - 30px);
+      }
+    }
+  }
+}

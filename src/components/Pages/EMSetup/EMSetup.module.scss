@@ -5,9 +5,9 @@
   width:           100%;
   text-align:      right;
   display:         flex;
+  flex-wrap:       wrap;
   justify-content: flex-end;
   align-items:     center;
-  flex-wrap:       wrap;
 }
 
 .emSetupButtons {
@@ -54,6 +54,21 @@
         padding: 20px 30px 40px 30px;
       }
     }
+  }
+
+}
+
+@media screen and (max-width: 568px) {
+
+  .emSetupTabsWrapper {
+    .emSetupTabs {
+      li {
+        padding: 20px 10px 40px 10px;
+      }
+    }
+  }
+  .emSetupButtons {
+    margin: 20px 0;
   }
 
 }

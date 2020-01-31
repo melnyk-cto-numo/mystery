@@ -16,6 +16,7 @@
       margin:                24px 0;
       min-height:            40px;
       font-size:             20px;
+      align-items:           center;
     }
     .utilitiesValue {
       width: 100%;
@@ -28,6 +29,7 @@
   width:           100%;
   text-align:      right;
   display:         flex;
+  flex-wrap:       wrap;
   justify-content: flex-end;
   align-items:     center;
 
@@ -38,5 +40,12 @@
   h2 {
     margin-top:    0;
     margin-bottom: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    padding: 20px;
   }
 }

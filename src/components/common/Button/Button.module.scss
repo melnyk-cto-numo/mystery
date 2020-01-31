@@ -15,9 +15,13 @@
   border:          1px solid $mainColor;
   transition:      .2s ease-in-out;
   cursor:          pointer;
-  margin-left:     50px;
+  margin-right:    50px;
   padding:         0 20px;
   margin-bottom:   20px;
+  margin-top:      20px;
+  &:nth-last-child(1) {
+    margin-right: 0;
+  }
   &:hover {
     background: transparent;
     color:      $mainColor;
@@ -40,5 +44,13 @@
     border:     $veryLightBlueColor;
     color:      $veryLightBlueColor;
     cursor:     default;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .primaryBtn {
+    margin-right: 10px;
+    min-width:    120px;
   }
 }

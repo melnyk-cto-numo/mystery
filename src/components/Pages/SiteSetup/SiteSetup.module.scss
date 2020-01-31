@@ -6,6 +6,7 @@
     width:           100%;
     text-align:      right;
     display:         flex;
+    flex-wrap:       wrap;
     align-items:     center;
     justify-content: space-between;
     h2 {
@@ -25,8 +26,7 @@
       align-items:     flex-end;
       justify-content: flex-start;
       button {
-        margin-bottom: 20px;
-        margin-top:    20px;
+        margin: 30px 0 20px 50px;
       }
     }
   }
@@ -53,7 +53,7 @@
     line-height:   1.25;
     cursor:        pointer;
     li {
-      min-width:     100px;
+      min-width:     120px;
       padding:       20px 2.8% 40px 2.8%;
       border-radius: 20px 20px 0 0;
       text-align:    center;
@@ -78,4 +78,12 @@
 
 }
 
+
+@media screen and (max-width: 778px) {
+  .siteSetup {
+    .siteSetupTitle {
+      margin: 70px 0 30px 0;
+    }
+  }
+}
 

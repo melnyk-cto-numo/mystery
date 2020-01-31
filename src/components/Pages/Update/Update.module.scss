@@ -9,11 +9,26 @@
     width:           100%;
     text-align:      right;
     display:         flex;
+    flex-wrap:       wrap;
     justify-content: flex-start;
     align-items:     center;
     button {
       margin-left:  0;
       margin-right: 50px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .update {
+    .updateInner {
+      margin-left: 10px;
+    }
+    .updateButtons {
+      button {
+        margin-left:  0;
+        margin-right: 20px;
+      }
     }
   }
 }
