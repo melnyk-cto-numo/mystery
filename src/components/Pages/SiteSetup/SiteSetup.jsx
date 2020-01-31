@@ -164,7 +164,7 @@ export const SiteSetup = () => {
             setFieldId(false)
         }
 
-    }, [indicator]);
+    }, [indicator, api]);
 
 
     return (
@@ -197,9 +197,6 @@ export const SiteSetup = () => {
                     {Object.keys(data).map((keys, index) => {
                         if (keys !== 'DspType' && keys !== 'DspID' && keys !== 'SiteName') {
 
-
-                            console.log(headerTableName[keys]);
-                            // console.log(keys)
                             if (headerTable[keys]) {
                                 return (
                                     <TabPanel key={index}>
@@ -210,7 +207,6 @@ export const SiteSetup = () => {
                                     <SiteSetupTable keys={keys} array={data} titles={headerTable['faders']}/>
                                 </TabPanel>)
                             }
-
                         }
                         return null;
                     })}

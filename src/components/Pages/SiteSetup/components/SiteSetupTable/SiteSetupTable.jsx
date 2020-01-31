@@ -42,12 +42,12 @@ export const SiteSetupTable = ({keys, array, titles}) => {
                                                                    readOnly/> :
                                                             <input id={'enabled_' + index} type="checkbox" readOnly/>}
                                                         <label htmlFor={'enabled_' + index}/>
-                                                    </div> : value === 'link' ? (<a className='question' href='/'/>) :
+                                                    </div> : value === 'link' ? (<span className='question'/>) :
                                                         <span>{item}</span>}
                                             </div>))}
                                     </div>)
                             }
-
+                            return null;
                         }
                     )}
                 </div>

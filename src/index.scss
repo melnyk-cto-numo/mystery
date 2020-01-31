@@ -64,7 +64,7 @@ h2 {
   color:       $lightBlackColor;
   margin:      70px 10px 70px 70px;
   min-height:  40px;
-  line-height: 40px;
+  line-height: 88px;
 }
 
 h3 {
@@ -89,6 +89,11 @@ input, select {
   border:        none;
   border-radius: 10px;
   font-size:     18px;
+  height:        48px;
+}
+
+button[disabled] {
+  display: none;
 }
 
 
@@ -176,7 +181,7 @@ input[type='file'] {
   background: $whiteColor;
 }
 
-@media screen {
+@media screen and (max-width: 768px) {
   h2 {
     margin: 20px 10px 20px 20px;
   }

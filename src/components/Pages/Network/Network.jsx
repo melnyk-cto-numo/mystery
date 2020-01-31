@@ -1,8 +1,8 @@
 // core
-import React from 'react';
+import React, {useState} from 'react';
 
 // components
-import {Button, Table} from "../../common";
+import { Table} from "../../common";
 
 //styles
 import styles from './Network.module.scss';
@@ -21,17 +21,30 @@ const DSP = [
 ];
 
 export const Network = () => {
+    const [disabled, setDisabled] = useState(true);
+
+    const editData = () => {
+        setDisabled(!disabled)
+    };
+
+
     return (
         <section>
             <div className={styles.networkTitle}>
                 <h2>Network</h2>
-                <Button text='Edit'/>
+                <button type="button" className={styles.primaryBtn} disabled={!disabled}
+                        onClick={() => editData()}>Edit
+                </button>
             </div>
             <Table data={array}/>
             <Table data={DSP}/>
             <div className={styles.networkButtons}>
-                <Button text='Cancel'/>
-                <Button text='Save'/>
+                <button type="button" className={styles.primaryBtn} disabled={disabled}
+                        onClick={() => editData()}>Cancel
+                </button>
+                <button type="button" className={styles.primaryBtn} disabled={disabled}
+                        onClick={() => editData()}>Save
+                </button>
             </div>
         </section>
     );
