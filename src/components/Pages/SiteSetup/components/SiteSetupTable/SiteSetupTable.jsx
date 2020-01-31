@@ -11,6 +11,17 @@ export const SiteSetupTable = ({keys, array, titles}) => {
         <div className={styles.wrapper}>
             <div className={styles.table}>
 
+                <div className={styles.siteSetupButtonsWrapper}>
+                    <input type='text' className={styles.siteSetupButtons}
+                           defaultValue="Type: Virtual Audio"/>
+                    <input type='text' className={[styles.siteSetupButtons + ' ' + styles.disable]}
+                           defaultValue="Min Gain (dB)"/>
+                    <select className={styles.siteSetupButtons}>
+                        <option>Min Gain (dB)</option>
+                    </select>
+                    <p>Fader Off = DSP Min Gain</p>
+                </div>
+
 
                 <div className={styles.tableHeader}>
                     {titles.map((title, index) => (

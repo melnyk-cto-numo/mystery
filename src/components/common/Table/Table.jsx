@@ -29,8 +29,10 @@ export const Table = ({data}) => {
                                 <span>{item.title}</span>
                                 <div className={styles.macDns}>
                                     <div className={styles.enable}>
-                                        <span>Enabled</span>
-                                        <input type='checkbox' className={styles.networkValue}/>
+                                        <div className='checkbox'>
+                                            <input id='enabled' type="checkbox"/>
+                                            <label htmlFor='enabled'>Enabled</label>
+                                        </div>
                                     </div>
                                     <div>
                                         <span>Primary:</span>

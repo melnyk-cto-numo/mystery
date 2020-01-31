@@ -17,11 +17,8 @@
     display:         flex;
     align-items:     flex-end;
     justify-content: space-between;
-    flex-wrap:       wrap;
     margin-bottom:   120px;
     .siteSetupButtons {
-
-
       display:         flex;
       flex-wrap:       wrap;
       flex-direction:  row-reverse;
@@ -59,8 +56,26 @@
       min-width:     100px;
       padding:       20px 2.8% 40px 2.8%;
       border-radius: 20px 20px 0 0;
+      text-align:    center;
     }
   }
+}
+
+
+@media screen and (max-width: 1200px) {
+  .siteSetup {
+    .siteSetupInner {
+      flex-wrap: wrap;
+      .siteSetupButtons {
+        flex-direction: row;
+        button {
+          margin-left:  0;
+          margin-right: 40px;
+        }
+      }
+    }
+  }
+
 }
 
 

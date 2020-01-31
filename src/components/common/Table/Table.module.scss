@@ -9,20 +9,27 @@
   position:      relative;
   z-index:       1;
   .table {
+    overflow: auto;
     .tableRow {
       display:               grid;
-      grid-template-columns: 50% 50%;
+      grid-template-columns: minmax(170px, 50%) minmax(460px, 50%);
       padding-right:         10%;
       margin:                24px 0;
       min-height:            40px;
+      align-items:           center;
       .macDns {
         display:               grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap:                   20px;
+        input {
+          padding: 12px 0 12px 30px;
+        }
         .enable {
-          display:        flex;
-          flex-direction: row-reverse;
-          align-items:    center;
+          display:         flex;
+          flex-direction:  row-reverse;
+          align-items:     center;
+          justify-content: flex-end;
+          padding-top:     20px;
         }
       }
     }

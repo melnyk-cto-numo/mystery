@@ -7,6 +7,7 @@
   width:         100%;
   margin-top:    30px;
   .table {
+    overflow: auto;
     .tableHeader {
       font-size:   18px;
       line-height: 1.66;
@@ -19,9 +20,11 @@
     }
     .tableRow {
       display:               grid;
-      grid-template-columns: 25% 25% 25% 25%;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 25%));
+      grid-auto-flow:        column;
       .tableCell {
-        margin: 12px 0;
+        margin:    12px 0;
+        min-width: 190px;
       }
     }
   }

@@ -40,7 +40,6 @@
         border-bottom:    1px solid $lightBlueColor;
         background-color: #dee8f0;
         .tableCell {
-          //background:      $veryLightBlueColor;
           padding-left:    20px;
           font-size:       18px;
           justify-content: center;
@@ -48,5 +47,38 @@
         }
       }
     }
+  }
+}
+
+
+.siteSetupButtonsWrapper {
+  display:       flex;
+  flex-wrap:     wrap;
+  margin-bottom: 20px;
+  align-items:   center;
+  .siteSetupButtons {
+    border-radius:   20px;
+    display:         flex;
+    justify-content: flex-start;
+    align-items:     center;
+    border:          1px solid $mainColor;
+    color:           $mainColor;
+    background:      transparent;
+    box-shadow:      none;
+    transition:      .2s ease-in-out;
+    min-height:      40px;
+    height:          40px;
+    padding:         0 20px;
+    min-width:       190px;
+    font-size:       18px;
+    margin-right:    40px;
+    margin-bottom:   20px;
+    &.disable {
+      pointer-events: none;
+      opacity:        .6;
+    }
+  }
+  p {
+    margin-bottom: 20px;
   }
 }
