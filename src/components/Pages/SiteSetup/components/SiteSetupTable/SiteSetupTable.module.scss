@@ -6,15 +6,44 @@
   padding:       40px;
   width:         100%;
   margin-top:    30px;
+  overflow:      auto;
+  max-height:    560px;
   position:      relative;
   z-index:       1;
   .table {
-    .tableRow {
+    overflow: auto;
+    .tableHeader {
+      font-weight:           bold;
+      color:                 $mainColor;
       display:               grid;
-      grid-template-columns: 50% 50%;
-      padding-right:         10%;
-      margin:                24px 0;
-      min-height:            40px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+    .tableRow, .tableHeader {
+      font-size:   18px;
+      line-height: 1.67;
+      .tableCell {
+        margin:          5px 20px;
+        display:         flex;
+        justify-content: left;
+        background:      white;
+        border:          none;
+        min-height:      40px;
+        height:          40px;
+        line-height:     40px;
+        padding:         0;
+      }
+    }
+    .tableBody {
+      display:               grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      .tableRow {
+        border-bottom: 1px solid $lightBlueColor;
+        .tableCell {
+          background:   $veryLightBlueColor;
+          padding-left: 20px;
+          font-size:    18px;
+        }
+      }
     }
   }
 }
