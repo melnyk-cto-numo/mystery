@@ -13,14 +13,35 @@
       margin-bottom: 0;
     }
   }
+  .siteSetupInner {
+    display:         flex;
+    align-items:     flex-end;
+    justify-content: space-between;
+    flex-wrap:       wrap;
+    margin-bottom:   120px;
+    .siteSetupButtons {
 
 
+      display:         flex;
+      flex-wrap:       wrap;
+      flex-direction:  row-reverse;
+      align-items:     flex-end;
+      justify-content: flex-start;
+      button {
+        margin-bottom: 20px;
+        margin-top:    20px;
+      }
+    }
+  }
 }
 
 
-.emSetupTabsWrapper {
-  position: relative;
-  .emSetupTabs {
+.siteSetupTabsWrapper {
+  position:      relative;
+  margin-bottom: 0;
+  .siteSetupTabs {
+    overflow:      auto;
+    max-width:     90%;
     position:      absolute;
     z-index:       0;
     left:          0;
@@ -35,6 +56,7 @@
     line-height:   1.25;
     cursor:        pointer;
     li {
+      min-width:     100px;
       padding:       20px 2.8% 40px 2.8%;
       border-radius: 20px 20px 0 0;
     }
