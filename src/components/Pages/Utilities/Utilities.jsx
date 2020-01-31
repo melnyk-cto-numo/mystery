@@ -2,12 +2,18 @@
 import React from 'react';
 
 // components
-import {Button} from "../../common";
+import {Button, TableSmall} from "../../common";
 import {UtilitiesTable} from "./UtilitiesTable/UtilitiesTable";
 
 // styles
 import styles from './Utilities.module.scss';
 
+
+const smallTable = [
+    {id: '0', label: 'Button Passed', type: 'text', value: '~Button Passed~'},
+    {id: '1', label: 'Test Faders', type: 'button', value: 'Go'},
+    {id: '2', label: 'Test Indicators', type: 'button', value: 'Go'},
+];
 
 const utilities = [
     {type: "~Raw value(0)~", buttons: [0, 0, 1, 1]},
@@ -31,22 +37,7 @@ export const Utilities = () => {
                 <h2>Utilities</h2>
                 <Button text='Edit'/>
             </div>
-            <div className={styles.wrapper}>
-                <div className={styles.table}>
-                    <div className={styles.tableRow}>
-                        <span>Button Passed</span>
-                        <input type='text' className={styles.utilitiesValue} defaultValue='~Button Passed~' readOnly/>
-                    </div>
-                    <div className={styles.tableRow}>
-                        <span>Test Faders</span>
-                        <Button text='Go' small/>
-                    </div>
-                    <div className={styles.tableRow}>
-                        <span>Test Indicators</span>
-                        <Button text='Go' small/>
-                    </div>
-                </div>
-            </div>
+            <TableSmall fields={smallTable}/>
             <UtilitiesTable data={utilities} title={titleUtilities}/>
             <div className={styles.utilitiesButtons}>
                 <Button text="Save changes"/>

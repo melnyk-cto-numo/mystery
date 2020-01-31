@@ -1,0 +1,45 @@
+@import "../../../assets/scss/variable";
+
+.siteSetup {
+  .siteSetupTitle {
+    margin:          70px 0;
+    width:           100%;
+    text-align:      right;
+    display:         flex;
+    align-items:     center;
+    justify-content: space-between;
+    h2 {
+      margin-top:    0;
+      margin-bottom: 0;
+    }
+  }
+
+
+
+}
+
+
+.emSetupTabsWrapper {
+  position: relative;
+  .emSetupTabs {
+    position:      absolute;
+    z-index:       0;
+    left:          0;
+    top:           20px;
+    transform:     translateY(-100%);
+    display:       inline-flex;
+    font-weight:   bold;
+    background:    #f6f8fa;
+    color:         $lightBlackColor;
+    border-radius: 20px 20px 0 0;
+    font-size:     24px;
+    line-height:   1.25;
+    cursor:        pointer;
+    li {
+      padding:       20px 30px 40px 30px;
+      border-radius: 20px 20px 0 0;
+    }
+  }
+}
+
+

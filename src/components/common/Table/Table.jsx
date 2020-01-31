@@ -46,6 +46,7 @@ export const Table = ({data}) => {
                                 </div>
                             </div>)
                     }
+                    return null;
                 })}
             </div>
         </div>

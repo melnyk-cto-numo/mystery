@@ -2,8 +2,7 @@
 import React from 'react';
 
 //components
-import {Input} from "../../common/Input/Input";
-import {Button} from "../../common";
+import {Button, Input} from "../../common";
 
 //styles
 import styles from './Update.module.scss';
