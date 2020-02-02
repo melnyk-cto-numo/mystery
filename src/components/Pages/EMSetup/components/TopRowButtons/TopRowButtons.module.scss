@@ -2,36 +2,36 @@
 
 .wrapper {
   background:    $whiteColor;
-  border-radius: 20px;
-  padding:       40px;
+  border-radius: 1.25rem;
+  padding:       2.5rem;
   width:         100%;
-  margin-top:    30px;
+  margin-top:    1.875rem;
   position:      relative;
   z-index:       1;
   .table {
     overflow: auto;
     .tableBody, .tableHeader {
       display:               grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, auto));
+      grid-template-columns: repeat(auto-fit, minmax(6.25rem, auto));
       line-height:           1.5;
-      min-width:             1300px;
+      min-width:             81.25rem;
     }
     .tableHeader {
       background-color: $lightBlueColor;
       &:nth-child(1) {
         font-weight: bold;
-        font-size:   20px;
+        font-size:   1.25rem;
         color:       $mainColor;
         .tableCell {
           align-items: center;
         }
       }
       .tableCell {
-        margin:          1px;
+        margin:          0.0625rem;
         background:      $whiteColor;
-        font-size:       16px;
+        font-size:       1rem;
         line-height:     1.67;
-        min-height:      50px;
+        min-height:      3.125rem;
         display:         flex;
         flex-direction:  column;
         align-items:     flex-start;
@@ -41,19 +41,19 @@
     .tableRow {
       background-color: $lightBlueColor;
       &:nth-child(1) {
-        font-size: 18px;
+        font-size: 1.125rem;
       }
       .tableCell {
-        margin:          1px;
+        margin:          0.0625rem;
         background:      $whiteColor;
-        font-size:       16px;
+        font-size:       1rem;
         line-height:     1.67;
-        min-height:      50px;
+        min-height:      3.125rem;
         display:         flex;
         flex-direction:  column;
         align-items:     flex-start;
         justify-content: center;
-        padding-left:    10px;
+        padding-left:    0.625rem;
       }
     }
   }

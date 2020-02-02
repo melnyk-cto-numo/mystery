@@ -1,6 +1,6 @@
 .help {
   .helpTitle, .helpButtons {
-    margin:          70px 0;
+    margin:          4.375rem 0;
     width:           100%;
     text-align:      right;
     display:         flex;
@@ -13,21 +13,21 @@
     }
   }
   .helpInner {
-    margin-left: 50px;
+    margin-left: 3.125rem;
   }
   .helpList {
     color:         #9d9cc6;
     font-weight:   bold;
-    font-size:     24px;
+    font-size:     1.5rem;
     line-height:   1.5;
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
     span {
       font-weight:  100;
-      padding-left: 32px;
+      padding-left: 2rem;
     }
     li {
       position:     relative;
-      padding-left: 40px;
+      padding-left: 2.5rem;
     }
     &.map li {
       &:before {
@@ -36,7 +36,7 @@
         left:      0;
         top:       50%;
         transform: translateY(-50%);
-        width:     16px;
+        width:     1rem;
       }
     }
     &.telephone li {
@@ -46,7 +46,7 @@
         left:      0;
         top:       50%;
         transform: translateY(-50%);
-        width:     16px;
+        width:     1rem;
       }
     }
   }
@@ -56,7 +56,7 @@
 @media screen and (max-width: 768px) {
   .help {
     .helpInner {
-      margin-left: 10px;
+      margin-left: 0.625rem;
     }
   }
 }

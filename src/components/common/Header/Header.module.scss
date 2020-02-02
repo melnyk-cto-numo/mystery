@@ -6,7 +6,7 @@
     position:   relative;
     z-index:    10;
     background: $whiteColor;
-    padding:    50px;
+    padding:    3.125rem;
     height:     100%;
     transition: .4s;
     transform:  translateX(0);
@@ -24,18 +24,18 @@
           margin:         0;
           position:       absolute;
           left:           0;
-          bottom:         22px;
-          font-size:      13px;
+          bottom:         1.375rem;
+          font-size:      0.8125rem;
           line-height:    2.14;
           color:          $mainColor;
           text-transform: uppercase;
           transform:      translateY(100%);
-          letter-spacing: 3px;
+          letter-spacing: 0.1875rem;
         }
       }
       .logoImage {
-        margin-left: 5px;
-        margin-top:  6px;
+        margin-left: 0.3125rem;
+        margin-top:  0.375rem;
       }
     }
     .headerMenu {
@@ -45,7 +45,7 @@
         width:        100%;
         height:       100%;
         margin-top:   0;
-        padding-left: 40px;
+        padding-left: 2.5rem;
         position:     relative;
       }
 
@@ -54,11 +54,11 @@
   .burgerMenu {
     display:          none;
     position:         fixed;
-    top:              15px;
-    right:            40px;
+    top:              0.9375rem;
+    right:            2.5rem;
     z-index:          30;
-    width:            60px;
-    height:           60px;
+    width:            3.75rem;
+    height:           3.75rem;
     border-radius:    50%;
     background-color: rgba(255, 255, 255, 0.5);
     transition:       0.4s;
@@ -70,8 +70,8 @@
     }
     .burgerMenuLines, .burgerMenuLines:after, .burgerMenuLines:before {
       position:         absolute;
-      width:            32px;
-      height:           3px;
+      width:            2rem;
+      height:           0.1875rem;
       background-color: $mainColor;
       left:             0;
       transition:       .4s;
@@ -82,11 +82,11 @@
       transform: translate(-50%, -50%);
       &:after {
         content: '';
-        top:     -10px;
+        top:     -0.625rem;
       }
       &:before {
         content: '';
-        top:     10px;
+        top:     0.625rem;
       }
     }
     &.active {
@@ -126,7 +126,7 @@
 @media screen and (max-width: 768px) {
   .headerWrapper {
     .burgerMenu {
-      right: 15px;
+      right: 0.9375rem;
     }
   }
 }
@@ -135,8 +135,8 @@
   .headerWrapper {
     .header {
       .logo {
-        top:  -35px;
-        left: -30px;
+        top:  -2.1875rem;
+        left: -1.875rem;
       }
     }
   }

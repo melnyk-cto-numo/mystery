@@ -2,7 +2,7 @@
 @import "../../common/Button/Button.module";
 
 .emSetupButtons, .emSetupTitle {
-  margin:          70px 0 150px 0;
+  margin:          4.375rem 0 9.375rem 0;
   width:           100%;
   text-align:      right;
   display:         flex;
@@ -12,7 +12,7 @@
 }
 
 .emSetupButtons {
-  margin: 110px 0;
+  margin: 6.875rem 0;
 }
 
 .emSetupTitle {
@@ -29,19 +29,19 @@
     position:      absolute;
     z-index:       0;
     left:          0;
-    top:           20px;
+    top:           1.25rem;
     transform:     translateY(-100%);
     display:       inline-flex;
     font-weight:   bold;
     background:    #f6f8fa;
     color:         $lightBlackColor;
-    border-radius: 20px 20px 0 0;
-    font-size:     24px;
+    border-radius: 1.25rem 1.25rem 0 0;
+    font-size:     1.5rem;
     line-height:   1.25;
     cursor:        pointer;
     li {
-      padding:       20px 60px 40px 60px;
-      border-radius: 20px 20px 0 0;
+      padding:       1.25rem 3.75rem 2.5rem 3.75rem;
+      border-radius: 1.25rem 1.25rem 0 0;
     }
   }
 }
@@ -52,7 +52,7 @@
   .emSetupTabsWrapper {
     .emSetupTabs {
       li {
-        padding: 20px 30px 40px 30px;
+        padding: 1.25rem 1.875rem 2.5rem 1.875rem;
       }
     }
   }
@@ -64,12 +64,12 @@
   .emSetupTabsWrapper {
     .emSetupTabs {
       li {
-        padding: 20px 10px 40px 10px;
+        padding: 1.25rem 0.625rem 2.5rem 0.625rem;
       }
     }
   }
   .emSetupButtons {
-    margin: 20px 0;
+    margin: 1.25rem 0;
   }
 
 }

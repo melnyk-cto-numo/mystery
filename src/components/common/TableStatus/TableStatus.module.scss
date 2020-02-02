@@ -2,40 +2,40 @@
 
 .wrapper {
   background:    $whiteColor;
-  border-radius: 20px;
-  padding:       40px;
+  border-radius: 1.25rem;
+  padding:       2.5rem;
   width:         100%;
-  margin-top:    30px;
+  margin-top:    1.875rem;
   .table {
     overflow: auto;
     .tableHeader {
-      font-size:   18px;
+      font-size:   1.125rem;
       line-height: 1.66;
     }
     .tableBody {
       font-weight: bold;
-      font-size:   20px;
+      font-size:   1.25rem;
       line-height: 1.5;
 
     }
     .tableRow {
       display:               grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 25%));
+      grid-template-columns: repeat(auto-fit, minmax(11.875rem, 25%));
       grid-auto-flow:        column;
       .tableCell {
-        margin:    12px 0;
-        min-width: 190px;
+        margin:    0.75rem 0;
+        min-width: 11.875rem;
       }
     }
   }
   h3 {
-    margin: 0 0 40px 30px;
+    margin: 0 0 2.5rem 1.875rem;
   }
 }
 
 
 @media screen and (max-width: 768px) {
   .wrapper {
-    padding: 20px;
+    padding: 1.25rem;
   }
 }

@@ -1,24 +1,24 @@
 @import "../../../assets/scss/variable";
 
 .primaryBtn {
-  border-radius:   20px;
+  border-radius:   1.25rem;
   background:      $mainColor;
   color:           $whiteColor;
-  min-width:       185px;
+  min-width:       11.5625rem;
   display:         flex;
   align-items:     center;
   justify-content: center;
-  height:          48px;
+  height:          3rem;
   font-weight:     bold;
-  font-size:       20px;
-  line-height:     1.67px;
-  border:          1px solid $mainColor;
+  font-size:       1.25rem;
+  line-height:     0.104375rem;
+  border:          0.0625rem solid $mainColor;
   transition:      .2s ease-in-out;
   cursor:          pointer;
-  margin-right:    50px;
-  padding:         0 20px;
-  margin-bottom:   20px;
-  margin-top:      20px;
+  margin-right:    3.125rem;
+  padding:         0 1.25rem;
+  margin-bottom:   1.25rem;
+  margin-top:      1.25rem;
   &:nth-last-child(1) {
     margin-right: 0;
   }
@@ -34,12 +34,12 @@
   &.small {
     padding:   0;
     margin:    0 auto 0 auto;
-    min-width: 100px;
+    min-width: 6.25rem;
   }
   &.empty {
     padding:    0;
     margin:     0 auto 0 auto;
-    min-width:  100px;
+    min-width:  6.25rem;
     background: $veryLightBlueColor;
     border:     $veryLightBlueColor;
     color:      $veryLightBlueColor;
@@ -50,7 +50,7 @@
 
 @media screen and (max-width: 768px) {
   .primaryBtn {
-    margin-right: 10px;
-    min-width:    120px;
+    margin-right: 0.625rem;
+    min-width:    7.5rem;
   }
 }

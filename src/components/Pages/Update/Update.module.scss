@@ -2,10 +2,10 @@
 
 .update {
   .updateInner {
-    margin-left: 50px;
+    margin-left: 3.125rem;
   }
   .updateButtons {
-    margin:          60px 0 150px 0;
+    margin:          3.75rem 0 9.375rem 0;
     width:           100%;
     text-align:      right;
     display:         flex;
@@ -14,7 +14,7 @@
     align-items:     center;
     button {
       margin-left:  0;
-      margin-right: 50px;
+      margin-right: 3.125rem;
     }
   }
 }
@@ -22,12 +22,12 @@
 @media screen and (max-width: 768px) {
   .update {
     .updateInner {
-      margin-left: 10px;
+      margin-left: 0.625rem;
     }
     .updateButtons {
       button {
         margin-left:  0;
-        margin-right: 20px;
+        margin-right: 1.25rem;
       }
     }
   }

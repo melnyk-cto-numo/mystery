@@ -2,7 +2,7 @@
 
 @media (any-hover: hover) {
   a:hover span {
-    font-size: 24px;
+    font-size: 1.5rem;
     color:     $mainColor;
   }
   a:hover svg {
@@ -11,9 +11,10 @@
 }
 
 body, html {
-  margin:  0;
-  padding: 0;
-  height:  100%;
+  margin:    0;
+  padding:   0;
+  height:    100%;
+  font-size: 1rem;
 }
 
 body {
@@ -33,7 +34,7 @@ body {
 }
 
 a {
-  font-size:       18px;
+  font-size:       1.125rem;
   text-decoration: none;
   color:           $secondColor;
   font-weight:     bold;
@@ -43,7 +44,7 @@ a {
   }
   &:active span {
     opacity:   .7;
-    font-size: 24px;
+    font-size: 1.5rem;
     color:     $mainColor;
   }
   &:active svg {
@@ -53,31 +54,31 @@ a {
 }
 
 h1 {
-  font-size:   34px;
+  font-size:   2.125rem;
   line-height: 1.66;
   font-weight: 800;
   font-style:  italic;
 }
 
 h2 {
-  font-size:   36px;
+  font-size:   2.25rem;
   color:       $lightBlackColor;
-  margin:      70px 10px 70px 70px;
-  min-height:  40px;
-  line-height: 88px;
+  margin:      4.375rem 0.625rem 4.375rem 4.375rem;
+  min-height:  2.5rem;
+  line-height: 5.5rem;
 }
 
 h3 {
-  font-size:   24px;
+  font-size:   1.5rem;
   line-height: 1.25;
   color:       $lightBlackColor;
-  margin:      0 0 50px 0;
+  margin:      0 0 3.125rem 0;
 }
 
 ul {
   list-style-type: none;
   li {
-    font-size:   18px;
+    font-size:   1.125rem;
     line-height: 1.67;
     color:       $secondColor;
   }
@@ -85,11 +86,11 @@ ul {
 
 input, select {
   background:    $grayColor;
-  padding:       12px 0 12px 70px;
+  padding:       0.75rem 0 0.75rem 4.375rem;
   border:        none;
-  border-radius: 10px;
-  font-size:     18px;
-  height:        48px;
+  border-radius: 0.625rem;
+  font-size:     1.125rem;
+  height:        3rem;
 }
 
 button[disabled] {
@@ -102,8 +103,8 @@ input[disabled], select[disabled] {
 
 
 .checkbox {
-  width:  30px;
-  height: 30px;
+  width:  1.875rem;
+  height: 1.875rem;
   input[type='checkbox'] {
     padding:       0;
     height:        initial;
@@ -118,7 +119,7 @@ input[disabled], select[disabled] {
       display:         inline-block;
       position:        absolute;
       top:             0;
-      left:            -4px;
+      left:            -0.25rem;
       width:           100%;
       height:          100%;
       cursor:          pointer;
@@ -126,11 +127,11 @@ input[disabled], select[disabled] {
   }
   label {
     position:     relative;
-    width:        30px;
-    height:       30px;
+    width:        1.875rem;
+    height:       1.875rem;
     display:      inline-block;
-    padding-left: 40px;
-    line-height:  30px;
+    padding-left: 2.5rem;
+    line-height:  1.875rem;
     &:before {
       content:         '';
       background:      url("./assets/img/checkBox-empty.svg") no-repeat center;
@@ -140,8 +141,8 @@ input[disabled], select[disabled] {
       background-size: contain;
       display:         inline-block;
       cursor:          pointer;
-      width:           26px;
-      height:          30px;
+      width:           1.625rem;
+      height:          1.875rem;
     }
     &:hover, &:active {
       opacity: .8;
@@ -153,8 +154,8 @@ input[disabled], select[disabled] {
 .question {
   background:      url("./assets/img/question.svg") no-repeat center;
   background-size: contain;
-  width:           24px;
-  height:          24px;
+  width:           1.5rem;
+  height:          1.5rem;
   &:hover, &:active {
     opacity: .8;
   }
@@ -165,7 +166,7 @@ input[type='file'] {
   display: none;
 }
 
-::-webkit-scrollbar { width: 5px; height: 5px;}
+::-webkit-scrollbar { width: 0.3125rem; height: 0.3125rem;}
 
 ::-webkit-scrollbar-button { background-color: transparent; }
 
@@ -173,7 +174,7 @@ input[type='file'] {
 
 ::-webkit-scrollbar-track-piece { background-color: transparent;}
 
-::-webkit-scrollbar-thumb { height: 50px; background-color: #dfcefa; border-radius: 5px;}
+::-webkit-scrollbar-thumb { height: 3.125rem; background-color: #dfcefa; border-radius: 0.3125rem;}
 
 ::-webkit-scrollbar-corner { background-color: transparent;}
 
@@ -187,6 +188,6 @@ input[type='file'] {
 
 @media screen and (max-width: 768px) {
   h2 {
-    margin: 20px 10px 20px 20px;
+    margin: 1.25rem 0.625rem 1.25rem 1.25rem;
   }
 }

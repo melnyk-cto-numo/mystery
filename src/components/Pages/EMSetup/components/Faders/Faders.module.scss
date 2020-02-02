@@ -2,12 +2,12 @@
 
 .wrapper {
   background:    $whiteColor;
-  border-radius: 20px;
-  padding:       40px;
+  border-radius: 1.25rem;
+  padding:       2.5rem;
   width:         100%;
-  margin-top:    30px;
+  margin-top:    1.875rem;
   overflow:      auto;
-  max-height:    560px;
+  max-height:    35rem;
   position:      relative;
   z-index:       1;
   .table {
@@ -17,30 +17,30 @@
       color:       $mainColor;
     }
     .tableRow, .tableHeader {
-      font-size:             18px;
+      font-size:             1.125rem;
       display:               grid;
-      grid-template-columns: repeat(auto-fit, minmax(80px, 20%));
+      grid-template-columns: repeat(auto-fit, minmax(5rem, 20%));
       line-height:           1.67;
-      min-width:             1300px;
+      min-width:             81.25rem;
       .tableCell {
-        margin:          5px 20px;
+        margin:          0.3125rem 1.25rem;
         display:         flex;
         justify-content: left;
         background:      white;
         border:          none;
-        min-height:      40px;
-        height:          40px;
-        line-height:     40px;
+        min-height:      2.5rem;
+        height:          2.5rem;
+        line-height:     2.5rem;
         padding:         0;
       }
     }
     .tableBody {
       .tableRow {
-        border-bottom: 1px solid $lightBlueColor;
+        border-bottom: 0.0625rem solid $lightBlueColor;
         .tableCell:not(:first-child) {
           background:   $veryLightBlueColor;
-          padding-left: 20px;
-          font-size:    18px;
+          padding-left: 1.25rem;
+          font-size:    1.125rem;
         }
       }
     }
@@ -50,6 +50,6 @@
 
 @media screen and (max-width: 768px) {
   .wrapper {
-    padding: 20px;
+    padding: 1.25rem;
   }
 }

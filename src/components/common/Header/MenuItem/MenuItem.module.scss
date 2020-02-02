@@ -5,20 +5,20 @@
   left:     0;
   @for $i from 0 through 7 {
     &:nth-child(#{$i}) {
-      top: calc(70px + (60px * #{$i}));
+      top: calc(4.375rem + (3.75rem * #{$i}));
     }
   }
   a {
     display:         flex;
     align-items:     center;
     justify-content: left;
-    height:          30px;
+    height:          1.875rem;
     svg {
-      width:        20px;
-      margin-right: 24px;
+      width:        1.25rem;
+      margin-right: 1.5rem;
     }
     &.active {
-      font-size: 24px;
+      font-size: 1.5rem;
       color:     $mainColor;
       svg {
         fill: $mainColor;
@@ -27,11 +27,11 @@
         content:       '';
         position:      absolute;
         background:    $mainColor;
-        width:         10px;
-        border-radius: 0 10px 10px 0;
-        height:        50px;
-        left:          -50px;
-        top:           -10px;
+        width:         0.625rem;
+        border-radius: 0 0.625rem 0.625rem 0;
+        height:        3.125rem;
+        left:          -3.125rem;
+        top:           -0.625rem;
       }
     }
   }
@@ -41,7 +41,7 @@
   .menuItem {
     @for $i from 0 through 7 {
       &:nth-child(#{$i}) {
-        top: calc(60px * #{$i} - 30px);
+        top: calc(3.75rem * #{$i} - 1.875rem);
       }
     }
   }
