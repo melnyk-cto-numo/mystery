@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './Faders.module.scss';
 
-export const Faders = ({data}) => {
+export const Faders = ({data, disabled = true}) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.table}>
@@ -15,22 +15,22 @@ export const Faders = ({data}) => {
                     {data.body.map((item, index) => (
                         <div key={index} className={styles.tableRow}>
                             <div className={styles.tableCell}>{item.location}</div>
-                            <select className={styles.tableCell}>
+                            <select className={styles.tableCell} disabled={disabled}>
                                 {item.fader.map((fader, index) => (
                                     <option key={index}>{fader}</option>
                                 ))}
                             </select>
-                            <select className={styles.tableCell}>
+                            <select className={styles.tableCell} disabled={disabled}>
                                 {item.mute.map((mute, index) => (
                                     <option key={index}>{mute}</option>
                                 ))}
                             </select>
-                            <select className={styles.tableCell}>
+                            <select className={styles.tableCell} disabled={disabled}>
                                 {item.signal.map((signal, index) => (
                                     <option key={index}>{signal}</option>
                                 ))}
                             </select>
-                            <select className={styles.tableCell}>
+                            <select className={styles.tableCell} disabled={disabled}>
                                 {item.highGain.map((highGain, index) => (
                                     <option key={index}>{highGain}</option>
                                 ))}

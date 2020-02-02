@@ -37,7 +37,7 @@
     .tableBody {
       .tableRow {
         border-bottom: 1px solid $lightBlueColor;
-        .tableCell {
+        .tableCell:not(:first-child) {
           background:   $veryLightBlueColor;
           padding-left: 20px;
           font-size:    18px;

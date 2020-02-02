@@ -7,7 +7,13 @@
 
 .main {
   padding: 40px;
-  width:   calc(100%);
+  width:   calc(100% - 303px);
+}
+
+@media screen and (max-width: 992px) {
+  .main {
+    width: calc(100%);
+  }
 }
 
 @media screen and (max-width: 768px) {

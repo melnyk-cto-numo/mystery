@@ -1,11 +1,11 @@
 // core
-import React from 'react';
+import React, {useState} from 'react';
 
 //library
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 
 //components
-import {Button, Table} from "../../common";
+import {Table} from "../../common";
 import {TopRowButtons, Faders} from "./components";
 
 // styles
@@ -111,12 +111,19 @@ const titleTopRowButtons = {
 };
 
 export const EMSetup = () => {
+    const [disabled, setDisabled] = useState(true);
+
+    const editingData = () => {
+        setDisabled(!disabled)
+    };
 
     return (
         <section>
             <div className={styles.emSetupTitle}>
                 <h2>EM Setup</h2>
-                <Button text='Edit'/>
+                <button type="button" className={styles.primaryBtn} disabled={!disabled}
+                        onClick={() => editingData()}>Edit
+                </button>
             </div>
             <Tabs className={styles.emSetupTabsWrapper}>
                 <TabList className={styles.emSetupTabs}>
@@ -125,20 +132,22 @@ export const EMSetup = () => {
                     <Tab>Faders</Tab>
                 </TabList>
                 <TabPanel>
-                    <Table data={setup}/>
+                    <Table data={setup} disabled={disabled}/>
                 </TabPanel>
                 <TabPanel>
-                    <TopRowButtons data={emsetup.Buttons} title={titleTopRowButtons}/>
+                    <TopRowButtons data={emsetup.Buttons} title={titleTopRowButtons} disabled/>
                 </TabPanel>
                 <TabPanel>
-                    <Faders data={faders}/>
+                    <Faders data={faders} disabled={disabled}/>
                 </TabPanel>
             </Tabs>
 
             <div className={styles.emSetupButtons}>
-                <Button text='Save Settings'/>
-                <Button text='Download Config'/>
-                <Button text='Upload Config'/>
+                <button type="button" className={styles.primaryBtn} disabled={disabled}
+                        onClick={() => editingData()}>Save Settings
+                </button>
+                <button type="button" className={styles.primaryBtn}>Download Config</button>
+                <button type="button" className={styles.primaryBtn}>Upload Config</button>
             </div>
 
         </section>

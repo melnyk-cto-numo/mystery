@@ -4,7 +4,7 @@ import React from 'react';
 //styles
 import styles from './SiteSetupTable.module.scss';
 
-export const SiteSetupTable = ({keys, array, titles}) => {
+export const SiteSetupTable = ({keys, array, titles, disabled = true}) => {
     const values = Object.keys(array[keys]);
 
     return (
@@ -13,10 +13,10 @@ export const SiteSetupTable = ({keys, array, titles}) => {
 
                 <div className={styles.siteSetupButtonsWrapper}>
                     <input type='text' className={styles.siteSetupButtons}
-                           defaultValue="Type: Virtual Audio"/>
-                    <input type='text' className={[styles.siteSetupButtons + ' ' + styles.disable]}
-                           defaultValue="Min Gain (dB)"/>
-                    <select className={styles.siteSetupButtons}>
+                           defaultValue="Type: Virtual Audio" disabled={disabled}/>
+                    <input type='text' className={styles.siteSetupButtons}
+                           defaultValue="Min Gain (dB)" disabled={disabled}/>
+                    <select className={styles.siteSetupButtons} disabled={disabled}>
                         <option>Min Gain (dB)</option>
                     </select>
                     <p>Fader Off = DSP Min Gain</p>
@@ -39,8 +39,9 @@ export const SiteSetupTable = ({keys, array, titles}) => {
                                                     <div className='checkbox'>
                                                         {item ?
                                                             <input id={'enabled_' + index} type="checkbox" checked
-                                                                   readOnly/> :
-                                                            <input id={'enabled_' + index} type="checkbox" readOnly/>}
+                                                                   disabled={disabled}/> :
+                                                            <input id={'enabled_' + index} type="checkbox"
+                                                                   disabled={disabled}/>}
                                                         <label htmlFor={'enabled_' + index}/>
                                                     </div> : value === 'link' ? (<span className='question'/>) :
                                                         <span>{item}</span>}

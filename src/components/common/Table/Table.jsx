@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './Table.module.scss';
 
-export const Table = ({data}) => {
+export const Table = ({data, disabled = true}) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.table}>
@@ -11,13 +11,14 @@ export const Table = ({data}) => {
                         return (
                             <div key={item.id} className={styles.tableRow}>
                                 <span>{item.title}</span>
-                                <input type='text' className={styles.networkValue} defaultValue={item.value} readOnly/>
+                                <input type='text' className={styles.networkValue} defaultValue={item.value}
+                                       disabled={disabled}/>
                             </div>)
                     } else if (item.type === 'select') {
                         return (
                             <div key={item.id} className={styles.tableRow}>
                                 <span>{item.title}</span>
-                                <select className={styles.networkValue}>
+                                <select className={styles.networkValue} disabled={disabled}>
                                     {item.value.map((item, index) => (
                                         <option key={index}>{item}</option>
                                     ))}
@@ -30,19 +31,19 @@ export const Table = ({data}) => {
                                 <div className={styles.macDns}>
                                     <div className={styles.enable}>
                                         <div className='checkbox'>
-                                            <input id='enabled' type="checkbox"/>
+                                            <input id='enabled' type="checkbox" disabled={disabled}/>
                                             <label htmlFor='enabled'>Enabled</label>
                                         </div>
                                     </div>
                                     <div>
                                         <span>Primary:</span>
                                         <input type='text' className={styles.networkValue} defaultValue={item.primary}
-                                               readOnly/>
+                                               disabled={disabled}/>
                                     </div>
                                     <div>
                                         <span>Secondary:</span>
                                         <input type='text' className={styles.networkValue} defaultValue={item.secondary}
-                                               readOnly/>
+                                               disabled={disabled}/>
 
                                     </div>
                                 </div>

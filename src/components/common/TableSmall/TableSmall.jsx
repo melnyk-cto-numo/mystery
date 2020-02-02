@@ -7,7 +7,7 @@ import {Button} from "..";
 // styles
 import styles from './TableSmall.module.scss';
 
-export const TableSmall = ({fields, setIndicator}) => {
+export const TableSmall = ({fields, setIndicator, disabled = true}) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.table}>
@@ -18,7 +18,7 @@ export const TableSmall = ({fields, setIndicator}) => {
                         return (
                             <div key={field.id} className={styles.tableRow}>
                                 <span>{field.label}</span>
-                                <select className={styles.value} onChange={(e) => setIndicator(e.target.selectedIndex)}>
+                                <select className={styles.value} onChange={(e) => setIndicator(e.target.selectedIndex)} disabled={disabled}>
                                     {field.value.map((item, index) => (
                                         <option key={index}>{item}</option>
                                     ))}
@@ -34,7 +34,7 @@ export const TableSmall = ({fields, setIndicator}) => {
                         return (
                             <div key={field.id} className={styles.tableRow}>
                                 <span>{field.label}</span>
-                                <input type={field.type} className={styles.value} defaultValue={field.value} readOnly/>
+                                <input type={field.type} className={styles.value} defaultValue={field.value} disabled={disabled}/>
                             </div>)
                     }
                 })}

@@ -5,7 +5,7 @@ import React, {useEffect, useState} from 'react';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 
 //components
-import {Button, TableSmall} from "../../common";
+import {TableSmall} from "../../common";
 import {SiteSetupTable} from "./components/SiteSetupTable/SiteSetupTable";
 
 //styles
@@ -122,6 +122,11 @@ export const SiteSetup = () => {
     const [indicator, setIndicator] = useState(0);
     const [headerTable, setHeaderTable] = useState(headerTableName[0]);
     const [fieldId, setFieldId] = useState(true);
+    const [disabled, setDisabled] = useState(true);
+
+    const editingData = () => {
+        setDisabled(!disabled)
+    };
 
     useEffect(() => {
         switch (indicator) {
@@ -173,14 +178,18 @@ export const SiteSetup = () => {
                 <h2>
                     Site Setup
                 </h2>
-                <Button text='Edit'/>
+                <button type="button" className={styles.primaryBtn} onClick={() => editingData()}
+                        disabled={!disabled}>Edit
+                </button>
             </div>
             <div className={styles.siteSetupInner}>
-                <TableSmall fields={smallTable} setIndicator={setIndicator} fieldId={fieldId}/>
+                <TableSmall fields={smallTable} setIndicator={setIndicator} fieldId={fieldId} disabled={disabled}/>
                 <div className={styles.siteSetupButtons}>
-                    <Button text='Save'/>
-                    <Button text='Download Backup'/>
-                    <Button text='Import to Page'/>
+                    <button type="button" className={styles.primaryBtn} onClick={() => editingData()}
+                            disabled={disabled}>Save
+                    </button>
+                    <button type="button" className={styles.primaryBtn}>Download Backup</button>
+                    <button type="button" className={styles.primaryBtn}>Import to Page</button>
                 </div>
             </div>
 
@@ -200,11 +209,13 @@ export const SiteSetup = () => {
                             if (headerTable[keys]) {
                                 return (
                                     <TabPanel key={index}>
-                                        <SiteSetupTable keys={keys} array={data} titles={headerTable[keys]}/>
+                                        <SiteSetupTable keys={keys} array={data} titles={headerTable[keys]}
+                                                        disabled={disabled}/>
                                     </TabPanel>)
                             } else {
                                 return (<TabPanel key={index}>
-                                    <SiteSetupTable keys={keys} array={data} titles={headerTable['faders']}/>
+                                    <SiteSetupTable keys={keys} array={data} titles={headerTable['faders']}
+                                                    disabled={disabled}/>
                                 </TabPanel>)
                             }
                         }

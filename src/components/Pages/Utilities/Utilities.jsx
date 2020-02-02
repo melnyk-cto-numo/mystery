@@ -1,8 +1,8 @@
 // core
-import React from 'react';
+import React, {useState} from 'react';
 
 // components
-import {Button, TableSmall} from "../../common";
+import {TableSmall} from "../../common";
 import {UtilitiesTable} from "./UtilitiesTable/UtilitiesTable";
 
 // styles
@@ -30,17 +30,25 @@ const titleUtilities = {
 };
 
 export const Utilities = () => {
+    const [disabled, setDisabled] = useState(true);
+
+    const editingData = () => {
+        setDisabled(!disabled)
+    };
 
     return (
         <section>
             <div className={styles.utilitiesTitle}>
                 <h2>Utilities</h2>
-                <Button text='Edit'/>
+                <button type="button" className={styles.primaryBtn} disabled={!disabled}
+                        onClick={() => editingData()}>Edit
+                </button>
             </div>
-            <TableSmall fields={smallTable}/>
+            <TableSmall fields={smallTable} disabled={disabled}/>
             <UtilitiesTable data={utilities} title={titleUtilities}/>
             <div className={styles.utilitiesButtons}>
-                <Button text="Save changes"/>
+                <button type="button" className={styles.primaryBtn} disabled={disabled}
+                        onClick={() => editingData()}>Save changes</button>
             </div>
         </section>
     );

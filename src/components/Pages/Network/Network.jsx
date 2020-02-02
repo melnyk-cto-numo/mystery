@@ -23,7 +23,7 @@ const DSP = [
 export const Network = () => {
     const [disabled, setDisabled] = useState(true);
 
-    const editData = () => {
+    const editingData = () => {
         setDisabled(!disabled)
     };
 
@@ -33,17 +33,17 @@ export const Network = () => {
             <div className={styles.networkTitle}>
                 <h2>Network</h2>
                 <button type="button" className={styles.primaryBtn} disabled={!disabled}
-                        onClick={() => editData()}>Edit
+                        onClick={() => editingData()}>Edit
                 </button>
             </div>
-            <Table data={array}/>
-            <Table data={DSP}/>
+            <Table data={array} disabled={disabled}/>
+            <Table data={DSP}  disabled={disabled}/>
             <div className={styles.networkButtons}>
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
-                        onClick={() => editData()}>Cancel
+                        onClick={() => editingData()}>Cancel
                 </button>
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
-                        onClick={() => editData()}>Save
+                        onClick={() => editingData()}>Save
                 </button>
             </div>
         </section>
