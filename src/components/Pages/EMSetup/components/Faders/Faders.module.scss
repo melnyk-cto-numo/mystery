@@ -12,16 +12,10 @@
   z-index:       1;
   .table {
     overflow: auto;
-    .tableHeader {
-      font-weight: bold;
-      color:       $mainColor;
-    }
-    .tableRow, .tableHeader {
-      font-size:             1.125rem;
-      display:               grid;
-      grid-template-columns: repeat(auto-fit, minmax(5rem, 20%));
-      line-height:           1.67;
-      min-width:             81.25rem;
+    .tableRow {
+      font-size:   1.125rem;
+      display:     grid;
+      line-height: 1.67;
       .tableCell {
         margin:          0.3125rem 1.25rem;
         display:         flex;
@@ -35,12 +29,19 @@
       }
     }
     .tableBody {
+      grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+      display:               grid;
       .tableRow {
-        border-bottom: 0.0625rem solid $lightBlueColor;
+        grid-gap: 1px;
         .tableCell:not(:first-child) {
           background:   $veryLightBlueColor;
           padding-left: 1.25rem;
           font-size:    1.125rem;
+        }
+        .tableCell:first-child {
+          font-weight: bold;
+          color:       $mainColor;
+
         }
       }
     }

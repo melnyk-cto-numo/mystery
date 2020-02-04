@@ -20,8 +20,8 @@
     }
     .tableRow {
       display:               grid;
-      grid-template-columns: repeat(auto-fit, minmax(11.875rem, 25%));
-      grid-auto-flow:        column;
+      grid-template-columns: repeat(auto-fit, minmax(11.875rem, 1fr));
+      grid-auto-flow:        row;
       .tableCell {
         margin:    0.75rem 0;
         min-width: 11.875rem;

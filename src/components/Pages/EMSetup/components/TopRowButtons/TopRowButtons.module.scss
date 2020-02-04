@@ -12,31 +12,8 @@
     overflow: auto;
     .tableBody, .tableHeader {
       display:               grid;
-      grid-template-columns: repeat(auto-fit, minmax(6.25rem, auto));
+      grid-template-columns: repeat(auto-fit, minmax(6.25rem, 1fr));
       line-height:           1.5;
-      min-width:             81.25rem;
-    }
-    .tableHeader {
-      background-color: $lightBlueColor;
-      &:nth-child(1) {
-        font-weight: bold;
-        font-size:   1.25rem;
-        color:       $mainColor;
-        .tableCell {
-          align-items: center;
-        }
-      }
-      .tableCell {
-        margin:          0.0625rem;
-        background:      $whiteColor;
-        font-size:       1rem;
-        line-height:     1.67;
-        min-height:      3.125rem;
-        display:         flex;
-        flex-direction:  column;
-        align-items:     flex-start;
-        justify-content: center;
-      }
     }
     .tableRow {
       background-color: $lightBlueColor;
@@ -54,6 +31,12 @@
         align-items:     flex-start;
         justify-content: center;
         padding-left:    0.625rem;
+        &:nth-child(1) {
+          font-weight: bold;
+          font-size:   1.25rem;
+          color:       $mainColor;
+          align-items: center;
+        }
       }
     }
   }
