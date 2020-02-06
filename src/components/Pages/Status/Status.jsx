@@ -1,40 +1,50 @@
 //core
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+
+//library
+import axios from "axios";
 
 // components
 import {TableStatus} from '../../common'
 
-const EasyMix = {
-    header: [
-        'EasyMix Model',
-        'Easy Mix IP',
-        'Status',
-        'Connection info'],
-    body: [
-        '~EM12IpAddress~',
-        '~EM12IpAddress~',
-        '~ConnectionState~',
-        '~ComState~',
-    ]
-};
+const EasyMix = [
+    'EasyMix Model',
+    'Easy Mix IP',
+    'Status',
+    'Connection info'
+];
 
-const DSP = {
-    header: [
-        'Selected type',
-        'DSP response time',
-        'DSP Loop'],
-    body: [
-        '~DspName~',
-        '~PingTime~',
-        '~SymLoopTime~',]
-};
+
+const DSP = [
+    'Selected type',
+    'DSP response time',
+    'DSP Loop'
+];
+
 
 export const Status = () => {
+    const [error, setErrors] = useState(false);
+    const [data, setData] = useState();
+
+    useEffect(() => {
+        axios
+            .get('http://167.172.238.159/status.php')
+            .then(res => setData(res.data.Status))
+            .catch(err => setErrors(err));
+    }, []);
+
     return (
         <section>
+            {console.log(error)}
             <h2>Status</h2>
-            <TableStatus title='EasyMix Details' data={EasyMix}/>
-            <TableStatus title='DSP Details' data={DSP}/>
+            {!error ?
+                <>
+                    <TableStatus title='EasyMix Details' header={EasyMix} data={data}/>
+                    <TableStatus title='DSP Details' header={DSP} data={data}/>
+                </>
+                :
+                ''}
+
         </section>
     );
 };

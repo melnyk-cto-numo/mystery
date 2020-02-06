@@ -8,23 +8,20 @@
   margin-top:    1.875rem;
   .table {
     overflow: auto;
-    .tableHeader {
-      font-size:   1.125rem;
-      line-height: 1.66;
-    }
     .tableBody {
-      font-weight: bold;
-      font-size:   1.25rem;
-      line-height: 1.5;
+      font-size:             1.25rem;
+      line-height:           1.5;
+      display:               grid;
+      grid-template-columns: repeat(auto-fit, minmax(11.875rem, 1fr));
 
     }
     .tableRow {
-      display:               grid;
-      grid-template-columns: repeat(auto-fit, minmax(11.875rem, 1fr));
-      grid-auto-flow:        row;
       .tableCell {
         margin:    0.75rem 0;
         min-width: 11.875rem;
+      }
+      .tableCell:not(:first-child) {
+        font-weight: bold;
       }
     }
   }
