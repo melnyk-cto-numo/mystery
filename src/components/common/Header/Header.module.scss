@@ -3,7 +3,9 @@
 .headerWrapper {
   height: 100%;
   .header {
-    position:   relative;
+    position:   fixed;
+    top:        0;
+    left:       0;
     z-index:    10;
     background: $whiteColor;
     padding:    3.125rem;
@@ -112,9 +114,6 @@
 @media screen and (max-width: 992px) {
   .headerWrapper {
     .header {
-      position:  fixed;
-      top:       0;
-      left:      0;
       transform: translate(-100%);
       &.active {
         transform: translateX(0%);

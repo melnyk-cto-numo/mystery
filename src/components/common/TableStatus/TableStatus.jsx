@@ -8,9 +8,9 @@ export const TableStatus = ({title, header, data}) => {
         return false;
     }
     if (title === 'EasyMix Details') {
-        fields = [data.model, data.MyIP, data.connectionStatus, data.connectionInfo];
+        fields = [data.model, data.MyIP];
     } else if ('DSP Details') {
-        fields = [data.dspType, data.Ping, data.Loop];
+        fields = [data.dspType, data.connectionStatus, data.connectionInfo];
     }
 
     return (

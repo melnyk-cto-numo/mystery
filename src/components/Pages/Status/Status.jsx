@@ -1,50 +1,44 @@
 //core
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 
 //library
-import axios from "axios";
+import {useDispatch, useSelector} from 'react-redux';
+
 
 // components
 import {TableStatus} from '../../common'
+import {statusActions} from "../../../bus/status/actions";
+import {getStatus} from '../../../bus/status/selectors';
+
 
 const EasyMix = [
     'EasyMix Model',
     'Easy Mix IP',
-    'Status',
-    'Connection info'
 ];
 
 
 const DSP = [
     'Selected type',
-    'DSP response time',
-    'DSP Loop'
+    'Status',
+    'Connection info'
 ];
 
 
 export const Status = () => {
-    const [error, setErrors] = useState(false);
-    const [data, setData] = useState();
+    const dispatch = useDispatch();
+    const {status} = useSelector(getStatus);
+
 
     useEffect(() => {
-        axios
-            .get('http://167.172.238.159/status.php')
-            .then(res => setData(res.data.Status))
-            .catch(err => setErrors(err));
+        dispatch(statusActions.getStatusAsync());
     }, []);
+
 
     return (
         <section>
-            {console.log(error)}
             <h2>Status</h2>
-            {!error ?
-                <>
-                    <TableStatus title='EasyMix Details' header={EasyMix} data={data}/>
-                    <TableStatus title='DSP Details' header={DSP} data={data}/>
-                </>
-                :
-                ''}
-
+            <TableStatus title='EasyMix Details' header={EasyMix} data={status.data}/>
+            <TableStatus title='DSP Details' header={DSP} data={status.data}/>
         </section>
     );
 };
