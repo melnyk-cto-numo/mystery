@@ -42,7 +42,7 @@ export const Network = () => {
         {
             id: 3,
             type: 'checkbox',
-            title: 'Mac DNS',
+            title: 'DNS',
             primary: data.primaryDNS,
             secondary: data.secondaryDNS
         },

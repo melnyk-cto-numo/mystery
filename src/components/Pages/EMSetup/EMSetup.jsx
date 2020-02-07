@@ -1,5 +1,5 @@
 // core
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 //library
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
@@ -7,6 +7,9 @@ import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 //components
 import {Table} from "../../common";
 import {TopRowButtons, Faders} from "./components";
+import {useDispatch} from "react-redux";
+import {emSetupActions} from "../../../bus/emSetup/actions";
+
 
 // styles
 import styles from './EMSetup.module.scss';
@@ -16,8 +19,6 @@ import emsetup from '../../../api/emsetup.test'
 
 const setup = [
     {id: 0, type: 'input', title: 'EQ timeout', value: ''},
-    {id: 1, type: 'select', title: 'Mute LEDs', value: ['Normal', 'Standard']},
-    {id: 2, type: 'select', title: 'Auto LEDs', value: ['Normal', 'Standard']},
 ];
 
 const faders = {
@@ -110,12 +111,21 @@ const titleTopRowButtons = {
     column: ['Type', 'Level 1', 'Level 2', 'Level 3', 'Level 4'],
 };
 
+
 export const EMSetup = () => {
+    const dispatch = useDispatch();
+
     const [disabled, setDisabled] = useState(true);
 
     const editingData = () => {
         setDisabled(!disabled)
     };
+
+
+    useEffect(() => {
+        dispatch(emSetupActions.getEmSetupAsync());
+    }, []);
+
 
     return (
         <section>

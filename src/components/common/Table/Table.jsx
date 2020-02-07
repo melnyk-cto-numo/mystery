@@ -12,7 +12,7 @@ export const Table = ({data, disabled = true}) => {
                             <div key={item.id} className={styles.tableRow}>
                                 <span>{item.title}</span>
                                 <input type='text' className={styles.networkValue} defaultValue={item.value}
-                                       disabled={disabled}/>
+                                       disabled={item.title === 'Mac Address' ? 'disabled' : disabled}/>
                             </div>)
                     } else if (item.type === 'select') {
                         return (
