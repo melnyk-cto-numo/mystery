@@ -2,17 +2,7 @@ import React from 'react';
 
 import styles from './TableStatus.module.scss';
 
-let fields = [];
 export const TableStatus = ({title, header, data}) => {
-    if (data === undefined) {
-        return false;
-    }
-    if (title === 'EasyMix Details') {
-        fields = [data.model, data.MyIP];
-    } else if ('DSP Details') {
-        fields = [data.dspType, data.connectionStatus, data.connectionInfo];
-    }
-
     return (
         <div className={styles.wrapper}>
             <h3>{title}</h3>
@@ -21,7 +11,7 @@ export const TableStatus = ({title, header, data}) => {
                     {header.map((item, index) => (
                         <div key={index} className={styles.tableRow}>
                             <div className={styles.tableCell}>{item}</div>
-                            <div className={styles.tableCell}>{fields[index]}</div>
+                            <div className={styles.tableCell}>{data[index]}</div>
                         </div>
                     ))}
                 </div>

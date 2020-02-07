@@ -18,11 +18,14 @@ export const Table = ({data, disabled = true}) => {
                         return (
                             <div key={item.id} className={styles.tableRow}>
                                 <span>{item.title}</span>
-                                <select className={styles.networkValue} disabled={disabled}>
-                                    {item.value.map((item, index) => (
-                                        <option key={index}>{item}</option>
-                                    ))}
-                                </select>
+                                <div className={styles.select}>
+                                    <select className={styles.networkValue} disabled={disabled}>
+                                        {item.value.map((item, index) => (
+                                            <option key={index}>{item}</option>
+                                        ))}
+                                    </select>
+                                </div>
+
                             </div>)
                     } else if (item.type === 'checkbox') {
                         return (
