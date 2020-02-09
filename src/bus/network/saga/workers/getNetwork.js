@@ -6,10 +6,14 @@ import {networkActions} from '../../actions';
 
 export function* getNetwork() {
     try {
-        const {data} = yield apply(server, server.getNetwork);
+        const response = yield apply(server, server.getNetwork);
+        const data = response.data.network;
 
-        yield put(networkActions.setNetwork(data.network));
+        if (response.status !== 200) {
+            throw new Error(data);
+        }
 
+        yield put(networkActions.setNetwork(data));
     } catch (error) {
         console.error(error);
     }

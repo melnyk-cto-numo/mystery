@@ -4,8 +4,8 @@ import React, {useEffect, useState} from 'react';
 // library
 import {useDispatch, useSelector} from "react-redux";
 
-
 // components
+// import {server} from '../../../REST'
 import {Table} from "../../common";
 import {networkActions} from "../../../bus/network/actions";
 import {getNetwork} from "../../../bus/network/selectors";
@@ -16,24 +16,55 @@ import styles from './Network.module.scss';
 
 export const Network = () => {
     const dispatch = useDispatch();
-    const {network} = useSelector(getNetwork);
-    const data = network.data;
+    const network = useSelector(getNetwork);
+    const data = network.network.data;
 
     const [disabled, setDisabled] = useState(true);
 
     const editButton = () => {
         setDisabled(!disabled);
-        console.log('edit')
+        console.log('edit');
     };
+
     const cancelButton = () => {
         setDisabled(!disabled);
-        console.log('cancel')
+        console.log('cancel');
+
+    };
+
+    const saveButton = () => {
+        setDisabled(!disabled);
+        console.log('save');
+
+
+        // server.setNetwork({
+        //         network: {
+        //             myIP: data.myIP,
+        //             mode: data.mode,
+        //             primaryDNS: data.primaryDNS,
+        //             secondaryDNS: data.secondaryDNS,
+        //             comType: data.comType,
+        //             dspIP: data.dspIP,
+        //             dspPort: data.dspPort,
+        //         }
+        //     }
+        // )
+        //     .then(res => {
+        //         if (res.status === 200) {
+        //             dispatch(networkActions.setNetwork(res.data.network));
+        //             console.log(res);
+        //         }
+        //     })
+        //     .catch(err => {
+        //         console.error(err);
+        //     });
+
+
     };
 
     useEffect(() => {
         dispatch(networkActions.getNetworkAsync());
     }, []);
-
 
     const array = [
         {id: 0, type: 'input', title: 'EasyMix IP Address', value: data.myIP},
@@ -70,7 +101,7 @@ export const Network = () => {
                         onClick={() => cancelButton()}>Cancel
                 </button>
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
-                        onClick={() => editButton()}>Save
+                        onClick={() => saveButton()}>Save
                 </button>
             </div>
         </section>
