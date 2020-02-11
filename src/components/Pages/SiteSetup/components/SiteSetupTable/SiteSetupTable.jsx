@@ -12,14 +12,29 @@ export const SiteSetupTable = ({keys, array, titles, disabled = true}) => {
             <div className={styles.table}>
 
                 <div className={styles.siteSetupButtonsWrapper}>
+                    {array[keys].type &&
                     <input type='text' className={styles.siteSetupButtons}
-                           defaultValue="Type: Virtual Audio" disabled={disabled}/>
+                           defaultValue={`Type: ${array[keys].type}`} disabled={disabled}/>}
+                    {array[keys].maxGain &&
                     <input type='text' className={styles.siteSetupButtons}
-                           defaultValue="Min Gain (dB)" disabled={disabled}/>
+                           defaultValue={`Min Gain: ${array[keys].maxGain} (dB)`} disabled={disabled}/>}
+                    {array[keys].dspMinGain &&
+                    <>
+                        <input type='text' className={styles.siteSetupButtons}
+                               defaultValue={`DSP Min Gain: ${array[keys].dspMinGain} (dB)`} disabled={disabled}/>
+                        <p>Fader Off = DSP Min Gain</p>
+                    </>}
+                    {array[keys].minGain &&
                     <select className={styles.siteSetupButtons} disabled={disabled}>
-                        <option>Min Gain (dB)</option>
-                    </select>
-                    <p>Fader Off = DSP Min Gain</p>
+                        <option>{`Min Gain: ${array[keys].minGain} (dB)`}</option>
+                    </select>}
+
+
+                    {array[keys].name &&
+                    <input type='text' className={styles.siteSetupButtons} defaultValue={`Name: ${array[keys].name}`}
+                           disabled={disabled}/>}
+
+
                 </div>
 
 

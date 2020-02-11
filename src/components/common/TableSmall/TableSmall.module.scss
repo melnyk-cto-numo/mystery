@@ -20,6 +20,16 @@
       font-size:             1.25rem;
       align-items:           center;
     }
+    .select {
+      background:    #f2f4f8;
+      padding:       0 0.6rem 0 4rem;
+      border:        none;
+      border-radius: 0.625rem;
+      height:        3rem;
+      select {
+        background: transparent;
+      }
+    }
     .value {
       width: 100%;
     }

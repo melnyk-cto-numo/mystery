@@ -1,0 +1,1 @@
+export {getSiteSetup} from './getSiteSetup';
