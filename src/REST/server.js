@@ -14,3 +14,4 @@ export const setNetwork = ({network, myIP, primaryDNS, secondaryDNS, mode, dspIP
 });
 export const getEmSetup = () => apiBase.get(`/emsetup.php`);
 export const getSiteSetup = () => apiBase.get(`/sitesetup.php`);
+export const getErrors = () => apiBase.get(`/errors.php`);

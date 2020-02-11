@@ -161,17 +161,6 @@ input[disabled], select[disabled] {
 
 }
 
-.question {
-  background:      url("./assets/img/question.svg") no-repeat center;
-  background-size: contain;
-  width:           1.5rem;
-  height:          1.5rem;
-  &:hover, &:active {
-    opacity: .8;
-  }
-}
-
-
 input[type='file'] {
   display: none;
 }

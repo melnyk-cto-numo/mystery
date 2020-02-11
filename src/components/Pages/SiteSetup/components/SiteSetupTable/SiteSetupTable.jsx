@@ -4,8 +4,17 @@ import React from 'react';
 //styles
 import styles from './SiteSetupTable.module.scss';
 
-export const SiteSetupTable = ({keys, array, titles, disabled = true}) => {
+// image
+import ok from '../../../../../assets/img/check.svg'
+import warning from '../../../../../assets/img/warning.svg'
+import error from '../../../../../assets/img/remove.svg'
+
+export const SiteSetupTable = ({keys, array, titles, errors, disabled = true}) => {
     const values = Object.keys(array[keys]);
+
+    if (errors[keys] === undefined) {
+        return false;
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -28,15 +37,11 @@ export const SiteSetupTable = ({keys, array, titles, disabled = true}) => {
                     <select className={styles.siteSetupButtons} disabled={disabled}>
                         <option>{`Min Gain: ${array[keys].minGain} (dB)`}</option>
                     </select>}
-
-
                     {array[keys].name &&
                     <input type='text' className={styles.siteSetupButtons} defaultValue={`Name: ${array[keys].name}`}
                            disabled={disabled}/>}
 
-
                 </div>
-
 
                 <div className={styles.tableHeader}>
                     {titles.map((title, index) => (
@@ -44,6 +49,13 @@ export const SiteSetupTable = ({keys, array, titles, disabled = true}) => {
                     ))}
                 </div>
                 <div className={styles.tableBody}>
+                    <div className={styles.tableRow}>
+                        {/* errors array */}
+                        {(errors[keys].map((item, index) =>
+                            <div key={index} className={styles.tableCell}>
+                                <img src={item === 0 ? ok : item === 1 ? warning : error} alt=""/>
+                            </div>))}
+                    </div>
                     {values.map((value, index) => {
                             if (Array.isArray(array[keys][value])) {
                                 return (
@@ -58,10 +70,11 @@ export const SiteSetupTable = ({keys, array, titles, disabled = true}) => {
                                                             <input id={'enabled_' + index} type="checkbox"
                                                                    disabled={disabled}/>}
                                                         <label htmlFor={'enabled_' + index}/>
-                                                    </div> : value === 'link' ? (<span className='question'/>) :
-                                                        <span>{item}</span>}
+                                                    </div> : <span>{item}</span>}
                                             </div>))}
-                                    </div>)
+                                    </div>
+
+                                )
                             }
                             return null;
                         }

@@ -5,6 +5,7 @@ import {watchStatus} from '../bus/status/saga/watchers';
 import {watchNetwork} from '../bus/network/saga/watchers';
 import {watchEmSetup} from '../bus/emSetup/saga/watchers';
 import {watchSiteSetup} from '../bus/siteSetup/saga/watchers';
+import {watchErrors} from '../bus/errors/saga/watchers';
 
 
 
@@ -14,5 +15,6 @@ export function* rootSaga() {
         call(watchNetwork),
         call(watchEmSetup),
         call(watchSiteSetup),
+        call(watchErrors),
     ]);
 }

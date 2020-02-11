@@ -9,40 +9,43 @@ import {useDispatch, useSelector} from "react-redux";
 //components
 import {TableSmall} from "../../common";
 import {SiteSetupTable} from "./components/SiteSetupTable/SiteSetupTable";
+import {siteSetupActions} from "../../../bus/siteSetup/actions";
+import {errorsActions} from "../../../bus/errors/actions";
+import {getSiteSetup} from "../../../bus/siteSetup/selectors";
+import {getErrors} from "../../../bus/errors/selectors";
+
 
 //styles
 import styles from './SiteSetup.module.scss';
 
-// api
-import {siteSetupActions} from "../../../bus/siteSetup/actions";
-import {getSiteSetup} from "../../../bus/siteSetup/selectors";
-
 const headerTableName = [
     {
-        faders: ['ON', 'Name', 'Control No.'],
-        altFader1: ['ON', 'Control No.'],
-        altFader2: ['ON', 'Control No.'],
-        altFader3: ['ON', 'Control No.'],
-        altToggle: ['ON', 'Invert', 'Control No.'],
-        mute: ['ON', 'Invert', 'Control No.'],
-        meter1: ['ON', 'Control No.'],
-        meter2: ['ON', 'Control No.'],
-        hg: ['ON', 'Control No.'],
-        control: ['Name', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
+        faders: ['Link', 'ON', 'Name', 'Control No.'],
+        altFader1: ['Link', 'ON', 'Control No.'],
+        altFader2: ['Link', 'ON', 'Control No.'],
+        altFader3: ['Link', 'ON', 'Control No.'],
+        altToggle: ['Link', 'ON', 'Invert', 'Control No.'],
+        mute: ['Link', 'ON', 'Invert', 'Control No.'],
+        meter1: ['Link', 'ON', 'Control No.'],
+        meter2: ['Link', 'ON', 'Control No.'],
+        hg: ['Link', 'ON', 'Control No.'],
+        control: ['Name', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
     },
 ];
 
 export const SiteSetup = () => {
     const dispatch = useDispatch();
     const siteSetup = useSelector(getSiteSetup);
+    const errors = useSelector(getErrors);
     const data = siteSetup.siteSetup.data;
-
+    const dataErrors = errors.errors.data;
 
     const [disabled, setDisabled] = useState(true);
 
 
     useEffect(() => {
         dispatch(siteSetupActions.getSiteSetupAsync());
+        dispatch(errorsActions.getErrorsAsync());
     }, []);
 
 
@@ -102,11 +105,13 @@ export const SiteSetup = () => {
                                 return (
                                     <TabPanel key={index}>
                                         <SiteSetupTable keys={keys} array={item} titles={headerTableName[0][keys]}
+                                                        errors={dataErrors}
                                                         disabled={disabled}/>
                                     </TabPanel>)
                             } else {
                                 return (<TabPanel key={index}>
                                     <SiteSetupTable keys={keys} array={item} titles={headerTableName[0]['faders']}
+                                                    errors={dataErrors}
                                                     disabled={disabled}/>
                                 </TabPanel>)
                             }
