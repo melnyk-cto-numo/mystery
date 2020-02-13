@@ -11,13 +11,15 @@
   .table {
     overflow: auto;
     .tableBody, .tableHeader {
-      display:               grid;
-      grid-template-columns: repeat(auto-fit, minmax(9.375rem, auto));
-      line-height:           1.5;
-      min-width:             56.25rem;
+
+      line-height: 1.5;
+      min-width:   9.5rem;
     }
     .tableHeader {
-      background-color: $lightBlueColor;
+      background-color:      $lightBlueColor;
+      display:               grid;
+      grid-template-columns: repeat(auto-fit, minmax(7.5rem, auto));
+      min-width:             97.5rem;
       &:nth-child(1) {
         font-weight: bold;
         font-size:   1.25rem;
@@ -38,10 +40,12 @@
       }
     }
     .tableRow {
-      background-color: $lightBlueColor;
+      background-color:      $lightBlueColor;
+      display:               grid;
+      grid-template-columns: repeat(auto-fit, minmax(7.5rem, auto));
+      min-width:             97.5rem;
       &:nth-child(1) .tableCell {
-        align-items: flex-start;
-        font-size:   1.125rem;
+        font-size: 1.125rem;
       }
       .tableCell {
         margin-bottom:   0.0625rem;
@@ -55,7 +59,8 @@
         justify-content: center;
         padding-left:    0.625rem;
         &:nth-child(1) {
-          min-height: 3.125rem;
+          min-height:  3.125rem;
+          align-items: flex-start;
         }
         &:nth-last-child(1) {
           margin-bottom: 0;

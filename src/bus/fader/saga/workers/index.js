@@ -1,0 +1,1 @@
+export {getFader} from './getFader';
