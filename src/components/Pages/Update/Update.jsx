@@ -1,6 +1,6 @@
 // core
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React from 'react';
+import {useDispatch} from "react-redux";
 
 //components
 import {Button, Input} from "../../common";
@@ -12,7 +12,6 @@ import styles from './Update.module.scss';
 export const Update = () => {
     const dispatch = useDispatch();
 
-
     const reboot = async () => {
 
         await server.getCommand({command: "Reboot"})
@@ -21,13 +20,8 @@ export const Update = () => {
             });
 
         dispatch(commandActions.getCommandAsync());
-
     };
 
-
-    useEffect(() => {
-        dispatch(commandActions.getCommandAsync())
-    }, []);
     return (
         <section className={styles.update}>
             <h2>Update</h2>
