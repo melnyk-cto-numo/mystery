@@ -6,5 +6,6 @@ import {emSetupReducer as emSetup} from '../bus/emSetup/reducer';
 import {siteSetupReducer as siteSetup} from '../bus/siteSetup/reducer';
 import {errorsReducer as errors} from '../bus/errors/reducer';
 import {faderReducer as fader} from '../bus/fader/reducer';
+import {commandReducer as command} from '../bus/command/reducer';
 
-export const rootReducer = combineReducers({status, network, emSetup, siteSetup, errors, fader});
+export const rootReducer = combineReducers({status, network, emSetup, siteSetup, errors, fader, command});
