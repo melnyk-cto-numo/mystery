@@ -5,16 +5,25 @@ import {useDispatch, useSelector} from "react-redux";
 //components
 import {Button, Input} from "../../common";
 import {commandActions} from "../../../bus/command/actions";
-import {getCommand} from "../../../bus/command/selectors";
-
+import {server} from '../../../REST'
 //styles
 import styles from './Update.module.scss';
 
 export const Update = () => {
     const dispatch = useDispatch();
-    const command = useSelector(getCommand);
 
-    console.log(command);
+
+    const reboot = async () => {
+
+        await server.getCommand({command: "Reboot"})
+            .then(res => {
+                console.log(res)
+            });
+
+        dispatch(commandActions.getCommandAsync());
+
+    };
+
 
     useEffect(() => {
         dispatch(commandActions.getCommandAsync())
@@ -27,7 +36,7 @@ export const Update = () => {
                 <Input/>
                 <div className={styles.updateButtons}>
                     <Button text='Upload Firmware'/>
-                    <Button text='Reboot / Apply firmware'/>
+                    <Button text='Reboot / Apply firmware' reboot={() => reboot()}/>
                 </div>
             </div>
 

@@ -16,4 +16,4 @@ export const getEmSetup = () => apiBase.get(`/emsetup.php`);
 export const getSiteSetup = () => apiBase.get(`/sitesetup.php`);
 export const getErrors = () => apiBase.get(`/errors.php`);
 export const getFader = () => apiBase.get(`/faders.php`);
-export const getCommand = () => apiBase.post(`/command.php`);
+export const getCommand = (data) => apiBase.post(`/command.php`, data);
