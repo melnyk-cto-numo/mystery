@@ -28,10 +28,10 @@ export const Utilities = () => {
     const pressed = status.status.data;
 
     const smallTable = [
-        {id: '0', label: 'Button Pressed', type: 'text', value: pressed.buttonPress},
-        {id: '1', label: 'Fader Pressed', type: 'text', value: pressed.faderTouch},
-        {id: '2', label: 'Test Faders', type: 'button', value: 'Go'},
-        {id: '3', label: 'Test Indicators', type: 'button', value: 'Go'},
+        {id: '0', name: 'Button Pressed', label: 'Button Pressed', type: 'text', value: pressed.buttonPress},
+        {id: '1', name: 'Fader Pressed', label: 'Fader Pressed', type: 'text', value: pressed.faderTouch},
+        {id: '2', name: 'TestFader', label: 'Test Faders', type: 'button', value: 'Go'},
+        {id: '3', name: 'TestLed', label: 'Test Indicators', type: 'button', value: 'Go'},
     ];
 
     const editingData = () => {
