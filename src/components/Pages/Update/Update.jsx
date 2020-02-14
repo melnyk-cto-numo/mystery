@@ -13,13 +13,8 @@ export const Update = () => {
     const dispatch = useDispatch();
 
     const reboot = async () => {
-
-        await server.getCommand({command: "Reboot"})
-            .then(res => {
-                console.log(res)
-            });
-
-        dispatch(commandActions.getCommandAsync());
+        await server.getCommand({command: "Reboot"});
+        dispatch(commandActions.setCommand({command: "Reboot"}));
     };
 
     return (
