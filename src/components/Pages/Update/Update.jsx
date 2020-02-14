@@ -1,5 +1,5 @@
 // core
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
 
 //components
@@ -11,10 +11,22 @@ import styles from './Update.module.scss';
 
 export const Update = () => {
     const dispatch = useDispatch();
+    const [inputValue, setInputValue] = useState('');
 
     const reboot = async () => {
         await server.getCommand({command: "Reboot"});
         dispatch(commandActions.setCommand({command: "Reboot"}));
+    };
+
+    const upload = async () => {
+
+        console.log(inputValue);
+        if (inputValue.length === 0) {
+            alert('Please choose file first.')
+        } else {
+            alert('Done');
+            await server.firmware(new Blob([inputValue]));
+        }
     };
 
     return (
@@ -22,13 +34,12 @@ export const Update = () => {
             <h2>Update</h2>
             <div className={styles.updateInner}>
                 <h3>Bootloader Version</h3>
-                <Input/>
+                <Input setInputValue={setInputValue}/>
                 <div className={styles.updateButtons}>
-                    <Button text='Upload Firmware'/>
-                    <Button text='Reboot / Apply firmware' reboot={() => reboot()}/>
+                    <Button text='Upload Firmware' func={() => upload()}/>
+                    <Button text='Reboot / Apply firmware' func={() => reboot()}/>
                 </div>
             </div>
-
         </section>
     );
 };
