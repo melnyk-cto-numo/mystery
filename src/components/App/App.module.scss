@@ -7,8 +7,8 @@
 
 .main {
   padding:     2.5rem;
-  width:       100%;
-  margin-left: 18.9375rem;
+  width:       calc(100% - 303px);
+  margin-left: auto;
 }
 
 @media screen and (max-width: 992px) {
