@@ -55,7 +55,15 @@ export const EMSetup = () => {
                     <Tab>Top Row Buttons</Tab>
                 </TabList>
                 <TabPanel>
-                    <Table data={setup} disabled={disabled}/>
+                    <div className={styles.wrapper}>
+                        <div className={styles.table}>
+                            {setup.map((item, index) => {
+                                const key = Object.keys(item)[Object.keys(item).length - 1];
+                                if (item[key] === undefined) return false;
+                                return (<Table objKey={key} key={index} item={item} disabled={disabled}/>)
+                            })}
+                        </div>
+                    </div>
                 </TabPanel>
                 <TabPanel>
                     <TopRowButtons data={data.Buttons} disabled/>
