@@ -39,8 +39,14 @@ export const Utilities = () => {
     };
 
     useEffect(() => {
+        const interval = setInterval(() => {
+            dispatch(statusActions.getStatusAsync());
+            dispatch(faderActions.getFaderAsync());
+        }, 1000);
         dispatch(statusActions.getStatusAsync());
         dispatch(faderActions.getFaderAsync());
+
+        return () => clearInterval(interval);
     }, []);
 
     return (

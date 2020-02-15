@@ -31,8 +31,14 @@ export const Status = () => {
 
 
     useEffect(() => {
+        const interval = setInterval(() => {
+            dispatch(statusActions.getStatusAsync());
+            dispatch(networkActions.getNetworkAsync());
+        }, 1000);
         dispatch(statusActions.getStatusAsync());
         dispatch(networkActions.getNetworkAsync());
+
+        return () => clearInterval(interval);
     }, []);
 
 
