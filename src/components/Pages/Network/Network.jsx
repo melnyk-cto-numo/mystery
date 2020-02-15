@@ -5,7 +5,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 
 // components
-// import {server} from '../../../REST'
+import {server} from '../../../REST'
 import {Table} from "../../common";
 import {networkActions} from "../../../bus/network/actions";
 import {getNetwork} from "../../../bus/network/selectors";
@@ -32,34 +32,11 @@ export const Network = () => {
 
     };
 
-    const saveButton = () => {
+    const saveButton = async () => {
         setDisabled(!disabled);
         console.log('save');
 
-
-        // server.setNetwork({
-        //         network: {
-        //             myIP: data.myIP,
-        //             mode: data.mode,
-        //             primaryDNS: data.primaryDNS,
-        //             secondaryDNS: data.secondaryDNS,
-        //             comType: data.comType,
-        //             dspIP: data.dspIP,
-        //             dspPort: data.dspPort,
-        //         }
-        //     }
-        // )
-        //     .then(res => {
-        //         if (res.status === 200) {
-        //             dispatch(networkActions.setNetwork(res.data.network));
-        //             console.log(res);
-        //         }
-        //     })
-        //     .catch(err => {
-        //         console.error(err);
-        //     });
-
-
+        await server.setNetwork()
     };
 
     useEffect(() => {

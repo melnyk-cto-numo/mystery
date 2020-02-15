@@ -8,16 +8,7 @@ const config = {
 
 export const getStatus = () => apiBase.get(`/status.php`);
 export const getNetwork = () => apiBase.get(`/network.php`);
-export const setNetwork = ({network, myIP, primaryDNS, secondaryDNS, mode, dspIP, dspPort, comType}) => apiBase.post(`/network.php`, {
-    network,
-    myIP,
-    primaryDNS,
-    secondaryDNS,
-    mode,
-    dspIP,
-    dspPort,
-    comType
-});
+export const setNetwork = (data) => apiBase.post(`/network.php`, data);
 export const getEmSetup = () => apiBase.get(`/emsetup.php`);
 export const getSiteSetup = () => apiBase.get(`/sitesetup.php`);
 export const getErrors = () => apiBase.get(`/errors.php`);

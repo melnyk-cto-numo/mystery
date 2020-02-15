@@ -12,7 +12,7 @@ import {getStatus} from '../../../bus/status/selectors';
 import {getNetwork} from "../../../bus/network/selectors";
 
 const EasyMix = [
-    'EasyMix Model',
+    'Easy Mix Model',
     'Easy Mix IP',
 ];
 
