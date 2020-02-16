@@ -5,11 +5,12 @@ import React, {useEffect, useState} from 'react';
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 
 //components
-import {Table} from "../../common";
 import {TopRowButtons} from "./components";
 import {useDispatch, useSelector} from "react-redux";
 import {emSetupActions} from "../../../bus/emSetup/actions";
 import {getEmSetup} from "../../../bus/emSetup/selectors";
+import {server} from "../../../REST";
+import {EasyMixSetup} from "./components/EasyMixSetup/EasyMixSetup";
 
 
 // styles
@@ -26,6 +27,16 @@ export const EMSetup = () => {
         setDisabled(!disabled)
     };
 
+    const savingData = async () => {
+        setDisabled(!disabled);
+        await server.setEmSetup({
+            Settings: {
+                altFaderTimeout: data.Settings.altFaderTimeout,
+                altToggleTimeout: data.Settings.altToggleTimeout
+            }
+        })
+    };
+
 
     useEffect(() => {
         dispatch(emSetupActions.getEmSetupAsync());
@@ -37,8 +48,8 @@ export const EMSetup = () => {
     }
 
     const setup = [
-        {id: 0, type: 'input', title: 'Alternate Toggle timeout', value: data.Settings.altFaderTimeout},
-        {id: 1, type: 'input', title: 'Alternate Fader timeout', value: data.Settings.altToggleTimeout},
+        {id: 0, type: 'input', title: 'Alternate Toggle timeout', altFaderTimeout: data.Settings.altFaderTimeout},
+        {id: 1, type: 'input', title: 'Alternate Fader timeout', altToggleTimeout: data.Settings.altToggleTimeout},
     ];
 
     return (
@@ -60,7 +71,7 @@ export const EMSetup = () => {
                             {setup.map((item, index) => {
                                 const key = Object.keys(item)[Object.keys(item).length - 1];
                                 if (item[key] === undefined) return false;
-                                return (<Table objKey={key} key={index} item={item} disabled={disabled}/>)
+                                return (<EasyMixSetup objKey={key} key={index} item={item} disabled={disabled}/>)
                             })}
                         </div>
                     </div>
@@ -72,7 +83,7 @@ export const EMSetup = () => {
 
             <div className={styles.emSetupButtons}>
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
-                        onClick={() => editingData()}>Save Settings
+                        onClick={() => savingData()}>Save Settings
                 </button>
                 <button type="button" className={styles.primaryBtn}>Download Config</button>
                 <button type="button" className={styles.primaryBtn}>Upload Config</button>

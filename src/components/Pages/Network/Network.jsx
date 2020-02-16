@@ -40,7 +40,7 @@ export const Network = () => {
 
     const [disabled, setDisabled] = useState(true);
 
-    const editButton = () => {
+    const editingData = () => {
         setDisabled(!disabled);
         console.log('edit');
     };
@@ -84,7 +84,7 @@ export const Network = () => {
             <div className={styles.networkTitle}>
                 <h2>Network</h2>
                 <button type="button" className={styles.primaryBtn} disabled={!disabled}
-                        onClick={() => editButton()}>Edit
+                        onClick={() => editingData()}>Edit
                 </button>
             </div>
             <div className={styles.wrapper}>
