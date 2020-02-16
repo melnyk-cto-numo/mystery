@@ -20,12 +20,12 @@ export const Network = () => {
     const data = network.network.data;
 
     const array = [
-        {id: 0, type: 'input', title: 'EasyMix IP Address', myIP: data.myIP},
+        {id: 0, type: 'ip', title: 'EasyMix IP Address', myIP: data.myIP},
         {id: 1, type: 'select', title: 'Mode', mode: [data.mode]},
-        {id: 2, type: 'input', title: 'Mac Address', mac: data.mac},
+        {id: 2, type: 'mac', title: 'Mac Address', mac: data.mac},
         {
             id: 3,
-            type: 'checkbox',
+            type: 'multiple',
             title: ['Enabled', 'PrimaryDNS', 'Secondary'],
             value: {enabled: 0, primaryDNS: data.primaryDNS, secondaryDNS: data.secondaryDNS}
 
@@ -34,8 +34,8 @@ export const Network = () => {
     ];
 
     const DSP = [
-        {id: 0, type: 'input', title: 'DSP IP Address', dspIP: data.dspIP},
-        {id: 1, type: 'input', title: 'DSP Port', dspPort: data.dspPort},
+        {id: 0, type: 'ip', title: 'DSP IP Address', dspIP: data.dspIP},
+        {id: 1, type: 'port', title: 'DSP Port', dspPort: data.dspPort},
     ];
 
     const [disabled, setDisabled] = useState(true);

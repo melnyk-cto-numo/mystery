@@ -1,11 +1,16 @@
+// core
 import React, {useState} from 'react';
+
+// library
 import {useDispatch, useSelector} from "react-redux";
+import MaskedInput from 'react-text-mask'
 
-
-import styles from './Table.module.scss';
+// components
 import {networkActions} from "../../../bus/network/actions";
 import {getNetwork} from "../../../bus/network/selectors";
 
+// styles
+import styles from './Table.module.scss';
 
 export const Table = ({item, objKey, disabled = true, primary, enable, secondary,}) => {
     const dispatch = useDispatch();
@@ -14,7 +19,6 @@ export const Table = ({item, objKey, disabled = true, primary, enable, secondary
     const [enabled, setEnabled] = useState(enable);
     const [primaryDNS, setPrimaryDNS] = useState(primary);
     const [secondaryDNS, setSecondaryDNS] = useState(secondary);
-
 
     const handleChange = async (e) => {
         if (e.target.name === 'enabled') {
@@ -33,52 +37,83 @@ export const Table = ({item, objKey, disabled = true, primary, enable, secondary
     };
 
     return (
-        item.type === 'input' ?
+        item.type === 'ip' ?
             <div key={item.id} className={styles.tableRow}>
                 <span>{item.title}</span>
-                <input type='text'
-                       className={styles.networkValue}
-                       value={value}
-                       disabled={item.title === 'Mac Address' ? 'disabled' : disabled}
-                       onChange={(e) => handleChange(e)}/>
-            </div>
-            : item.type === 'select' ?
-            <div key={item.id} className={styles.tableRow}>
-                <span>{item.title}</span>
-                <div className={styles.select}>
-                    <select className={styles.networkValue}
-                            disabled={disabled}>
-                        {item[objKey].map((item, index) => (
-                            <option key={index}>{item}</option>
-                        ))}
-                    </select>
-                </div>
+                <MaskedInput type='text'
+                             mask={[/[1-2]/, /[0-9]/, /[0-9]/, '.', /[1-2]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, '.', /[1-2]/, /[0-9]/, /[0-9]/]}
 
+                             className={styles.networkValue}
+                             value={value}
+                             disabled={disabled}
+                             onChange={(e) => handleChange(e)}/>
             </div>
-            : item.type === 'checkbox' ?
+            : item.type === 'mac' ?
+            <div key={item.id} className={styles.tableRow}>
+                <span>{item.title}</span>
+                <MaskedInput type='text'
+                             mask={[/[0-9a-zA-Z]/, /[0-9a-zA-Z]/, ':', /[0-9a-zA-Z]/, /[0-9a-zA-Z]/, ':', /[0-9a-zA-Z]/, /[0-9a-zA-Z]/, ':', /[0-9a-zA-Z]/, /[0-9a-zA-Z]/, ':', /[0-9a-zA-Z]/, /[0-9a-zA-Z]/, ':', /[0-9a-zA-Z]/, /[0-9a-zA-Z]/,]}
+                             className={styles.networkValue}
+                             value={value}
+                             disabled='disabled'
+                             onChange={(e) => handleChange(e)}/>
+            </div>
+            : item.type === 'port' ?
                 <div key={item.id} className={styles.tableRow}>
-                    <span/>
-                    <div className={styles.macDns}>
-                        <div className={styles.enable}>
-                            <div className='checkbox'>
-                                <input name='enabled' id='enabled' type="checkbox" value={enabled} disabled={disabled}/>
-                                <label htmlFor='enabled'>Enabled</label>
-                            </div>
+                    <span>{item.title}</span>
+                    <MaskedInput
+                        mask={[/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/]}
+                        type='text'
+                        className={styles.networkValue}
+                        value={value}
+                        disabled={disabled}
+                        onChange={(e) => handleChange(e)}/>
+                </div>
+                : item.type === 'select' ?
+                    <div key={item.id} className={styles.tableRow}>
+                        <span>{item.title}</span>
+                        <div className={styles.select}>
+                            <select className={styles.networkValue}
+                                    disabled={disabled}>
+                                {item[objKey].map((item, index) => (
+                                    <option key={index}>{item}</option>
+                                ))}
+                            </select>
                         </div>
-                        <div>
 
-                            <span>{item.title[1]}</span>
-                            <input name='primaryDNS' type='text' className={styles.networkValue} value={primaryDNS}
-                                   disabled={disabled}
-                                   onChange={(e) => handleChange(e)}/>
-                        </div>
-                        <div>
-                            <span>{item.title[2]}</span>
-                            <input name='secondaryDNS' type='text' className={styles.networkValue} value={secondaryDNS}
-                                   disabled={disabled}
-                                   onChange={(e) => handleChange(e)}/>
-                        </div>
                     </div>
-                </div> : ''
-    );
+                    : item.type === 'multiple' ?
+                        <div key={item.id} className={styles.tableRow}>
+                            <span/>
+                            <div className={styles.macDns}>
+                                <div className={styles.enable}>
+                                    <div className='checkbox'>
+                                        <input name='enabled' id='enabled' type="checkbox" value={enabled}
+                                               disabled={disabled}/>
+                                        <label htmlFor='enabled'>Enabled</label>
+                                    </div>
+                                </div>
+                                <div>
+
+                                    <span>{item.title[1]}</span>
+                                    <MaskedInput
+                                        mask={[/[0-9]/, '.', /[0-9]/, '.', /[0-9]/, '.', /[0-9]/]}
+                                        name='primaryDNS'
+                                        type='text' className={styles.networkValue}
+                                        value={primaryDNS}
+                                        disabled={disabled}
+                                        onChange={(e) => handleChange(e)}/>
+                                </div>
+                                <div>
+                                    <span>{item.title[2]}</span>
+                                    <MaskedInput
+                                        mask={[/[0-9]/, '.', /[0-9]/, '.', /[0-9]/, '.', /[0-9]/]}
+                                        name='secondaryDNS'
+                                        type='text' className={styles.networkValue}
+                                        value={secondaryDNS}
+                                        disabled={disabled}
+                                        onChange={(e) => handleChange(e)}/>
+                                </div>
+                            </div>
+                        </div> : '')
 };

@@ -19,6 +19,11 @@
       min-height:            2.5rem;
       font-size:             1.25rem;
       align-items:           center;
+      .select, input {
+        padding:         0;
+        text-align:      center;
+        text-align-last: center;
+      }
     }
     .select {
       background:    #f2f4f8;
