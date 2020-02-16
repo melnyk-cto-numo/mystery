@@ -92,6 +92,12 @@ export const SiteSetup = () => {
         setDisabled(!disabled)
     };
 
+    const downloadingConfig = (el) => {
+        const file = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify([data, {model: model}, {errors: dataErrors}]));
+        el.target.setAttribute("href", "data:" + file);
+        el.target.setAttribute("download", "sitesetup.json");
+    };
+
     return (
         <section className={styles.siteSetup}>
             <div className={styles.siteSetupTitle}>
@@ -108,7 +114,7 @@ export const SiteSetup = () => {
                     <button type="button" className={styles.primaryBtn} onClick={() => editingData()}
                             disabled={disabled}>Save
                     </button>
-                    <button type="button" className={styles.primaryBtn}>Download Backup</button>
+                    <a className={styles.primaryBtn} onClick={(el) => downloadingConfig(el)}>Download Backup</a>
                     <button type="button" className={styles.primaryBtn}>Import to Page</button>
                 </div>
             </div>
