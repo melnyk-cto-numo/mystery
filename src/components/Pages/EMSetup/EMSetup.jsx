@@ -37,6 +37,11 @@ export const EMSetup = () => {
         })
     };
 
+    const downloadingConfig = (el) => {
+        const file = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+        el.target.setAttribute("href", "data:" + file);
+        el.target.setAttribute("download", "EM_Setup.json");
+    };
 
     useEffect(() => {
         dispatch(emSetupActions.getEmSetupAsync());
@@ -85,7 +90,7 @@ export const EMSetup = () => {
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
                         onClick={() => savingData()}>Save Settings
                 </button>
-                <button type="button" className={styles.primaryBtn}>Download Config</button>
+                <a className={styles.primaryBtn} onClick={(el) => downloadingConfig(el)}>Download Config</a>
                 <button type="button" className={styles.primaryBtn}>Upload Config</button>
             </div>
 
