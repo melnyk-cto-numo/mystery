@@ -12,6 +12,7 @@ export const setNetwork = (data) => apiBase.post(`/network.php`, data);
 export const getEmSetup = () => apiBase.get(`/emsetup.php`);
 export const setEmSetup = (data) => apiBase.post(`/emsetup.php`, data);
 export const getSiteSetup = () => apiBase.get(`/sitesetup.php`);
+export const setSiteSetup = (data) => apiBase.post(`/sitesetup.php`, data);
 export const getErrors = () => apiBase.get(`/errors.php`);
 export const getFader = () => apiBase.get(`/faders.php`);
 export const getCommand = (data, config) => apiBase.post(`/command.php`, data, config);

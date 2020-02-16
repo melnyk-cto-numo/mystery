@@ -43,14 +43,19 @@ export const EMSetup = () => {
         el.target.setAttribute("download", "emsetup.json");
     };
 
-    const Uploading = async (e) => {
+    const uploading = async (e) => {
         const file = e.target.files[0];
         if (file.length !== 0) {
 
             // validation resolution file
             if (file.type === 'application/json') {
-                await server.setEmSetup(new Blob([file]));
-                dispatch(emSetupActions.getEmSetupAsync());
+                const handleFileLoad = async (e) => {
+                    await server.setSiteSetup(e.target.result);
+                    dispatch(emSetupActions.getEmSetupAsync());
+                };
+                const reader = new FileReader();
+                reader.onload = handleFileLoad;
+                reader.readAsText(file);
             } else {
                 alert('please upload ".json" file');
             }
@@ -106,7 +111,7 @@ export const EMSetup = () => {
                 </button>
                 <a className={styles.primaryBtn} onClick={(el) => downloadingConfig(el)}>Download Config</a>
                 <label htmlFor="upload" className={styles.primaryBtn}>Upload Config</label>
-                <input id='upload' type='file' onChange={(e) => Uploading(e)}/>
+                <input id='upload' type='file' onChange={(e) => uploading(e)}/>
             </div>
 
         </section>
