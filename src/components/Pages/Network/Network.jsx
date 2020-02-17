@@ -49,7 +49,7 @@ export const Network = () => {
         console.log('cancel');
 
     };
-    const saveButton = async () => {
+    const savingData = async () => {
         setDisabled(!disabled);
         console.log('save');
         await server.setNetwork({
@@ -120,7 +120,7 @@ export const Network = () => {
                         onClick={() => cancelButton()}>Cancel
                 </button>
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
-                        onClick={() => saveButton()}>Save
+                        onClick={() => savingData()}>Save
                 </button>
             </div>
         </section>

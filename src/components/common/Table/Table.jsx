@@ -20,19 +20,19 @@ export const Table = ({item, objKey, disabled = true, primary, enable, secondary
     const [primaryDNS, setPrimaryDNS] = useState(primary);
     const [secondaryDNS, setSecondaryDNS] = useState(secondary);
 
-    const handleChange = async (e) => {
+    const handleChange = (e) => {
         if (e.target.name === 'enabled') {
             setEnabled(e.target.value);
-            await dispatch(networkActions.setNetwork({...network.network.data, 'enabled': e.target.value}));
+            dispatch(networkActions.setNetwork({...network.network.data, 'enabled': e.target.value}));
         } else if (e.target.name === 'primaryDNS') {
             setPrimaryDNS(e.target.value);
-            await dispatch(networkActions.setNetwork({...network.network.data, 'primaryDNS': e.target.value}));
+            dispatch(networkActions.setNetwork({...network.network.data, 'primaryDNS': e.target.value}));
         } else if (e.target.name === 'secondaryDNS') {
             setSecondaryDNS(e.target.value);
-            await dispatch(networkActions.setNetwork({...network.network.data, 'secondaryDNS': e.target.value}));
+            dispatch(networkActions.setNetwork({...network.network.data, 'secondaryDNS': e.target.value}));
         } else {
             setValue(e.target.value);
-            await dispatch(networkActions.setNetwork({...network.network.data, [objKey]: e.target.value}));
+            dispatch(networkActions.setNetwork({...network.network.data, [objKey]: e.target.value}));
         }
     };
 

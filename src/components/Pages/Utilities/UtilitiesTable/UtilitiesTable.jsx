@@ -3,6 +3,7 @@ import React from 'react';
 
 // components
 import {server} from "../../../../REST";
+import {Input} from './components/Input/Input'
 
 // styles
 import styles from './UtilitiesTable.module.scss';
@@ -13,7 +14,7 @@ const moveButtons = {
 };
 
 
-export const UtilitiesTable = ({data, title}) => {
+export const UtilitiesTable = ({data, title, disabled}) => {
     const buttonOne = ['Move to 0 db'];
     const buttonTwo = ['Move to -30 db'];
     for (let i = 1; i <= 12; i++) {
@@ -50,12 +51,18 @@ export const UtilitiesTable = ({data, title}) => {
                                 <div key={index} className={styles.tableCell}>{raw}</div>))}
                         </div>
                         <div className={styles.tableRow}>
-                            {row['Raw value'].map((left, index) => (
-                                <div key={index} className={styles.tableCell}>{left}</div>))}
+                            {row['Left value'].map((left, index) => (
+                                index === 0 ? <div key={index} className={styles.tableCell}>{left}</div> :
+                                    <div key={index} className={styles.inputWrapper}>
+                                        <Input index={index} data={data} item={left} name={'leftCalibration'} disabled={disabled}/>
+                                    </div>))}
                         </div>
                         <div className={styles.tableRow}>
-                            {row['Raw value'].map((right, index) => (
-                                <div key={index} className={styles.tableCell}>{right}</div>))}
+                            {row['Right value'].map((right, index) => (
+                                index === 0 ? <div key={index} className={styles.tableCell}>{right}</div> :
+                                    <div key={index} className={styles.inputWrapper}>
+                                        <Input index={index} data={data} item={right} name={'rightCalibration'} disabled={disabled}/>
+                                    </div>))}
                         </div>
                         <div className={styles.tableRow}>
                             {buttonOne.map((button, index) => (button === 'Move to 0 db' ?

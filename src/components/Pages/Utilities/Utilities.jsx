@@ -12,6 +12,7 @@ import {getStatus} from "../../../bus/status/selectors";
 
 // styles
 import styles from './Utilities.module.scss';
+import {server} from "../../../REST";
 
 const titleUtilities = {
     header: ['', 'Fader 1', 'Fader 2', 'Fader 3', 'Fader 4', 'Fader 5', 'Fader 6', 'Fader 7', 'Fader 8', 'Fader 9', 'Fader 10', 'Fader 11', 'Fader 12'],
@@ -35,7 +36,20 @@ export const Utilities = () => {
     ];
 
     const editingData = () => {
-        setDisabled(!disabled)
+        setDisabled(!disabled);
+        console.log('edit');
+    };
+
+    const savingData = async () => {
+        setDisabled(!disabled);
+        console.log('save');
+
+        await server.setFader({
+            fader: {
+                leftCalibration: data.leftCalibration,
+                rightCalibration: data.rightCalibration,
+            }
+        })
     };
 
     useEffect(() => {
@@ -58,10 +72,10 @@ export const Utilities = () => {
                 </button>
             </div>
             <TableSmall fields={smallTable} disabled={disabled}/>
-            <UtilitiesTable data={data} title={titleUtilities}/>
+            <UtilitiesTable data={data} title={titleUtilities} disabled={disabled}/>
             <div className={styles.utilitiesButtons}>
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
-                        onClick={() => editingData()}>Save changes
+                        onClick={() => savingData()}>Save changes
                 </button>
             </div>
         </section>

@@ -60,9 +60,38 @@
         align-items:     center;
         justify-content: center;
         padding-left:    0.625rem;
+        text-align:      center;
+        border-radius:   0;
         &:nth-child(1) {
           min-height:  3.125rem;
           align-items: flex-start;
+        }
+      }
+      .inputWrapper {
+        position:        relative;
+        margin-bottom:   0.0625rem;
+        background:      #fff;
+        font-size:       1rem;
+        line-height:     1.67;
+        min-height:      4.375rem;
+        display:         flex;
+        flex-direction:  column;
+        align-items:     center;
+        justify-content: center;
+        padding-left:    0.625rem;
+        text-align:      center;
+        border-radius:   0;
+        &:before {
+          content:    '';
+          background: $veryLightBlueColor;
+          width:      80%;
+          height:     57.15%;
+          position:   absolute;
+          z-index:    0;
+          left:       50%;
+          top:        50%;
+          transform:  translate(-50%, -50%);
+          border-radius: 0.625rem;
         }
       }
     }
