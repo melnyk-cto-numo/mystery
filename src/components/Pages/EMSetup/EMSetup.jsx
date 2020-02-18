@@ -9,7 +9,9 @@ import {TopRowButtons} from "./components";
 import {useDispatch, useSelector} from "react-redux";
 import {emSetupActions} from "../../../bus/emSetup/actions";
 import {mysteryActions} from "../../../bus/mystery/actions";
+import {statusActions} from "../../../bus/status/actions";
 import {getEmSetup} from "../../../bus/emSetup/selectors";
+import {getStatus} from "../../../bus/status/selectors";
 import {server} from "../../../REST";
 import {EasyMixSetup} from "./components/EasyMixSetup/EasyMixSetup";
 
@@ -20,9 +22,13 @@ import styles from './EMSetup.module.scss';
 export const EMSetup = () => {
     const dispatch = useDispatch();
     const emsetup = useSelector(getEmSetup);
+    const status = useSelector(getStatus);
     const data = emsetup.emSetup.data;
+    const model = status.status.data.model;
 
     const [disabled, setDisabled] = useState(true);
+
+    const [column, setColumn] = useState('EM4');
 
     const editingData = () => {
         setDisabled(!disabled)
@@ -70,8 +76,27 @@ export const EMSetup = () => {
 
     useEffect(() => {
         dispatch(emSetupActions.getEmSetupAsync());
+        dispatch(statusActions.getStatusAsync());
     }, []);
 
+    useEffect(() => {
+
+        // check model for Bank field on Status page
+        switch (model) {
+            case 'EM4':
+                setColumn(4);
+                break;
+            case 'EM8':
+                setColumn(8);
+                break;
+            case 'EM12':
+                setColumn(12);
+                break;
+            default:
+                setColumn('model not found');
+                break;
+        }
+    }, [model]);
 
     if (data.Settings === undefined) {
         return false;
@@ -107,7 +132,7 @@ export const EMSetup = () => {
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <TopRowButtons data={data.Buttons} disabled/>
+                    <TopRowButtons data={data.Buttons} column={column}/>
                 </TabPanel>
             </Tabs>
 

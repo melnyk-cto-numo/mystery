@@ -3,14 +3,14 @@ import React from 'react';
 import styles from './TopRowButtons.module.scss';
 
 
-export const TopRowButtons = ({data}) => {
+export const TopRowButtons = ({data, column}) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.table}>
                 <div className={styles.tableHeader}>
                 </div>
                 <div className={styles.tableBody}>
-                    {data.map((item, index) => (
+                    {data.slice(0, column).map((item, index) => (
                         <div key={index} className={styles.tableRow}>
                             <div className={styles.tableCell}>{index + 1}</div>
                             <div className={styles.tableCell}>{item.type}</div>
