@@ -7,6 +7,7 @@ import {Header} from "../common";
 import {routes} from './routes';
 
 
+import spinner from '../../assets/img/spinner.svg'
 import styles from './App.module.scss';
 
 export const App = () => {
@@ -14,6 +15,9 @@ export const App = () => {
         <div className={styles.app}>
             <Header/>
             <main className={styles.main}>
+                <div className={styles.loadingWrapper}>
+                    <img src={spinner} alt="" className={styles.loading}/>
+                </div>
                 <Switch>
                     <Redirect exact from='/' to={routes.status}/>
                     <Route path={routes.status} component={Status}/>

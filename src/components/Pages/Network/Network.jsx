@@ -38,7 +38,7 @@ export const Network = () => {
         {id: 1, type: 'port', title: 'DSP Port', dspPort: data.dspPort},
     ];
 
-    const [disabled, setDisabled] = useState(true);
+    const [disabled, setDisabled] = useState(false);
 
     const editingData = () => {
         setDisabled(!disabled);
@@ -46,8 +46,8 @@ export const Network = () => {
     };
     const cancelButton = () => {
         setDisabled(!disabled);
-        console.log('cancel');
-
+        dispatch(networkActions.setNetwork({}));
+        dispatch(networkActions.getNetworkAsync());
     };
     const savingData = async () => {
         setDisabled(!disabled);
