@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {server} from '../../../REST'
 import {Table} from "../../common";
 import {networkActions} from "../../../bus/network/actions";
+import {mysteryActions} from "../../../bus/mystery/actions";
 import {getNetwork} from "../../../bus/network/selectors";
 
 
@@ -38,7 +39,7 @@ export const Network = () => {
         {id: 1, type: 'port', title: 'DSP Port', dspPort: data.dspPort},
     ];
 
-    const [disabled, setDisabled] = useState(false);
+    const [disabled, setDisabled] = useState(true);
 
     const editingData = () => {
         setDisabled(!disabled);
@@ -64,6 +65,11 @@ export const Network = () => {
                 comType: data.comType,
             }
         });
+
+        dispatch(mysteryActions.setShowPopup(true));
+        setTimeout(() => {
+            dispatch(mysteryActions.setShowPopup(false));
+        }, 1000)
     };
 
     useEffect(() => {

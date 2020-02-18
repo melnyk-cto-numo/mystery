@@ -7,6 +7,7 @@ import {TableSmall} from "../../common";
 import {UtilitiesTable} from "./UtilitiesTable/UtilitiesTable";
 import {faderActions} from "../../../bus/fader/actions";
 import {statusActions} from "../../../bus/status/actions";
+import {mysteryActions} from "../../../bus/mystery/actions";
 import {getFader} from "../../../bus/fader/selectors";
 import {getStatus} from "../../../bus/status/selectors";
 
@@ -49,7 +50,12 @@ export const Utilities = () => {
                 leftCalibration: data.leftCalibration,
                 rightCalibration: data.rightCalibration,
             }
-        })
+        });
+
+        dispatch(mysteryActions.setShowPopup(true));
+        setTimeout(() => {
+            dispatch(mysteryActions.setShowPopup(false));
+        }, 1000)
     };
 
     useEffect(() => {

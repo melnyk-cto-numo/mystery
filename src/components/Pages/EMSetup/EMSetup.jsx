@@ -8,6 +8,7 @@ import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 import {TopRowButtons} from "./components";
 import {useDispatch, useSelector} from "react-redux";
 import {emSetupActions} from "../../../bus/emSetup/actions";
+import {mysteryActions} from "../../../bus/mystery/actions";
 import {getEmSetup} from "../../../bus/emSetup/selectors";
 import {server} from "../../../REST";
 import {EasyMixSetup} from "./components/EasyMixSetup/EasyMixSetup";
@@ -34,7 +35,12 @@ export const EMSetup = () => {
                 altFaderTimeout: data.Settings.altFaderTimeout,
                 altToggleTimeout: data.Settings.altToggleTimeout
             }
-        })
+        });
+
+        dispatch(mysteryActions.setShowPopup(true));
+        setTimeout(() => {
+            dispatch(mysteryActions.setShowPopup(false));
+        }, 1000)
     };
 
     const downloadingConfig = (el) => {

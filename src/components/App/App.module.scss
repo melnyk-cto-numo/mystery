@@ -20,6 +20,7 @@
     z-index:     2;
     background:  rgba(0, 0, 0, 0.3);
     user-select: none;
+    display:     none;
     .loading {
       position:  absolute;
       top:       50%;
@@ -27,6 +28,9 @@
       transform: translate(-50%, -50%);
       width:     9.375rem;
       height:    9.375rem;
+    }
+    &.show {
+      display: block;
     }
   }
 }
