@@ -23,7 +23,12 @@ export const Network = () => {
     const array = [
         {id: 0, type: 'ip', title: 'EasyMix IP Address', myIP: data.myIP},
         {id: 1, type: 'select', title: 'Mode', mode: [data.mode]},
-        {id: 2, type: 'mac', title: 'Mac Address', mac: data.mac},
+        {
+            id: 2,
+            type: 'mac',
+            title: 'Mac Address',
+            mac: {macAddress: data.mac, type: ['Static', 'DHCP']}
+        },
         {
             id: 3,
             type: 'multiple',
@@ -31,7 +36,12 @@ export const Network = () => {
             value: {enabled: 0, primaryDNS: data.primaryDNS, secondaryDNS: data.secondaryDNS}
 
         },
-        {id: 4, type: 'select', title: 'Communication type', comType: [data.comType]},
+        {
+            id: 4,
+            type: 'select',
+            title: 'Communication type',
+            comType: [data.comType, data.comType === 'TCP' ? 'UDP' : 'TCP']
+        },
     ];
 
     const DSP = [
@@ -43,7 +53,6 @@ export const Network = () => {
 
     const editingData = () => {
         setDisabled(!disabled);
-        console.log('edit');
     };
     const cancelButton = () => {
         setDisabled(!disabled);
@@ -52,7 +61,6 @@ export const Network = () => {
     };
     const savingData = async () => {
         setDisabled(!disabled);
-        console.log('save');
         await server.setNetwork({
             network: {
                 myIP: data.myIP,
@@ -63,6 +71,7 @@ export const Network = () => {
                 dspIP: data.dspIP,
                 dspPort: data.dspPort,
                 comType: data.comType,
+                mac: data.mac,
             }
         });
 

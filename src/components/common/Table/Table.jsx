@@ -96,33 +96,39 @@ export const Table = ({item, objKey, disabled = true, primary, enable, secondary
                              disabled={disabled}
                              onChange={(e) => handleChange(e)}/>
             </div>
-            : item.type === 'mac' ?
+            : item.type === 'port' ?
             <div key={item.id} className={styles.tableRow}>
                 <span>{item.title}</span>
-                <MaskedInput type='text'
-                             mask={[/[0-9a-zA-Z]/, /[0-9a-zA-Z]/, ':', /[0-9a-zA-Z]/, /[0-9a-zA-Z]/, ':', /[0-9a-zA-Z]/, /[0-9a-zA-Z]/, ':', /[0-9a-zA-Z]/, /[0-9a-zA-Z]/, ':', /[0-9a-zA-Z]/, /[0-9a-zA-Z]/, ':', /[0-9a-zA-Z]/, /[0-9a-zA-Z]/,]}
-                             className={styles.networkValue}
-                             value={value}
-                             disabled='disabled'
-                             onChange={(e) => handleChange(e)}/>
+                <input
+                    type='number'
+                    className={styles.networkValue}
+                    value={value}
+                    disabled={disabled}
+                    onChange={(e) => maxValue(e)}/>
             </div>
-            : item.type === 'port' ?
+            : item.type === 'select' ?
                 <div key={item.id} className={styles.tableRow}>
                     <span>{item.title}</span>
-                    <input
-                        type='number'
-                        className={styles.networkValue}
-                        value={value}
-                        disabled={disabled}
-                        onChange={(e) => maxValue(e)}/>
+                    <div className={styles.select}>
+                        <select className={styles.networkValue}
+                                disabled={disabled}
+                                onChange={(e) => handleChange(e)}>
+                            {item[objKey].map((item, index) => (
+                                <option key={index}>{item}</option>
+                            ))}
+                        </select>
+                    </div>
+
                 </div>
-                : item.type === 'select' ?
+                : item.type === 'mac' ?
                     <div key={item.id} className={styles.tableRow}>
                         <span>{item.title}</span>
                         <div className={styles.select}>
                             <select className={styles.networkValue}
-                                    disabled={disabled}>
-                                {item[objKey].map((item, index) => (
+                                    disabled={disabled}
+                                    onChange={(e) => handleChange(e)}>
+                                <option>{item.mac.macAddress}</option>
+                                {item[objKey].type.map((item, index) => (
                                     <option key={index}>{item}</option>
                                 ))}
                             </select>
