@@ -16,17 +16,22 @@ export const EasyMixSetup = ({item, objKey, disabled}) => {
     const [value, setValue] = useState(item[objKey]);
 
     const handleChange = async (e) => {
-        setValue(e.target.value);
-        dispatch(emSetupActions.setEmSetup({
-            ...emsetup.emSetup.data,
-            Settings: {...emsetup.emSetup.data.Settings, [objKey]: e.target.value}
-        }))
+        if (e.target.value < 120) {
+            setValue(e.target.value);
+            dispatch(emSetupActions.setEmSetup({
+                ...emsetup.emSetup.data,
+                Settings: {...emsetup.emSetup.data.Settings, [objKey]: e.target.value}
+            }))
+        } else {
+            setValue(120);
+        }
+
     };
 
     return (
         <div key={item.id} className={styles.tableRow}>
             <span>{item.title}</span>
-            <input type='text'
+            <input type='number'
                    className={styles.emSetupValue}
                    value={value}
                    disabled={disabled}
