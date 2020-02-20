@@ -1,32 +1,36 @@
 // core
-import React from 'react';
+import React, {useState} from 'react';
 
 // library
 // import {useDispatch} from "react-redux";
 
 // components
+import {Select} from "./Select/Select";
 // import {emSetupActions} from "../../../../../bus/emSetup/actions";
 
 // styles
 import styles from './TopRowButtons.module.scss';
 
-const controls = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const controlOptions = ['none', 'unused', 'control1', 'control2', 'control3', 'control4', 'control5', 'control6', 'control7', 'control8', 'control9', 'control10', 'control11', 'control12'];
+const advancedOptions = ['none', 'unused', 'altFader1', 'altFader2', 'altFader3', 'altToggle'];
+const options = ['none'];
+
 export const TopRowButtons = ({item, data, index}) => {
     // const dispatch = useDispatch();
 
+    const [type, setType] = useState(item.type);
+
     const handleChange = (e) => {
         console.log(e.target.value);
-        // dispatch(emSetupActions.setEmSetup({...data, Buttons: [{type: 'control', levels: ['levels']}]}))
+        setType(e.target.value);
+        // dispatch(emSetupActions.setEmSetup({...data, [Object.key(data.Buttons[0])]: '44444'}))
     };
-
-    console.log(data.Buttons[index].type);
-
 
     return (
         <div className={styles.tableRow}>
             <div className={styles.tableCell}>{index + 1}</div>
             <div className={styles.type}>
-                <select value={item.type} onChange={(e) => handleChange(e)}>
+                <select value={type} onChange={(e) => handleChange(e)}>
                     <option value="control">control</option>
                     <option value="ctrlSelector">ctrlSelector</option>
                     <option value="advanced">advanced</option>
@@ -34,34 +38,14 @@ export const TopRowButtons = ({item, data, index}) => {
                     <option value="power">power</option>
                 </select>
             </div>
-
-            {item.type === 'control' ?
+            {type === 'control' ?
                 item.levels.map((level, index) => (
-                    <div key={index} className={styles.type}>
-                        <select value={level} onChange={(e) => handleChange(e)}>
-                            <option value="none">none</option>
-                            <option value="unused">unused</option>
-                            {controls.map(i => <option key={i} value={`control${i}`}>{`control${i}`}</option>)}
-                        </select>
-                    </div>))
-                : item.type === 'advanced' ?
+                    <Select key={index} level={level} options={controlOptions}/>))
+                : type === 'advanced' ?
                     item.levels.map((level, index) => (
-                        <div key={index} className={styles.type}>
-                            <select value={level} onChange={(e) => handleChange(e)}>
-                                <option value="none">none</option>
-                                <option value="unused">unused</option>
-                                <option value="altFader1">altFader1</option>
-                                <option value="altFader2">altFader2</option>
-                                <option value="altFader3">altFader3</option>
-                                <option value="altToggle">altToggle</option>
-                            </select>
-                        </div>))
-                    : item.type === 'ctrlSelector' || item.type === 'bank' || item.type === 'power' ?
+                        <Select key={index} level={level} options={advancedOptions} />))
+                    : type === 'ctrlSelector' || type === 'bank' || type === 'power' ?
                         item.levels.map((level, index) => (
-                            <div key={index} className={styles.type}>
-                                <select value={level} onChange={(e) => handleChange(e)}>
-                                    <option value="unused">none</option>
-                                </select>
-                            </div>)) : ''}
+                            <Select key={index} options={options} />)) : ''}
         </div>);
 };

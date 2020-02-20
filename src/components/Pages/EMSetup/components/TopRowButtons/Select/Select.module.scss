@@ -1,0 +1,12 @@
+@import "../../../../../../assets/scss/variable";
+
+.type {
+  padding:    0 0.625rem;
+  background: $whiteColor;
+  border:     0.03125rem solid #b7c9ff;
+  select {
+    width:         100%;
+    background:    transparent;
+    border-radius: 0;
+  }
+}
