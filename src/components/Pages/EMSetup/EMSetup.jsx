@@ -10,8 +10,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {emSetupActions} from "../../../bus/emSetup/actions";
 import {mysteryActions} from "../../../bus/mystery/actions";
 import {statusActions} from "../../../bus/status/actions";
+import {siteSetupActions} from "../../../bus/siteSetup/actions";
 import {getEmSetup} from "../../../bus/emSetup/selectors";
 import {getStatus} from "../../../bus/status/selectors";
+import {getSiteSetup} from "../../../bus/siteSetup/selectors";
 import {server} from "../../../REST";
 import {EasyMixSetup} from "./components/EasyMixSetup/EasyMixSetup";
 
@@ -23,6 +25,8 @@ export const EMSetup = () => {
     const dispatch = useDispatch();
     const emsetup = useSelector(getEmSetup);
     const status = useSelector(getStatus);
+    const siteSetup = useSelector(getSiteSetup);
+    const controls = siteSetup.siteSetup.data.control;
     const data = emsetup.emSetup.data;
     const model = status.status.data.model;
 
@@ -81,6 +85,7 @@ export const EMSetup = () => {
     useEffect(() => {
         dispatch(emSetupActions.getEmSetupAsync());
         dispatch(statusActions.getStatusAsync());
+        dispatch(siteSetupActions.getSiteSetupAsync());
     }, []);
 
     useEffect(() => {
@@ -139,7 +144,7 @@ export const EMSetup = () => {
                     <div className={styles.wrapper}>
                         <div className={styles.table + ' ' + styles.tableTopRowButtons}>
                             {data.Buttons.slice(0, column).map((item, index) => (
-                                <TopRowButtons key={index} item={item} data={data} index={index}/>))}
+                                <TopRowButtons key={index} item={item} data={data} index={index} controls={controls}/>))}
                         </div>
                     </div>
                 </TabPanel>

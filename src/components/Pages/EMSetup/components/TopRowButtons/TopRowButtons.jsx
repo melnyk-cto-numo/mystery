@@ -2,23 +2,23 @@
 import React, {useState} from 'react';
 
 // library
-// import {useDispatch} from "react-redux";
+import {useDispatch} from "react-redux";
 
 // components
 import {Select} from "./Select/Select";
-// import {emSetupActions} from "../../../../../bus/emSetup/actions";
+import {emSetupActions} from "../../../../../bus/emSetup/actions";
 
 // styles
 import styles from './TopRowButtons.module.scss';
 
-const controlOptions = ['none', 'unused', 'control1', 'control2', 'control3', 'control4', 'control5', 'control6', 'control7', 'control8', 'control9', 'control10', 'control11', 'control12'];
-const advancedOptions = ['none', 'unused', 'altFader1', 'altFader2', 'altFader3', 'altToggle'];
-const options = ['none'];
 
-export const TopRowButtons = ({item, data, index}) => {
-    // const dispatch = useDispatch();
-
+export const TopRowButtons = ({item, data, index, controls}) => {
+    const dispatch = useDispatch();
     const [type, setType] = useState(item.type);
+
+    const controlOptions = ['none', 'unused', ...controls.names];
+    const advancedOptions = ['none', 'unused', 'altFader1', 'altFader2', 'altFader3', 'altToggle'];
+    const options = ['none'];
 
     const handleChange = (e) => {
         console.log(e.target.value);
@@ -43,9 +43,9 @@ export const TopRowButtons = ({item, data, index}) => {
                     <Select key={index} level={level} options={controlOptions}/>))
                 : type === 'advanced' ?
                     item.levels.map((level, index) => (
-                        <Select key={index} level={level} options={advancedOptions} />))
+                        <Select key={index} level={level} options={advancedOptions}/>))
                     : type === 'ctrlSelector' || type === 'bank' || type === 'power' ?
                         item.levels.map((level, index) => (
-                            <Select key={index} options={options} />)) : ''}
+                            <Select key={index} options={options}/>)) : ''}
         </div>);
 };
