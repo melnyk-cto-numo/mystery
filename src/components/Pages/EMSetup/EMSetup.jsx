@@ -33,6 +33,9 @@ export const EMSetup = () => {
     const editingData = () => {
         setDisabled(!disabled)
     };
+    const cancelButton = () => {
+        setDisabled(!disabled);
+    };
 
     const savingData = async () => {
         setDisabled(!disabled);
@@ -40,7 +43,8 @@ export const EMSetup = () => {
             Settings: {
                 altFaderTimeout: data.Settings.altFaderTimeout,
                 altToggleTimeout: data.Settings.altToggleTimeout
-            }
+            },
+            Buttons: [...data.Buttons]
         });
 
         dispatch(mysteryActions.setShowPopup(true));
@@ -132,7 +136,12 @@ export const EMSetup = () => {
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <TopRowButtons data={data.Buttons} column={column}/>
+                    <div className={styles.wrapper}>
+                        <div className={styles.table + ' ' + styles.tableTopRowButtons}>
+                            {data.Buttons.slice(0, column).map((item, index) => (
+                                <TopRowButtons key={index} item={item} data={data} index={index}/>))}
+                        </div>
+                    </div>
                 </TabPanel>
             </Tabs>
 
@@ -140,9 +149,13 @@ export const EMSetup = () => {
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
                         onClick={() => savingData()}>Save Settings
                 </button>
-                <a className={styles.primaryBtn} onClick={(el) => downloadingConfig(el)}>Download Config</a>
-                <label htmlFor="upload" className={styles.primaryBtn}>Upload Config</label>
-                <input id='upload' type='file' onChange={(e) => uploading(e)}/>
+                <button type="button" className={styles.primaryBtn} disabled={disabled}
+                        onClick={() => cancelButton()}>Cancel
+                </button>
+                {disabled && <>
+                    <a className={styles.primaryBtn} onClick={(el) => downloadingConfig(el)}>Download Config</a>
+                    <label htmlFor="upload" className={styles.primaryBtn}>Upload Config</label>
+                    <input id='upload' type='file' onChange={(e) => uploading(e)}/></>}
             </div>
 
         </section>

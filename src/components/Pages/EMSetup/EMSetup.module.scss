@@ -57,6 +57,11 @@
   .table {
     overflow: auto;
   }
+  .tableTopRowButtons {
+    display:               grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    line-height:           1.5;
+  }
 }
 
 @media screen and (max-width: 1200px) {
