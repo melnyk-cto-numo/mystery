@@ -106,69 +106,72 @@ export const Table = ({item, objKey, disabled = true, primary, enable, secondary
                     disabled={disabled}
                     onChange={(e) => maxValue(e)}/>
             </div>
-            : item.type === 'select' ?
+            : item.type === 'mode' ?
                 <div key={item.id} className={styles.tableRow}>
                     <span>{item.title}</span>
                     <div className={styles.select}>
-                        <select className={styles.networkValue}
+                        <select value={network.network.data.mode} className={styles.networkValue}
                                 disabled={disabled}
                                 onChange={(e) => handleChange(e)}>
-                            {item[objKey].map((item, index) => (
-                                <option key={index}>{item}</option>
-                            ))}
+                            {item.mode.map((item, index) => <option key={index}>{item}</option>)}
                         </select>
                     </div>
 
                 </div>
-                : item.type === 'mac' ?
+                : item.type === 'comType' ?
                     <div key={item.id} className={styles.tableRow}>
                         <span>{item.title}</span>
                         <div className={styles.select}>
-                            <select className={styles.networkValue}
+                            <select value={network.network.data.comType} className={styles.networkValue}
                                     disabled={disabled}
                                     onChange={(e) => handleChange(e)}>
-                                <option>{item.mac.macAddress}</option>
-                                {item[objKey].type.map((item, index) => (
-                                    <option key={index}>{item}</option>
-                                ))}
+                                {item.comType.map((item, index) => <option key={index}>{item}</option>)}
                             </select>
                         </div>
 
                     </div>
-                    : item.type === 'multiple' ?
+                    : item.type === 'mac' ?
                         <div key={item.id} className={styles.tableRow}>
-                            <span/>
-                            <div className={styles.macDns}>
-                                <div className={styles.enable}>
-                                    <div className='checkbox'>
-                                        <input name='enabled' id='enabled' type="checkbox" value={enabled}
-                                               disabled={disabled}/>
-                                        <label htmlFor='enabled'>Enabled</label>
+                            <span>{item.title}</span>
+                            <input type='text'
+                                   className={styles.networkValue}
+                                   value={value}
+                                   disabled='disabled'/>
+                        </div>
+                        : item.type === 'multiple' ?
+                            <div key={item.id} className={styles.tableRow}>
+                                <span/>
+                                <div className={styles.macDns}>
+                                    <div className={styles.enable}>
+                                        <div className='checkbox'>
+                                            <input name='enabled' id='enabled' type="checkbox" value={enabled}
+                                                   disabled={disabled}/>
+                                            <label htmlFor='enabled'>Enabled</label>
+                                        </div>
+                                    </div>
+                                    <div>
+
+                                        <span>{item.title[1]}</span>
+                                        <MaskedInput
+                                            mask={(e) => mask(e)}
+                                            pipe={(e) => pipe(e)}
+                                            name='primaryDNS'
+                                            type='text' className={styles.networkValue}
+                                            value={primaryDNS}
+                                            disabled={disabled}
+                                            onChange={(e) => handleChange(e)}/>
+                                    </div>
+                                    <div>
+                                        <span>{item.title[2]}</span>
+                                        <MaskedInput
+                                            mask={(e) => mask(e)}
+                                            pipe={(e) => pipe(e)}
+                                            name='secondaryDNS'
+                                            type='text' className={styles.networkValue}
+                                            value={secondaryDNS}
+                                            disabled={disabled}
+                                            onChange={(e) => handleChange(e)}/>
                                     </div>
                                 </div>
-                                <div>
-
-                                    <span>{item.title[1]}</span>
-                                    <MaskedInput
-                                        mask={(e) => mask(e)}
-                                        pipe={(e) => pipe(e)}
-                                        name='primaryDNS'
-                                        type='text' className={styles.networkValue}
-                                        value={primaryDNS}
-                                        disabled={disabled}
-                                        onChange={(e) => handleChange(e)}/>
-                                </div>
-                                <div>
-                                    <span>{item.title[2]}</span>
-                                    <MaskedInput
-                                        mask={(e) => mask(e)}
-                                        pipe={(e) => pipe(e)}
-                                        name='secondaryDNS'
-                                        type='text' className={styles.networkValue}
-                                        value={secondaryDNS}
-                                        disabled={disabled}
-                                        onChange={(e) => handleChange(e)}/>
-                                </div>
-                            </div>
-                        </div> : '')
+                            </div> : '')
 };

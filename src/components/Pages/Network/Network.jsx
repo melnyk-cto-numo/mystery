@@ -22,12 +22,17 @@ export const Network = () => {
 
     const array = [
         {id: 0, type: 'ip', title: 'EasyMix IP Address', myIP: data.myIP},
-        {id: 1, type: 'select', title: 'Mode', mode: [data.mode]},
+        {
+            id: 1,
+            type: 'mode',
+            title: 'Mode',
+            mode: ['Static', 'DHCP'],
+        },
         {
             id: 2,
             type: 'mac',
             title: 'Mac Address',
-            mac: {macAddress: data.mac, type: ['Static', 'DHCP']}
+            mac: data.mac,
         },
         {
             id: 3,
@@ -38,9 +43,9 @@ export const Network = () => {
         },
         {
             id: 4,
-            type: 'select',
+            type: 'comType',
             title: 'Communication type',
-            comType: [data.comType, data.comType === 'TCP' ? 'UDP' : 'TCP']
+            comType: ['TCP', 'UDP'],
         },
     ];
 
