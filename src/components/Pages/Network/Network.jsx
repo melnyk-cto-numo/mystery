@@ -61,7 +61,6 @@ export const Network = () => {
     };
     const cancelButton = () => {
         setDisabled(!disabled);
-        dispatch(networkActions.setNetwork({}));
         dispatch(networkActions.getNetworkAsync());
     };
     const savingData = async () => {

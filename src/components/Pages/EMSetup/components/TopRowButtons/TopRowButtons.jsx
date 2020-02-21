@@ -1,5 +1,5 @@
 // core
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 
 // library
 import {useDispatch} from "react-redux";
@@ -12,25 +12,35 @@ import {emSetupActions} from "../../../../../bus/emSetup/actions";
 import styles from './TopRowButtons.module.scss';
 
 
-export const TopRowButtons = ({item, data, index, controls}) => {
+export const TopRowButtons = ({item, data, row, controls, disabled}) => {
     const dispatch = useDispatch();
     const [type, setType] = useState(item.type);
+    const [api, setApi] = useState(data);
 
-    const controlOptions = ['none', 'unused', ...controls.names];
+    const controlName = controls.names.map(item => item.toLowerCase().replace(/ +/g, ''));
+    const controlOptions = ['none', 'unused', ...controlName];
     const advancedOptions = ['none', 'unused', 'altFader1', 'altFader2', 'altFader3', 'altToggle'];
     const options = ['none'];
 
     const handleChange = (e) => {
-        console.log(e.target.value);
         setType(e.target.value);
-        // dispatch(emSetupActions.setEmSetup({...data, [Object.key(data.Buttons[0])]: '44444'}))
+
+        // set state "type"
+        const stateCopy = Object.assign({...data}, api);
+        stateCopy.Buttons[row].type = e.target.value;
+
+        // set "levels" when change "type"
+        stateCopy.Buttons[row].levels = data.Buttons[row].levels.map(item => 'none');
+
+        setApi(stateCopy);
+        dispatch(emSetupActions.setEmSetup({...api}));
     };
 
     return (
         <div className={styles.tableRow}>
-            <div className={styles.tableCell}>{index + 1}</div>
+            <div className={styles.tableCell}>{row + 1}</div>
             <div className={styles.type}>
-                <select value={type} onChange={(e) => handleChange(e)}>
+                <select value={type} onChange={(e) => handleChange(e)} disabled={disabled}>
                     <option value="control">control</option>
                     <option value="ctrlSelector">ctrlSelector</option>
                     <option value="advanced">advanced</option>
@@ -40,12 +50,30 @@ export const TopRowButtons = ({item, data, index, controls}) => {
             </div>
             {type === 'control' ?
                 item.levels.map((level, index) => (
-                    <Select key={index} level={level} options={controlOptions}/>))
+                    <Select
+                        key={index}
+                        data={data}
+                        options={controlOptions}
+                        row={row}
+                        index={index}
+                        disabled={disabled}/>))
                 : type === 'advanced' ?
                     item.levels.map((level, index) => (
-                        <Select key={index} level={level} options={advancedOptions}/>))
+                        <Select
+                            key={index}
+                            data={data}
+                            options={advancedOptions}
+                            row={row}
+                            index={index}
+                            disabled={disabled}/>))
                     : type === 'ctrlSelector' || type === 'bank' || type === 'power' ?
                         item.levels.map((level, index) => (
-                            <Select key={index} options={options}/>)) : ''}
+                            <Select
+                                key={index}
+                                data={data}
+                                options={options}
+                                row={row}
+                                index={index}
+                                disabled={disabled}/>)) : ''}
         </div>);
 };

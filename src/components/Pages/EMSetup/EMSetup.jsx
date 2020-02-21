@@ -39,6 +39,9 @@ export const EMSetup = () => {
     };
     const cancelButton = () => {
         setDisabled(!disabled);
+
+        dispatch(emSetupActions.setEmSetup({}));
+        dispatch(emSetupActions.getEmSetupAsync());
     };
 
     const savingData = async () => {
@@ -144,7 +147,8 @@ export const EMSetup = () => {
                     <div className={styles.wrapper}>
                         <div className={styles.table + ' ' + styles.tableTopRowButtons}>
                             {data.Buttons.slice(0, column).map((item, index) => (
-                                <TopRowButtons key={index} item={item} data={data} index={index} controls={controls}/>))}
+                                <TopRowButtons key={index} item={item} data={data} row={index}
+                                               controls={controls} disabled={disabled}/>))}
                         </div>
                     </div>
                 </TabPanel>
