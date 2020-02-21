@@ -1,1 +1,1 @@
-export const getStatus = state => state;
+export const getStatus = state => state.status.data;

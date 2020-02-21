@@ -1,1 +1,1 @@
-export const getNetwork = state => state;
+export const getNetwork = state => state.network.data;

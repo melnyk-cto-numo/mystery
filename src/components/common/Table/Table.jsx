@@ -23,16 +23,16 @@ export const Table = ({item, objKey, disabled = true, primary, enable, secondary
     const handleChange = (e) => {
         if (e.target.name === 'enabled') {
             setEnabled(e.target.value);
-            dispatch(networkActions.setNetwork({...network.network.data, 'enabled': e.target.value}));
+            dispatch(networkActions.setNetwork({...network, 'enabled': e.target.value}));
         } else if (e.target.name === 'primaryDNS') {
             setPrimaryDNS(e.target.value);
-            dispatch(networkActions.setNetwork({...network.network.data, 'primaryDNS': e.target.value}));
+            dispatch(networkActions.setNetwork({...network, 'primaryDNS': e.target.value}));
         } else if (e.target.name === 'secondaryDNS') {
             setSecondaryDNS(e.target.value);
-            dispatch(networkActions.setNetwork({...network.network.data, 'secondaryDNS': e.target.value}));
+            dispatch(networkActions.setNetwork({...network, 'secondaryDNS': e.target.value}));
         } else {
             setValue(e.target.value);
-            dispatch(networkActions.setNetwork({...network.network.data, [objKey]: e.target.value}));
+            dispatch(networkActions.setNetwork({...network, [objKey]: e.target.value}));
         }
     };
 
@@ -77,7 +77,7 @@ export const Table = ({item, objKey, disabled = true, primary, enable, secondary
     const maxValue = (e) => {
         if (e.target.value < 65535) {
             setValue(e.target.value);
-            dispatch(networkActions.setNetwork({...network.network.data, [objKey]: e.target.value}))
+            dispatch(networkActions.setNetwork({...network, [objKey]: e.target.value}))
         } else {
             setValue(65535);
         }
@@ -110,7 +110,7 @@ export const Table = ({item, objKey, disabled = true, primary, enable, secondary
                 <div key={item.id} className={styles.tableRow}>
                     <span>{item.title}</span>
                     <div className={styles.select}>
-                        <select value={network.network.data.mode} className={styles.networkValue}
+                        <select value={network.mode} className={styles.networkValue}
                                 disabled={disabled}
                                 onChange={(e) => handleChange(e)}>
                             {item.mode.map((item, index) => <option key={index}>{item}</option>)}
@@ -122,7 +122,7 @@ export const Table = ({item, objKey, disabled = true, primary, enable, secondary
                     <div key={item.id} className={styles.tableRow}>
                         <span>{item.title}</span>
                         <div className={styles.select}>
-                            <select value={network.network.data.comType} className={styles.networkValue}
+                            <select value={network.comType} className={styles.networkValue}
                                     disabled={disabled}
                                     onChange={(e) => handleChange(e)}>
                                 {item.comType.map((item, index) => <option key={index}>{item}</option>)}

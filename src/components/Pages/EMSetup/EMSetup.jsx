@@ -23,12 +23,11 @@ import styles from './EMSetup.module.scss';
 
 export const EMSetup = () => {
     const dispatch = useDispatch();
-    const emsetup = useSelector(getEmSetup);
+    const data = useSelector(getEmSetup);
     const status = useSelector(getStatus);
     const siteSetup = useSelector(getSiteSetup);
-    const controls = siteSetup.siteSetup.data.control;
-    const data = emsetup.emSetup.data;
-    const model = status.status.data.model;
+    const controls = siteSetup.control;
+    const model = status.model;
 
     const [disabled, setDisabled] = useState(true);
 

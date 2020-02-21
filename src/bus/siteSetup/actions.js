@@ -15,13 +15,13 @@ export const siteSetupActions = createActions(
 
         // Async
         GET_SITE_SETUP_ASYNC: void 0,
-        GET_BSS_ASYNC: status => status,
-        GET_HAL_ASYNC: status => status,
-        GET_JUPITER_ASYNC: status => status,
-        GET_QSYS_ASYNC: status => status,
-        GET_SYMETRIX_ASYNC: status => status,
-        GET_TESIRA_ASYNC: status => status,
-        GET_XILICA_ASYNC: status => status,
+        GET_BSS_ASYNC: void 0,
+        GET_HAL_ASYNC: void 0,
+        GET_JUPITER_ASYNC: void 0,
+        GET_QSYS_ASYNC: void 0,
+        GET_SYMETRIX_ASYNC: void 0,
+        GET_TESIRA_ASYNC: void 0,
+        GET_XILICA_ASYNC: void 0,
     },
     {
         prefix: 'Site Setup',

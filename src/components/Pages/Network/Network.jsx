@@ -17,8 +17,7 @@ import styles from './Network.module.scss';
 
 export const Network = () => {
     const dispatch = useDispatch();
-    const network = useSelector(getNetwork);
-    const data = network.network.data;
+    const data = useSelector(getNetwork);
 
     const array = [
         {id: 0, type: 'ip', title: 'EasyMix IP Address', myIP: data.myIP},
@@ -61,6 +60,7 @@ export const Network = () => {
     };
     const cancelButton = () => {
         setDisabled(!disabled);
+        dispatch(networkActions.setNetwork({}));
         dispatch(networkActions.getNetworkAsync());
     };
     const savingData = async () => {

@@ -7,20 +7,47 @@ import {useDispatch, useSelector} from "react-redux";
 
 
 //components
-import {TableSmall} from "../../common";
+import {DspTable} from "./components/DspTable/DspTable";
 import {SiteSetupTable} from "./components/SiteSetupTable/SiteSetupTable";
+import {server} from "../../../REST";
+
 import {siteSetupActions} from "../../../bus/siteSetup/actions";
 import {errorsActions} from "../../../bus/errors/actions";
 import {statusActions} from "../../../bus/status/actions";
-import {getSiteSetup} from "../../../bus/siteSetup/selectors";
+import {
+    getBss,
+    getHal,
+    getJupiter,
+    getQsys,
+    getSiteSetup,
+    getSymetrix, getTesira,
+    getXilica
+} from "../../../bus/siteSetup/selectors";
 import {getErrors} from "../../../bus/errors/selectors";
 import {getStatus} from "../../../bus/status/selectors";
-import {server} from "../../../REST";
+
 
 //styles
 import styles from './SiteSetup.module.scss';
-const headerTableName = [
-    {
+
+const DSP = {
+    siteName: {label: 'Site name', type: 'text', value: 'QSYS'},
+    dsp: {label: 'DSP', type: 'select', value: ['BSS', 'Hal', 'Jupiter', 'QSYS', 'Symetrix', 'Tesira', 'Xilica']},
+};
+
+const headerTableName = {
+    bss: {
+        faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Object ID', 'SV ID'],
+        altFader1: ['No', 'Bank', 'Link', 'ON', 'Object ID', 'SV ID'],
+        altFader2: ['No', 'Bank', 'Link', 'ON', 'Object ID', 'SV ID'],
+        altToggle: ['No', 'Bank', 'Link', 'ON', 'Invert', 'Object ID', 'SV ID'],
+        mute: ['No', 'Bank', 'Link', 'ON', 'Invert', 'Object ID', 'SV ID'],
+        meter1: ['No', 'Bank', 'Link', 'ON', 'Object ID', 'SV ID'],
+        meter2: ['No', 'Bank', 'Link', 'ON', 'Object ID', 'SV ID'],
+        hg: ['No', 'Bank', 'Link', 'ON', 'Object ID', 'SV ID'],
+        control: ['Name', 'No', 'Bank', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Object ID', 'SV ID'],
+    },
+    hal: {
         faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Control No.'],
         altFader1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         altFader2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
@@ -32,31 +59,135 @@ const headerTableName = [
         hg: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         control: ['Name', 'No', 'Bank', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
     },
-];
+    jupiter: {
+        faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Control No.'],
+        altFader1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        altFader2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        altFader3: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        altToggle: ['No', 'Bank', 'Link', 'ON', 'Invert', 'Control No.'],
+        mute: ['No', 'Bank', 'Link', 'ON', 'Invert', 'Control No.'],
+        meter1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        meter2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        hg: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        control: ['Name', 'No', 'Bank', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
+    },
+    qsys: {
+        faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Control No.'],
+        altFader1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        altFader2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        altFader3: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        altToggle: ['No', 'Bank', 'Link', 'ON', 'Invert', 'Control No.'],
+        mute: ['No', 'Bank', 'Link', 'ON', 'Invert', 'Control No.'],
+        meter1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        meter2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        hg: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        control: ['Name', 'No', 'Bank', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
+    },
+    symetrix: {
+        faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Control No.'],
+        altFader1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        altFader2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        altFader3: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        altToggle: ['No', 'Bank', 'Link', 'ON', 'Invert', 'Control No.'],
+        mute: ['No', 'Bank', 'Link', 'ON', 'Invert', 'Control No.'],
+        meter1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        meter2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        hg: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        control: ['Name', 'No', 'Bank', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
+    },
+    tesira: {
+        faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Instance ID', 'Index'],
+        altFader1: ['No', 'Bank', 'Link', 'ON', 'Instance ID', 'Index'],
+        altFader2: ['No', 'Bank', 'Link', 'ON', 'Instance ID', 'Index'],
+        altFader3: ['No', 'Bank', 'Link', 'ON', 'Instance ID', 'Index'],
+        altToggle: ['No', 'Bank', 'Link', 'ON', 'Invert', 'Instance ID', 'Index'],
+        mute: ['No', 'Bank', 'Link', 'ON', 'Invert', 'Instance ID', 'Index'],
+        meter1: ['No', 'Bank', 'Link', 'ON', 'Instance ID', 'Index'],
+        meter2: ['No', 'Bank', 'Link', 'ON', 'Instance ID', 'Index'],
+        hg: ['No', 'Bank', 'Link', 'ON', 'Instance ID', 'Index'],
+        control: ['Name', 'No', 'Bank', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Instance ID', 'Index'],
+    },
+    xilica: {
+        faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Control No.'],
+        altFader1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        altFader2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        altFader3: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        altToggle: ['No', 'Bank', 'Link', 'ON', 'Invert', 'Control No.'],
+        mute: ['No', 'Bank', 'Link', 'ON', 'Invert', 'Control No.'],
+        meter1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        meter2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        hg: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
+        control: ['Name', 'No', 'Bank', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
+    },
+};
 
 export const SiteSetup = () => {
+    const dispatch = useDispatch();
+
+    const bss = useSelector(getBss);
+    const hal = useSelector(getHal);
+    const jupiter = useSelector(getJupiter);
+    const qsys = useSelector(getQsys);
+    const symetrix = useSelector(getSymetrix);
+    const tesira = useSelector(getTesira);
+    const xilica = useSelector(getXilica);
+    const dataErrors = useSelector(getErrors);
+    const status = useSelector(getStatus);
+    const siteSetup = useSelector(getSiteSetup);
+
+
     const [disabled, setDisabled] = useState(true);
     const [bank, setBank] = useState('EM4');
-
-    const dispatch = useDispatch();
-    const siteSetup = useSelector(getSiteSetup);
-    const errors = useSelector(getErrors);
-    const status = useSelector(getStatus);
-    const data = siteSetup.siteSetup.data;
-    const dataErrors = errors.errors.data;
-    const model = status.status.data.model;
+    const [dspType, setDspType] = useState(DSP.dsp.value[3].toLowerCase());
+    const [selectedTab, setSelectedTab] = useState(headerTableName.qsys);
+    const [data, setData] = useState(siteSetup);
 
     useEffect(() => {
-        dispatch(siteSetupActions.getSiteSetupAsync());
-        dispatch(statusActions.getStatusAsync());
-        dispatch(errorsActions.getErrorsAsync());
-    }, []);
+        setData(siteSetup)
+    }, [siteSetup]);
 
 
     useEffect(() => {
+        switch (dspType) {
+            case 'bss':
+                setData(bss);
+                setSelectedTab(headerTableName[dspType]);
+                break;
+            case 'hal':
+                setData(hal);
+                setSelectedTab(headerTableName[dspType]);
+                break;
+            case 'jupiter':
+                setData(jupiter);
+                setSelectedTab(headerTableName[dspType]);
+                break;
+            case 'qsys':
+                setData(qsys);
+                setSelectedTab(headerTableName[dspType]);
+                break;
+            case 'symetrix':
+                setData(symetrix);
+                setSelectedTab(headerTableName[dspType]);
+                break;
+            case 'tesira':
+                setData(tesira);
+                setSelectedTab(headerTableName[dspType]);
+                break;
+            case 'xilica':
+                setData(xilica);
+                setData(headerTableName[dspType]);
+                break;
+            default:
+                setData(qsys);
+                setSelectedTab(headerTableName['qsys']);
+                break;
+        }
+    }, [dspType]);
 
+
+    useEffect(() => {
         // check model for Bank field on Status page
-        switch (model) {
+        switch (status.model) {
             case 'EM4':
                 setBank(4);
                 break;
@@ -70,30 +201,35 @@ export const SiteSetup = () => {
                 setBank('model not found');
                 break;
         }
-    }, [model]);
+    }, [status]);
+
+
+    useEffect(() => {
+        dispatch(siteSetupActions.getSiteSetupAsync());
+        dispatch(statusActions.getStatusAsync());
+        dispatch(errorsActions.getErrorsAsync());
+
+        dispatch(siteSetupActions.getBssAsync());
+        dispatch(siteSetupActions.getQsysAsync());
+        dispatch(siteSetupActions.getHalAsync());
+        dispatch(siteSetupActions.getJupiterAsync());
+        dispatch(siteSetupActions.getQsysAsync());
+        dispatch(siteSetupActions.getSymetrixAsync());
+        dispatch(siteSetupActions.getTesiraAsync());
+        dispatch(siteSetupActions.getXilicaAsync());
+    }, []);
 
 
     if (data.DspType === undefined) {
         return false;
     }
 
-    const smallTable = [
-        {id: '0', label: 'Site name', type: 'text', value: data.DspType.name},
-        {
-            id: '1',
-            label: 'DSP',
-            type: 'select',
-            value: [data.DspType.type]
-        },
-    ];
-
-
     const editingData = () => {
         setDisabled(!disabled)
     };
 
     const downloadingConfig = (el) => {
-        const file = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify([data, {model: model}, {errors: dataErrors}]));
+        const file = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify([data, {model: status.model}, {errors: dataErrors}]));
         el.target.setAttribute("href", "data:" + file);
         el.target.setAttribute("download", "sitesetup.json");
     };
@@ -128,7 +264,11 @@ export const SiteSetup = () => {
                 </button>
             </div>
             <div className={styles.siteSetupInner}>
-                <TableSmall fields={smallTable} disabled={disabled}/>
+                <DspTable
+                    fields={DSP}
+                    dspType={dspType}
+                    setDspType={setDspType}
+                    disabled={disabled}/>
                 <div className={styles.siteSetupButtons}>
                     <button type="button" className={styles.primaryBtn} onClick={() => editingData()}
                             disabled={disabled}>Save
@@ -142,29 +282,25 @@ export const SiteSetup = () => {
             {[data].map((item, index) => (
                 <Tabs key={index} className={styles.siteSetupTabsWrapper}>
                     <TabList className={styles.siteSetupTabs}>
-                        {Object.keys(data).map((keys, index) => {
-                            if (keys !== 'DspType' && keys !== 'DspID' && keys !== 'SiteName') {
+                        {Object.keys(selectedTab).map((keys, index) => {
+                            if (keys !== 'DspType' && keys !== 'DspID' && keys !== 'SiteName' && keys !== 'updateRate') {
                                 return (<Tab key={index}>{keys}</Tab>)
                             }
                             return null;
                         })}
                     </TabList>
-                    {Object.keys(data).map((keys, index) => {
-                        if (keys !== 'DspType' && keys !== 'DspID' && keys !== 'SiteName') {
-                            if (headerTableName[0][keys]) {
-                                return (
-                                    <TabPanel key={index}>
-                                        <SiteSetupTable keys={keys} array={item} titles={headerTableName[0][keys]}
-                                                        errors={dataErrors} bank={bank}
-                                                        disabled={disabled}/>
-                                    </TabPanel>)
-                            } else {
-                                return (<TabPanel key={index}>
-                                    <SiteSetupTable keys={keys} array={item} titles={headerTableName[0]['faders']}
-                                                    errors={dataErrors}
-                                                    disabled={disabled}/>
+                    {Object.keys(selectedTab).map((keys, index) => {
+                        if (keys !== 'DspType' && keys !== 'DspID' && keys !== 'SiteName' && keys !== 'updateRate') {
+                            return (
+                                <TabPanel key={index}>
+                                    <SiteSetupTable
+                                        keys={keys}
+                                        array={item}
+                                        titles={headerTableName[dspType][keys]}
+                                        errors={dataErrors}
+                                        bank={bank}
+                                        disabled={disabled}/>
                                 </TabPanel>)
-                            }
                         }
                         return null;
                     })}

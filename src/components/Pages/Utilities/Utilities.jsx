@@ -24,10 +24,8 @@ export const Utilities = () => {
     const [disabled, setDisabled] = useState(true);
 
     const dispatch = useDispatch();
-    const fader = useSelector(getFader);
-    const status = useSelector(getStatus);
-    const data = fader.fader.data;
-    const pressed = status.status.data;
+    const data = useSelector(getFader);
+    const pressed = useSelector(getStatus);
 
     const smallTable = [
         {id: '0', name: 'Button Pressed', label: 'Button Pressed', type: 'text', value: pressed.buttonPress},
@@ -38,12 +36,10 @@ export const Utilities = () => {
 
     const editingData = () => {
         setDisabled(!disabled);
-        console.log('edit');
     };
 
     const savingData = async () => {
         setDisabled(!disabled);
-        console.log('save');
 
         await server.setFader({
             fader: {

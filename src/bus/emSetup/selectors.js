@@ -1,1 +1,1 @@
-export const getEmSetup = state => state;
+export const getEmSetup = state => state.emSetup.data;

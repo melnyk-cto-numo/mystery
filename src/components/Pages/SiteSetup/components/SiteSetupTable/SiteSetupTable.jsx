@@ -41,6 +41,9 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                     {array[keys].maxGain &&
                     <input type='text' className={styles.siteSetupButtons}
                            defaultValue={`Min Gain: ${array[keys].maxGain} (dB)`} disabled={disabled}/>}
+                           {array[keys].updateRate &&
+                    <input type='text' className={styles.siteSetupButtons}
+                           defaultValue={`Rate: ${array[keys].maxGain}`} disabled={disabled}/>}
                     {array[keys].dspMinGain &&
                     <>
                         <input type='text' className={styles.siteSetupButtons}

@@ -20,7 +20,6 @@ export const Update = () => {
 
     const upload = async () => {
 
-        console.log(inputValue);
         if (inputValue.length === 0) {
             alert('Please choose file first.')
         } else {

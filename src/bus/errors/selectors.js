@@ -1,1 +1,1 @@
-export const getErrors = state => state;
+export const getErrors = state => state.errors.data;

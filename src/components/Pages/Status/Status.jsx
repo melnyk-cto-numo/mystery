@@ -24,10 +24,8 @@ const DSP = [
 
 export const Status = () => {
     const dispatch = useDispatch();
-    const {status} = useSelector(getStatus);
-    const statusData = status.data;
-    const {network} = useSelector(getNetwork);
-    const networkData = network.data;
+    const statusData = useSelector(getStatus);
+    const networkData = useSelector(getNetwork);
 
 
     useEffect(() => {
