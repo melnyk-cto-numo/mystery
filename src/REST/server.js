@@ -6,6 +6,14 @@ const config = {
     onUploadProgress: progressEvent => console.log(progressEvent.loaded)
 };
 
+export const getBss = () => apiBase.get(`/sitesetup.php?DSP=BSS`);
+export const getHal = () => apiBase.get(`/sitesetup.php?DSP=HAL`);
+export const getJupiter = () => apiBase.get(`/sitesetup.php?DSP=Jupiter`);
+export const getQsys = () => apiBase.get(`/sitesetup.php?DSP=QSYS`);
+export const getSymetrix = () => apiBase.get(`/sitesetup.php?DSP=Symetrix`);
+export const getTesira = () => apiBase.get(`/sitesetup.php?DSP=Tesira`);
+export const getXilica = () => apiBase.get(`/sitesetup.php?DSP=Xilica`);
+
 export const getStatus = () => apiBase.get(`/status.php`);
 export const getNetwork = () => apiBase.get(`/network.php`);
 export const setNetwork = (data) => apiBase.post(`/network.php`, data);
