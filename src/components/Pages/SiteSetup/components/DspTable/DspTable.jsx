@@ -46,11 +46,11 @@ export const DspTable = ({fields, dspType, setDspType, disabled = true}) => {
                 break;
             case 'hal':
                 dispatch(siteSetupActions.setSiteSetup({...hal}));
-                seSiteName(bss.SiteName);
+                seSiteName(hal.SiteName);
                 break;
             case 'jupiter':
                 dispatch(siteSetupActions.setSiteSetup({...jupiter}));
-                seSiteName(hal.SiteName);
+                seSiteName(jupiter.SiteName);
                 break;
             case 'qsys':
                 dispatch(siteSetupActions.setSiteSetup({...qsys}));

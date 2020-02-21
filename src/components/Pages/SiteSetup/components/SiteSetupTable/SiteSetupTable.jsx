@@ -1,5 +1,22 @@
 // core
-import React from 'react';
+import React, {useState} from 'react';
+
+// library
+import {useDispatch, useSelector} from "react-redux";
+
+// components
+import {Input} from "./components/Input/Input";
+import {CheckBox} from "./components/CheckBox/CheckBox";
+import {siteSetupActions} from "../../../../../bus/siteSetup/actions";
+import {
+    getBss,
+    getHal,
+    getJupiter,
+    getQsys,
+    getSiteSetup,
+    getSymetrix,
+    getTesira, getXilica
+} from "../../../../../bus/siteSetup/selectors";
 
 //styles
 import styles from './SiteSetupTable.module.scss';
@@ -11,6 +28,21 @@ import error from '../../../../../assets/img/remove.svg'
 
 
 export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = true}) => {
+    const dispatch = useDispatch();
+
+    const bss = useSelector(getBss);
+    const hal = useSelector(getHal);
+    const jupiter = useSelector(getJupiter);
+    const qsys = useSelector(getQsys);
+    const symetrix = useSelector(getSymetrix);
+    const tesira = useSelector(getTesira);
+    const xilica = useSelector(getXilica);
+    const data = useSelector(getSiteSetup);
+
+    const [selectValue, setSelectValue] = useState(array[keys].type);
+    const [api, setApi] = useState(data);
+    const [type, setType] = useState(array[keys].type);
+
     const values = Object.keys(array[keys]);
     const noAndBank = {
         no: [],
@@ -31,32 +63,84 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
         }
     }
 
+    const handleChangeSelect = (e) => {
+        setSelectValue(e.target.value);
+
+        switch (e.target.value.toLowerCase()) {
+            case 'bss':
+                setType(bss.type);
+                break;
+            case 'hal':
+                setType(hal.type);
+                break;
+            case 'jupiter':
+                setType(jupiter.type);
+                break;
+            case 'qsys':
+                setType(qsys.type);
+                break;
+            case 'symetrix':
+                setType(symetrix.type);
+                break;
+            case 'tesira':
+                setType(tesira.type);
+                break;
+            case 'xilica':
+                setType(xilica.type);
+                break;
+            default:
+                setType(qsys.type);
+                break;
+        }
+
+        const stateCopy = Object.assign({...array[keys].type}, api);
+        stateCopy[keys].type = e.target.value;
+        setApi(stateCopy);
+
+        dispatch(siteSetupActions.setSiteSetup({...data}))
+    };
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.table}>
                 <div className={styles.siteSetupButtonsWrapper}>
                     {array[keys].type &&
-                    <input type='text' className={styles.siteSetupButtons}
-                           defaultValue={`Type: ${array[keys].type}`} disabled={disabled}/>}
+                    <div className={styles.siteSetupButtons}>
+                        Type:
+                        <select value={selectValue} disabled={disabled} onChange={(e) => handleChangeSelect(e)}>
+                            <option value={type}>{type}</option>
+                            <option value='fader'>fader</option>
+                        </select>
+                    </div>}
                     {array[keys].maxGain &&
-                    <input type='text' className={styles.siteSetupButtons}
-                           defaultValue={`Min Gain: ${array[keys].maxGain} (dB)`} disabled={disabled}/>}
+                    <div className={styles.siteSetupButtons}>
+                        Max Gain:
+                        <Input item={array[keys].maxGain} keys={keys} value={'maxGain'} disabled={disabled}/>
+                        (dB)
+                    </div>}
                     {array[keys].updateRate &&
-                    <input type='text' className={styles.siteSetupButtons}
-                           defaultValue={`Rate: ${array[keys].maxGain}`} disabled={disabled}/>}
+                    <div className={styles.siteSetupButtons}>
+                        Rate:
+                        <Input item={array[keys].updateRate} keys={keys} value={'updateRate'} disabled={disabled}/>
+                    </div>}
                     {array[keys].dspMinGain &&
-                    <>
-                        <input type='text' className={styles.siteSetupButtons}
-                               defaultValue={`DSP Min Gain: ${array[keys].dspMinGain} (dB)`} disabled={disabled}/>
-                        <p>Fader Off = DSP Min Gain</p>
-                    </>}
+                    <div className={styles.siteSetupButtons}>
+                        DSP Min Gain:
+                        <Input item={array[keys].dspMinGain} keys={keys} value={'dspMinGain'} disabled={disabled}/>
+                        (dB)
+                    </div>}
+                    <p>Fader Off = DSP Min Gain</p>
                     {array[keys].minGain &&
-                    <select className={styles.siteSetupButtons} disabled={disabled}>
-                        <option>{`Min Gain: ${array[keys].minGain} (dB)`}</option>
-                    </select>}
+                    <div className={styles.siteSetupButtons}>
+                        Min Gain:
+                        <Input item={array[keys].minGain} keys={keys} value={'minGain'} disabled={disabled}/>
+                        (dB)
+                    </div>}
                     {array[keys].name &&
-                    <input type='text' className={styles.siteSetupButtons} defaultValue={`Name: ${array[keys].name}`}
-                           disabled={disabled}/>}
+                    <div className={styles.siteSetupButtons}>
+                        Name:
+                        <Input item={array[keys].name} keys={keys} value={'name'} disabled={disabled}/>
+                    </div>}
                 </div>
                 <div className={styles.tableHeader}>
                     {titles.map((title, index) => (
@@ -87,18 +171,18 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                                         {(array[keys][value].slice(0, 2 * bank).map((item, index) =>
                                             <div key={index} className={styles.tableCell}>
                                                 {value === 'enabled' ?
-                                                    <div className='checkbox'>
-                                                        {item ?
-                                                            <input id={'enabled_' + index} type="checkbox" defaultChecked
-                                                                   disabled={disabled}/> :
-                                                            <input id={'enabled_' + index} type="checkbox"
-                                                                   disabled={disabled}/>}
-                                                        <label htmlFor={'enabled_' + index}/>
-                                                    </div>
+                                                    <CheckBox
+                                                        index={index}
+                                                        keys={keys}
+                                                        item={item}
+                                                        value={value}
+                                                        disabled={disabled}/>
                                                     : value === 'names' || value === 'controlNo' ?
-                                                        <div className={styles.input}>
-                                                            <input type="text" defaultValue={item} disabled={disabled}/>
-                                                        </div>
+                                                        <Input index={index}
+                                                               item={item}
+                                                               keys={keys}
+                                                               value={value}
+                                                               disabled={disabled}/>
                                                         : <span>{item}</span>}
                                             </div>))}
                                     </div>

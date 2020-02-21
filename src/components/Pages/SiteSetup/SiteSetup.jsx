@@ -253,6 +253,7 @@ export const SiteSetup = () => {
                                 <TabPanel key={index}>
                                     <SiteSetupTable
                                         keys={keys}
+                                        dspType={dspType}
                                         array={item}
                                         titles={headerTableName[dspType][keys]}
                                         errors={dataErrors}
