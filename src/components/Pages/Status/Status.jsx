@@ -37,7 +37,7 @@ export const Status = () => {
         dispatch(networkActions.getNetworkAsync());
 
         return () => clearInterval(interval);
-    }, []);
+    }, [dispatch]);
 
 
     const EasyMixData = [statusData.model, networkData.myIP];

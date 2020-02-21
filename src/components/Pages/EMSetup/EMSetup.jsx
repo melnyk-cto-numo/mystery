@@ -88,7 +88,7 @@ export const EMSetup = () => {
         dispatch(emSetupActions.getEmSetupAsync());
         dispatch(statusActions.getStatusAsync());
         dispatch(siteSetupActions.getSiteSetupAsync());
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
 
@@ -161,7 +161,8 @@ export const EMSetup = () => {
                         onClick={() => cancelButton()}>Cancel
                 </button>
                 {disabled && <>
-                    <a className={styles.primaryBtn} onClick={(el) => downloadingConfig(el)}>Download Config</a>
+                    <a href="/" className={styles.primaryBtn} onClick={(el) => downloadingConfig(el)}>Download
+                        Config</a>
                     <label htmlFor="upload" className={styles.primaryBtn}>Upload Config</label>
                     <input id='upload' type='file' onChange={(e) => uploading(e)}/></>}
             </div>

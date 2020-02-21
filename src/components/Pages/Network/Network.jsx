@@ -87,7 +87,7 @@ export const Network = () => {
 
     useEffect(() => {
         dispatch(networkActions.getNetworkAsync());
-    }, []);
+    }, [dispatch]);
 
 
     // need for fix fields

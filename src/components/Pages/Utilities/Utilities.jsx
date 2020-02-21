@@ -63,7 +63,7 @@ export const Utilities = () => {
         dispatch(faderActions.getFaderAsync());
 
         return () => clearInterval(interval);
-    }, []);
+    }, [dispatch]);
 
     return (
         <section>

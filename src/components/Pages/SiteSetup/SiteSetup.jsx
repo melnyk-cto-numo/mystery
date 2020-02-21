@@ -164,7 +164,7 @@ export const SiteSetup = () => {
         dispatch(siteSetupActions.getSymetrixAsync());
         dispatch(siteSetupActions.getTesiraAsync());
         dispatch(siteSetupActions.getXilicaAsync());
-    }, []);
+    }, [dispatch]);
 
 
     if (data.DspType === undefined) {
@@ -231,7 +231,8 @@ export const SiteSetup = () => {
                     <button type="button" className={styles.primaryBtn} onClick={() => savingData()}
                             disabled={disabled}>Save
                     </button>
-                    <a className={styles.primaryBtn} onClick={(el) => downloadingConfig(el)}>Download Backup</a>
+                    <a href="/" className={styles.primaryBtn} onClick={(el) => downloadingConfig(el)}>Download
+                        Backup</a>
                     <label htmlFor="import" className={styles.primaryBtn}>Import to Page</label>
                     <input id='import' type="file" onChange={(e) => importing(e)}/>
                 </div>
