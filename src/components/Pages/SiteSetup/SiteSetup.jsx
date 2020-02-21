@@ -14,21 +14,14 @@ import {server} from "../../../REST";
 import {siteSetupActions} from "../../../bus/siteSetup/actions";
 import {errorsActions} from "../../../bus/errors/actions";
 import {statusActions} from "../../../bus/status/actions";
-import {
-    getBss,
-    getHal,
-    getJupiter,
-    getQsys,
-    getSiteSetup,
-    getSymetrix, getTesira,
-    getXilica
-} from "../../../bus/siteSetup/selectors";
+import {getSiteSetup} from "../../../bus/siteSetup/selectors";
 import {getErrors} from "../../../bus/errors/selectors";
 import {getStatus} from "../../../bus/status/selectors";
 
 
 //styles
 import styles from './SiteSetup.module.scss';
+import {mysteryActions} from "../../../bus/mystery/actions";
 
 const DSP = {
     siteName: {label: 'Site name', type: 'text', value: 'QSYS'},
@@ -124,64 +117,19 @@ const headerTableName = {
 export const SiteSetup = () => {
     const dispatch = useDispatch();
 
-    const bss = useSelector(getBss);
-    const hal = useSelector(getHal);
-    const jupiter = useSelector(getJupiter);
-    const qsys = useSelector(getQsys);
-    const symetrix = useSelector(getSymetrix);
-    const tesira = useSelector(getTesira);
-    const xilica = useSelector(getXilica);
     const dataErrors = useSelector(getErrors);
     const status = useSelector(getStatus);
-    const siteSetup = useSelector(getSiteSetup);
+    const data = useSelector(getSiteSetup);
 
 
     const [disabled, setDisabled] = useState(true);
     const [bank, setBank] = useState('EM4');
     const [dspType, setDspType] = useState(DSP.dsp.value[3].toLowerCase());
     const [selectedTab, setSelectedTab] = useState(headerTableName.qsys);
-    const [data, setData] = useState(siteSetup);
-
-    useEffect(() => {
-        setData(siteSetup)
-    }, [siteSetup]);
 
 
     useEffect(() => {
-        switch (dspType) {
-            case 'bss':
-                setData(bss);
-                setSelectedTab(headerTableName[dspType]);
-                break;
-            case 'hal':
-                setData(hal);
-                setSelectedTab(headerTableName[dspType]);
-                break;
-            case 'jupiter':
-                setData(jupiter);
-                setSelectedTab(headerTableName[dspType]);
-                break;
-            case 'qsys':
-                setData(qsys);
-                setSelectedTab(headerTableName[dspType]);
-                break;
-            case 'symetrix':
-                setData(symetrix);
-                setSelectedTab(headerTableName[dspType]);
-                break;
-            case 'tesira':
-                setData(tesira);
-                setSelectedTab(headerTableName[dspType]);
-                break;
-            case 'xilica':
-                setData(xilica);
-                setData(headerTableName[dspType]);
-                break;
-            default:
-                setData(qsys);
-                setSelectedTab(headerTableName['qsys']);
-                break;
-        }
+        setSelectedTab(headerTableName[dspType]);
     }, [dspType]);
 
 
@@ -213,7 +161,6 @@ export const SiteSetup = () => {
         dispatch(siteSetupActions.getQsysAsync());
         dispatch(siteSetupActions.getHalAsync());
         dispatch(siteSetupActions.getJupiterAsync());
-        dispatch(siteSetupActions.getQsysAsync());
         dispatch(siteSetupActions.getSymetrixAsync());
         dispatch(siteSetupActions.getTesiraAsync());
         dispatch(siteSetupActions.getXilicaAsync());
@@ -226,6 +173,16 @@ export const SiteSetup = () => {
 
     const editingData = () => {
         setDisabled(!disabled)
+    };
+    const savingData = async () => {
+        setDisabled(!disabled);
+
+        await server.setSiteSetup(({...data}));
+
+        dispatch(mysteryActions.setShowPopup(true));
+        setTimeout(() => {
+            dispatch(mysteryActions.setShowPopup(false));
+        }, 1000)
     };
 
     const downloadingConfig = (el) => {
@@ -265,12 +222,13 @@ export const SiteSetup = () => {
             </div>
             <div className={styles.siteSetupInner}>
                 <DspTable
+                    data={data}
                     fields={DSP}
                     dspType={dspType}
                     setDspType={setDspType}
                     disabled={disabled}/>
                 <div className={styles.siteSetupButtons}>
-                    <button type="button" className={styles.primaryBtn} onClick={() => editingData()}
+                    <button type="button" className={styles.primaryBtn} onClick={() => savingData()}
                             disabled={disabled}>Save
                     </button>
                     <a className={styles.primaryBtn} onClick={(el) => downloadingConfig(el)}>Download Backup</a>

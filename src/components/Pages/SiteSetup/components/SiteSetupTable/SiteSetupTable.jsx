@@ -41,7 +41,7 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                     {array[keys].maxGain &&
                     <input type='text' className={styles.siteSetupButtons}
                            defaultValue={`Min Gain: ${array[keys].maxGain} (dB)`} disabled={disabled}/>}
-                           {array[keys].updateRate &&
+                    {array[keys].updateRate &&
                     <input type='text' className={styles.siteSetupButtons}
                            defaultValue={`Rate: ${array[keys].maxGain}`} disabled={disabled}/>}
                     {array[keys].dspMinGain &&
@@ -89,12 +89,17 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                                                 {value === 'enabled' ?
                                                     <div className='checkbox'>
                                                         {item ?
-                                                            <input id={'enabled_' + index} type="checkbox" checked
+                                                            <input id={'enabled_' + index} type="checkbox" defaultChecked
                                                                    disabled={disabled}/> :
                                                             <input id={'enabled_' + index} type="checkbox"
                                                                    disabled={disabled}/>}
                                                         <label htmlFor={'enabled_' + index}/>
-                                                    </div> : <span>{item}</span>}
+                                                    </div>
+                                                    : value === 'names' || value === 'controlNo' ?
+                                                        <div className={styles.input}>
+                                                            <input type="text" defaultValue={item} disabled={disabled}/>
+                                                        </div>
+                                                        : <span>{item}</span>}
                                             </div>))}
                                     </div>
 
