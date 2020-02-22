@@ -15,7 +15,8 @@ import {
     getQsys,
     getSiteSetup,
     getSymetrix,
-    getTesira, getXilica
+    getTesira,
+    getXilica,
 } from "../../../../../bus/siteSetup/selectors";
 
 //styles
