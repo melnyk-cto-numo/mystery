@@ -19,11 +19,15 @@ export const EasyMixSetup = ({item, objKey, disabled}) => {
         if (e.target.value < 120) {
             setValue(e.target.value);
             dispatch(emSetupActions.setEmSetup({
-                ...emsetup.emSetup.data,
-                Settings: {...emsetup.emSetup.data.Settings, [objKey]: e.target.value}
+                ...emsetup,
+                Settings: {...emsetup.Settings, [objKey]: e.target.value}
             }))
         } else {
             setValue(120);
+            dispatch(emSetupActions.setEmSetup({
+                ...emsetup,
+                Settings: {...emsetup.Settings, [objKey]: 120}
+            }))
         }
 
     };
