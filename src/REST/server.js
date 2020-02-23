@@ -1,10 +1,5 @@
+// components
 import apiBase from "./apiBase";
-
-
-// load progress file on server
-const config = {
-    onUploadProgress: progressEvent => console.log(progressEvent.loaded)
-};
 
 export const getBss = () => apiBase.get(`/sitesetup.php?DSP=BSS`);
 export const getHal = () => apiBase.get(`/sitesetup.php?DSP=HAL`);
@@ -24,6 +19,6 @@ export const setSiteSetup = (data) => apiBase.post(`/sitesetup.php`, data);
 export const getErrors = () => apiBase.get(`/errors.php`);
 export const getFader = () => apiBase.get(`/faders.php`);
 export const setFader = (data) => apiBase.post(`/faders.php`, data);
-export const getCommand = (data, config) => apiBase.post(`/command.php`, data, config);
+export const getCommand = (data) => apiBase.post(`/command.php`, data);
 
-export const firmware = (data) => apiBase.post(`/firmware.php`, data, config);
+export const firmware = (data, config) => apiBase.post(`/firmware.php`, data, config);

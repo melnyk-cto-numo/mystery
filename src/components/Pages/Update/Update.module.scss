@@ -3,15 +3,43 @@
 .update {
   .updateInner {
     margin-left: 3.125rem;
+    .progressBar {
+      margin:        0;
+      border-radius: 0.25rem;
+      height:        0.5rem;
+      box-shadow:    0 0 0.5rem -0.125rem #e2cfff;
+      overflow:      hidden;
+      background:    white;
+      width:         12.375rem;
+      position:      absolute;
+      top:           0;
+      left:          0;
+      span {
+        width:            0;
+        background-color: $mainColor;
+        position:         absolute;
+        left:             0;
+        top:              0;
+        height:           100%;
+      }
+    }
+    button[disabled] {
+      display:        block;
+      user-select:    none;
+      pointer-events: none;
+      opacity:        .8;
+      filter:         grayscale(.4);
+    }
   }
   .updateButtons {
-    margin:          3.75rem 0 9.375rem 0;
+    margin:          3.75rem 0 2rem 0;
     width:           100%;
     text-align:      right;
     display:         flex;
     flex-wrap:       wrap;
     justify-content: flex-start;
     align-items:     center;
+    position:        relative;
     button {
       margin-left:  0;
       margin-right: 3.125rem;
