@@ -37,7 +37,7 @@ export const EMSetup = () => {
     const editingData = () => {
         setDisabled(!disabled)
     };
-    const cancelButton = () => {
+    const cancelingData = () => {
         setDisabled(!disabled);
 
         dispatch(emSetupActions.setEmSetup({}));
@@ -175,7 +175,7 @@ export const EMSetup = () => {
                         onClick={() => savingData()}>Save Settings
                 </button>
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
-                        onClick={() => cancelButton()}>Cancel
+                        onClick={() => cancelingData()}>Cancel
                 </button>
                 {disabled && <>
                     <a href="/" className={styles.primaryBtn} onClick={(el) => downloadingConfig(el)}>Download

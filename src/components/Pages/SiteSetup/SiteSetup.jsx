@@ -50,7 +50,7 @@ const headerTableName = {
         meter1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         meter2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         hg: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
-        control: ['Name', 'No', 'Bank', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
+        control: ['No', 'Bank', 'Link', 'Name', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
     },
     jupiter: {
         faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Control No.'],
@@ -62,7 +62,7 @@ const headerTableName = {
         meter1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         meter2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         hg: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
-        control: ['Name', 'No', 'Bank', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
+        control: ['No', 'Bank', 'Link', 'Name', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
     },
     qsys: {
         faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Control No.'],
@@ -74,7 +74,7 @@ const headerTableName = {
         meter1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         meter2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         hg: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
-        control: ['Name', 'No', 'Bank', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
+        control: ['No', 'Bank', 'Link', 'Name', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
     },
     symetrix: {
         faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Control No.'],
@@ -86,7 +86,7 @@ const headerTableName = {
         meter1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         meter2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         hg: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
-        control: ['Name', 'No', 'Bank', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
+        control: ['No', 'Bank', 'Link', 'Name', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
     },
     tesira: {
         faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Instance ID', 'Index'],
@@ -98,7 +98,7 @@ const headerTableName = {
         meter1: ['No', 'Bank', 'Link', 'ON', 'Instance ID', 'Index'],
         meter2: ['No', 'Bank', 'Link', 'ON', 'Instance ID', 'Index'],
         hg: ['No', 'Bank', 'Link', 'ON', 'Instance ID', 'Index'],
-        control: ['Name', 'No', 'Bank', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Instance ID', 'Index'],
+        control: ['No', 'Bank', 'Link', 'Name', 'ON', 'Read Only', 'Link to Button', 'Type', 'Instance ID', 'Index'],
     },
     xilica: {
         faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Control No.'],
@@ -110,7 +110,7 @@ const headerTableName = {
         meter1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         meter2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         hg: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
-        control: ['Name', 'No', 'Bank', 'Link', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
+        control: ['No', 'Bank', 'Link', 'Name', 'ON', 'Read Only', 'Link to Button', 'Type', 'Control No.'],
     },
 };
 
@@ -175,6 +175,14 @@ export const SiteSetup = () => {
     const editingData = () => {
         setDisabled(!disabled)
     };
+
+    const cancelingData = () => {
+        setDisabled(!disabled);
+
+        dispatch(siteSetupActions.setSiteSetup({}));
+        dispatch(siteSetupActions.getSiteSetupAsync());
+    };
+
     const savingData = async () => {
         setDisabled(!disabled);
 
@@ -248,10 +256,17 @@ export const SiteSetup = () => {
                     <button type="button" className={styles.primaryBtn} onClick={() => savingData()}
                             disabled={disabled}>Save
                     </button>
-                    <a href="/" className={styles.primaryBtn} onClick={(el) => downloadingConfig(el)}>Download
-                        Backup</a>
-                    <label htmlFor="import" className={styles.primaryBtn}>Import to Page</label>
-                    <input id='import' type="file" onChange={(e) => importing(e)}/>
+                    <button type="button" className={styles.primaryBtn} disabled={disabled}
+                            onClick={() => cancelingData()}>Cancel
+                    </button>
+                    {disabled &&
+                    (<>
+                        <a href="/" className={styles.primaryBtn} onClick={(el) => downloadingConfig(el)}>Download
+                            Backup</a>
+                        <label htmlFor="import" className={styles.primaryBtn}>Import to Page</label>
+                        <input id='import' type="file" onChange={(e) => importing(e)}/>
+                    </>)}
+
                 </div>
             </div>
 
