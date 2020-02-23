@@ -19,7 +19,7 @@ const titleUtilities = {
     header: ['', 'Fader 1', 'Fader 2', 'Fader 3', 'Fader 4', 'Fader 5', 'Fader 6', 'Fader 7', 'Fader 8', 'Fader 9', 'Fader 10', 'Fader 11', 'Fader 12'],
     column: ['', 'Raw value', 'Left Value', 'Right Value', 'Move to 0 db', 'Move to -30 db'],
 };
-
+let interval = null;
 export const Utilities = () => {
     const [disabled, setDisabled] = useState(true);
 
@@ -36,6 +36,16 @@ export const Utilities = () => {
 
     const editingData = () => {
         setDisabled(!disabled);
+    };
+
+    const cancelingData = () => {
+        setDisabled(!disabled);
+
+        dispatch(faderActions.setFader({}));
+        interval = setInterval(() => {
+            dispatch(statusActions.getStatusAsync());
+            dispatch(faderActions.getFaderAsync());
+        }, 1000);
     };
 
     const savingData = async () => {
@@ -58,7 +68,7 @@ export const Utilities = () => {
         dispatch(statusActions.getStatusAsync());
         dispatch(faderActions.getFaderAsync());
 
-        const interval = setInterval(() => {
+        interval = setInterval(() => {
             dispatch(statusActions.getStatusAsync());
             dispatch(faderActions.getFaderAsync());
         }, 1000);
@@ -79,6 +89,9 @@ export const Utilities = () => {
             <TableSmall fields={smallTable} disabled={disabled}/>
             <UtilitiesTable data={data} title={titleUtilities} disabled={disabled}/>
             <div className={styles.utilitiesButtons}>
+                <button type="button" className={styles.primaryBtn} disabled={disabled}
+                        onClick={() => cancelingData()}>Cancel
+                </button>
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
                         onClick={() => savingData()}>Save changes
                 </button>

@@ -58,7 +58,7 @@ export const Network = () => {
     const editingData = () => {
         setDisabled(!disabled);
     };
-    const cancelButton = () => {
+    const cancelingData = () => {
         setDisabled(!disabled);
         dispatch(networkActions.setNetwork({}));
         dispatch(networkActions.getNetworkAsync());
@@ -136,7 +136,7 @@ export const Network = () => {
             </div>
             <div className={styles.networkButtons}>
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
-                        onClick={() => cancelButton()}>Cancel
+                        onClick={() => cancelingData()}>Cancel
                 </button>
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
                         onClick={() => savingData()}>Save

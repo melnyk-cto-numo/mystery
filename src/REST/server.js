@@ -26,4 +26,4 @@ export const getFader = () => apiBase.get(`/faders.php`);
 export const setFader = (data) => apiBase.post(`/faders.php`, data);
 export const getCommand = (data, config) => apiBase.post(`/command.php`, data, config);
 
-export const firmware = (data) => apiBase.post(`/firmware.bin`, data, config);
+export const firmware = (data) => apiBase.post(`/firmware.php`, data, config);
