@@ -55,15 +55,18 @@ export const Utilities = () => {
     };
 
     useEffect(() => {
+        dispatch(statusActions.getStatusAsync());
+        dispatch(faderActions.getFaderAsync());
+
         const interval = setInterval(() => {
             dispatch(statusActions.getStatusAsync());
             dispatch(faderActions.getFaderAsync());
         }, 1000);
-        dispatch(statusActions.getStatusAsync());
-        dispatch(faderActions.getFaderAsync());
+
+        if (!disabled) clearInterval(interval);
 
         return () => clearInterval(interval);
-    }, [dispatch]);
+    }, [dispatch, disabled]);
 
     return (
         <section>

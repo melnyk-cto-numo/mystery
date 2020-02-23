@@ -22,8 +22,8 @@ export const Input = ({index, item, name, disabled}) => {
     const handleChange = (e) => {
         setValue(e.target.value);
         dispatch(faderActions.setFader({
-            ...fader.fader.data,
-            [fader.fader.data[name][index - 1]]: [fader.fader.data[name][index - 1] = e.target.value]
+            ...fader,
+            [fader[name][index - 1]]: [fader[name][index - 1] = e.target.value]
         }))
     };
 
