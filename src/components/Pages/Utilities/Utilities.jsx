@@ -22,6 +22,8 @@ const titleUtilities = {
 let interval = null;
 export const Utilities = () => {
     const [disabled, setDisabled] = useState(true);
+    const [notice, setNotice] = useState('');
+    const [error, setError] = useState('');
 
     const dispatch = useDispatch();
     const data = useSelector(getFader);
@@ -56,7 +58,20 @@ export const Utilities = () => {
                 leftCalibration: data.leftCalibration,
                 rightCalibration: data.rightCalibration,
             }
-        });
+        }).then((response) => {
+            if (response.status === 200) {
+                setNotice('The data was saved successfully');
+                setTimeout(() => {
+                    setNotice('');
+                }, 3000);
+            }
+        })
+            .catch(() => {
+                setError('The internet connection has timed out');
+                setTimeout(() => {
+                    setError('');
+                }, 3000);
+            });
 
         dispatch(mysteryActions.setShowPopup(true));
         setTimeout(() => {
@@ -85,6 +100,8 @@ export const Utilities = () => {
                 <button type="button" className={styles.primaryBtn} disabled={!disabled}
                         onClick={() => editingData()}>Edit
                 </button>
+                <div className="notice">{notice}</div>
+                <div className="error">{error}</div>
             </div>
             <TableSmall fields={smallTable} disabled={disabled}/>
             <UtilitiesTable data={data} title={titleUtilities} disabled={disabled}/>

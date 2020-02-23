@@ -126,7 +126,8 @@ export const SiteSetup = () => {
     const [bank, setBank] = useState('EM4');
     const [dspType, setDspType] = useState(DSP.dsp.value[3].toLowerCase());
     const [selectedTab, setSelectedTab] = useState(headerTableName.qsys);
-
+    const [notice, setNotice] = useState('');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         setSelectedTab(headerTableName[dspType]);
@@ -177,7 +178,21 @@ export const SiteSetup = () => {
     const savingData = async () => {
         setDisabled(!disabled);
 
-        await server.setSiteSetup(({...data}));
+        await server.setSiteSetup(({...data}))
+            .then((response) => {
+                if (response.status === 200) {
+                    setNotice('The data was saved successfully');
+                    setTimeout(() => {
+                        setNotice('');
+                    }, 3000);
+                }
+            })
+            .catch(() => {
+                setError('The internet connection has timed out');
+                setTimeout(() => {
+                    setError('');
+                }, 3000);
+            });
 
         dispatch(mysteryActions.setShowPopup(true));
         setTimeout(() => {
@@ -219,6 +234,8 @@ export const SiteSetup = () => {
                 <button type="button" className={styles.primaryBtn} onClick={() => editingData()}
                         disabled={!disabled}>Edit
                 </button>
+                <div className="notice">{notice}</div>
+                <div className="error">{error}</div>
             </div>
             <div className={styles.siteSetupInner}>
                 <DspTable

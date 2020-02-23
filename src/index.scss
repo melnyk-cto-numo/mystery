@@ -165,6 +165,19 @@ input[type='file'] {
   display: none;
 }
 
+.notice, .error {
+  position:    absolute;
+  left:        0;
+  bottom:      -1rem;
+  font-size:   1.15rem;
+  color:       #2ac92a;
+  margin-left: 4.375rem;
+  transition:  .4s ease-in-out;
+}
+.error {
+  color: red;
+}
+
 ::-webkit-scrollbar { width: 0.3125rem; height: 0.3125rem;}
 
 ::-webkit-scrollbar-button { background-color: transparent; }
@@ -192,6 +205,9 @@ input[type='file'] {
   h2 {
     margin: 1.25rem 0.625rem 1.25rem 1.25rem;
   }
+  .notice {
+    margin-left: 1.25rem;
+  }
 }
 
 @media screen and (max-width: 567px) {
@@ -199,6 +215,7 @@ input[type='file'] {
     font-size: 10px;
   }
 }
+
 @media screen and (max-width: 360px) {
   html {
     font-size: 9px;

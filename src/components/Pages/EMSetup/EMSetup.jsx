@@ -30,8 +30,9 @@ export const EMSetup = () => {
     const model = status.model;
 
     const [disabled, setDisabled] = useState(true);
-
     const [column, setColumn] = useState('EM4');
+    const [notice, setNotice] = useState('');
+    const [error, setError] = useState('');
 
     const editingData = () => {
         setDisabled(!disabled)
@@ -51,7 +52,21 @@ export const EMSetup = () => {
                 altToggleTimeout: data.Settings.altToggleTimeout
             },
             Buttons: [...data.Buttons]
-        });
+        })
+            .then((response) => {
+                if (response.status === 200) {
+                    setNotice('The data was saved successfully');
+                    setTimeout(() => {
+                        setNotice('');
+                    }, 3000);
+                }
+            })
+            .catch(() => {
+                setError('The internet connection has timed out');
+                setTimeout(() => {
+                    setError('');
+                }, 3000);
+            });
 
         dispatch(mysteryActions.setShowPopup(true));
         setTimeout(() => {
@@ -125,6 +140,8 @@ export const EMSetup = () => {
                 <button type="button" className={styles.primaryBtn} disabled={!disabled}
                         onClick={() => editingData()}>Edit
                 </button>
+                <div className="notice">{notice}</div>
+                <div className="error">{error}</div>
             </div>
             <Tabs className={styles.emSetupTabsWrapper}>
                 <TabList className={styles.emSetupTabs}>

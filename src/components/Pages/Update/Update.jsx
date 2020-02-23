@@ -38,7 +38,6 @@ export const Update = () => {
     };
 
     useEffect(() => {
-        console.log(progress);
         if (progress === 100 || progress === '') {
             setTimeout(() => {
                 setShow(false);
