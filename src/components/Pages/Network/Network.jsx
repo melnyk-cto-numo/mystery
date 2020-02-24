@@ -56,8 +56,7 @@ export const Network = () => {
     const [disabled, setDisabled] = useState(true);
     const [notice, setNotice] = useState('');
     const [error, setError] = useState('');
-    const [ip, setIp] = useState(array[3].value.myIP);
-    const [disableIp, setDisableIp] = useState(false);
+    const [fieldValidation, setFieldValidation] = useState(true);
 
     const editingData = () => {
         setDisabled(!disabled);
@@ -67,40 +66,59 @@ export const Network = () => {
         dispatch(networkActions.setNetwork({}));
         dispatch(networkActions.getNetworkAsync());
     };
+
+    useEffect(() => {
+        if (Object.keys(data).length === 0) return;
+        if (data.myIP !== '' && data.myIP.indexOf('_') === -1 &&
+            data.primaryDNS !== '' && data.primaryDNS.indexOf('_') === -1 &&
+            data.secondaryDNS !== '' && data.secondaryDNS.indexOf('_') === -1 &&
+            data.dspIP !== '' && data.dspIP.indexOf('_') === -1 &&
+            data.dspPort !== '') {
+            setFieldValidation(true)
+        } else {
+            setFieldValidation(false)
+        }
+    }, [data]);
+
     const savingData = async () => {
-        setDisabled(!disabled);
-        await server.setNetwork({
-            network: {
-                myIP: data.myIP,
-                mode: data.mode,
-                enabled: data.enabled,
-                primaryDNS: data.primaryDNS,
-                secondaryDNS: data.secondaryDNS,
-                dspIP: data.dspIP,
-                dspPort: data.dspPort,
-                comType: data.comType,
-                mac: data.mac,
-            }
-        })
-            .then((response) => {
-                if (response.status === 200) {
-                    setNotice('The data was saved successfully');
-                    setTimeout(() => {
-                        setNotice('');
-                    }, 3000);
+
+        // validation form
+        if (fieldValidation) {
+            setDisabled(!disabled);
+            await server.setNetwork({
+                network: {
+                    myIP: data.myIP,
+                    mode: data.mode,
+                    enabled: data.enabled,
+                    primaryDNS: data.primaryDNS,
+                    secondaryDNS: data.secondaryDNS,
+                    dspIP: data.dspIP,
+                    dspPort: data.dspPort,
+                    comType: data.comType,
+                    mac: data.mac,
                 }
             })
-            .catch(() => {
-                setError('The internet connection has timed out');
-                setTimeout(() => {
-                    setError('');
-                }, 3000);
-            });
+                .then((response) => {
+                    if (response.status === 200) {
+                        setNotice('The data was saved successfully');
+                        setTimeout(() => {
+                            setNotice('');
+                        }, 3000);
+                    }
+                })
+                .catch(() => {
+                    setError('The internet connection has timed out');
+                    setTimeout(() => {
+                        setError('');
+                    }, 3000);
+                });
 
-        dispatch(mysteryActions.setShowPopup(true));
-        setTimeout(() => {
-            dispatch(mysteryActions.setShowPopup(false));
-        }, 1000)
+            dispatch(mysteryActions.setShowPopup(true));
+            setTimeout(() => {
+                dispatch(mysteryActions.setShowPopup(false));
+            }, 1000)
+        }
+
     };
 
     useEffect(() => {
@@ -113,8 +131,6 @@ export const Network = () => {
         return false;
     }
     const enabled = array[3].value.enabled;
-    const primaryDNS = array[3].value.primaryDNS;
-    const secondaryDNS = array[3].value.secondaryDNS;
 
     return (
         <section>
@@ -137,14 +153,7 @@ export const Network = () => {
                             item={item}
                             data={data}
                             disabled={disabled}
-                            enable={enabled}
-                            primary={primaryDNS}
-                            secondary={secondaryDNS}
-                            ip={ip}
-                            setIp={setIp}
-                            disableIp={disableIp}
-                            setDisableIp={setDisableIp}
-                        />)
+                            enable={enabled}/>)
                     })}
                 </div>
             </div>
@@ -154,7 +163,12 @@ export const Network = () => {
                     {DSP.map((item, index) => {
                         const key = Object.keys(item)[Object.keys(item).length - 1];
                         if (item[key] === undefined) return false;
-                        return (<Table key={index} objKey={key} item={item} data={data} disabled={disabled}/>)
+                        return (<Table
+                            key={index}
+                            objKey={key}
+                            item={item}
+                            data={data}
+                            disabled={disabled}/>)
                     })}
                 </div>
             </div>
@@ -162,7 +176,9 @@ export const Network = () => {
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
                         onClick={() => cancelingData()}>Cancel
                 </button>
-                <button type="button" className={styles.primaryBtn} disabled={disabled}
+                <button type="button"
+                        className={fieldValidation ? styles.primaryBtn : styles.primaryBtn + ' ' + styles.disabled}
+                        disabled={disabled}
                         onClick={() => savingData()}>Save
                 </button>
             </div>

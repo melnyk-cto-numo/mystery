@@ -175,7 +175,7 @@ input[type='file'] {
   transition:  .4s ease-in-out;
 }
 .error {
-  color: red;
+  color: $redColor;
 }
 
 ::-webkit-scrollbar { width: 0.3125rem; height: 0.3125rem;}

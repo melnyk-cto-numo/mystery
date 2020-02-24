@@ -1,90 +1,32 @@
 // core
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 // library
 import {useDispatch, useSelector} from "react-redux";
-import MaskedInput from 'react-text-mask'
 
 // components
 import {networkActions} from "../../../bus/network/actions";
 import {getNetwork} from "../../../bus/network/selectors";
+import {Input} from "./components/Input/Input";
 
 // styles
 import styles from './Table.module.scss';
 
-export const Table = ({item, objKey, disabled = true, primary, enable, secondary, ip, setIp, disableIp, setDisableIp}) => {
+export const Table = ({item, objKey, disabled = true, enable}) => {
     const dispatch = useDispatch();
     const network = useSelector(getNetwork);
     const [value, setValue] = useState(item[objKey]);
     const [enabled, setEnabled] = useState(enable);
-    const [primaryDNS, setPrimaryDNS] = useState(primary);
-    const [secondaryDNS, setSecondaryDNS] = useState(secondary);
+    const [validation, setValidation] = useState('');
 
     const handleChange = (e) => {
         if (e.target.name === 'enabled') {
             setEnabled(e.target.value);
             dispatch(networkActions.setNetwork({...network, 'enabled': e.target.value}));
-        } else if (e.target.name === 'primaryDNS') {
-            setPrimaryDNS(e.target.value);
-            dispatch(networkActions.setNetwork({...network, 'primaryDNS': e.target.value}));
-        } else if (e.target.name === 'secondaryDNS') {
-            setSecondaryDNS(e.target.value);
-            dispatch(networkActions.setNetwork({...network, 'secondaryDNS': e.target.value}));
-        } else if (item.type === 'mode') {
-            setValue(e.target.value);
-            if (e.target.value === 'DHCP') {
-                setIp('192.168.0.123');
-                setDisableIp(true);
-                dispatch(networkActions.setNetwork({...network, myIP: '192.168.0.123', mode: e.target.value}));
-            } else {
-                setDisableIp(false);
-                dispatch(networkActions.setNetwork({...network, mode: e.target.value}));
-            }
-        } else if (item.type === 'ip') {
-            setIp(e.target.value);
-            dispatch(networkActions.setNetwork({...network, [objKey]: e.target.value}));
         } else {
             setValue(e.target.value);
             dispatch(networkActions.setNetwork({...network, [objKey]: e.target.value}));
         }
-    };
-
-    const mask = (value) => {
-        let result = [];
-        const chunks = value.split(".");
-        for (let i = 0; i < 4; ++i) {
-            const chunk = (chunks[i] || "").replace(/_/gi, "");
-
-            if (chunk === "") {
-                result.push(/\d/, /\d/, /\d/, ".");
-            } else if (+chunk === 0) {
-                result.push(/\d/, ".");
-            } else if (chunks.length < 4 || (chunk.length < 3 && chunks[i].indexOf("_") !== -1)) {
-                if ((chunk.length < 2 && +`${chunk}00` > 255) || (chunk.length < 3 && +`${chunk}0` > 255)) {
-                    result.push(/\d/, /\d/, ".");
-                } else {
-                    result.push(/\d/, /\d/, /\d/, ".");
-                }
-            } else {
-                result.push(...new Array(chunk.length).fill(/\d/), ".");
-            }
-        }
-        result = result.slice(0, -1);
-        return result;
-    };
-    const pipe = (value) => {
-        if (value === "." || value.endsWith("..")) return false;
-
-        const parts = value.split(".");
-
-        if (
-            parts.length > 4 ||
-            parts.some(part => part === "00" || part < 0 || part > 255)
-        ) {
-            return false;
-        }
-
-        return value;
     };
 
     const maxValue = (e) => {
@@ -97,38 +39,43 @@ export const Table = ({item, objKey, disabled = true, primary, enable, secondary
 
     };
 
+    useEffect(() => {
+        if (item[objKey] === '') {
+            setValidation('fill in the field please')
+        } else {
+            setValidation('');
+        }
+    }, [item]);
+
     return (
         item.type === 'ip' ?
             <div key={item.id} className={styles.tableRow}>
                 <span>{item.title}</span>
-                <MaskedInput type='text'
-                             mask={(e) => mask(e)}
-                             pipe={(e) => pipe(e)}
-                             className={styles.networkValue}
-                             value={ip}
-                             disabled={disabled || disableIp}
-                             onChange={(e) => handleChange(e)}/>
+                <Input
+                    item={item.type}
+                    objKey={objKey}
+                    disabled={disabled}/>
             </div>
             : item.type === 'dspIp' ?
             <div key={item.id} className={styles.tableRow}>
                 <span>{item.title}</span>
-                <MaskedInput type='text'
-                             mask={(e) => mask(e)}
-                             pipe={(e) => pipe(e)}
-                             className={styles.networkValue}
-                             value={value}
-                             disabled={disabled}
-                             onChange={(e) => handleChange(e)}/>
+                <Input
+                    item={item.type}
+                    objKey={objKey}
+                    disabled={disabled}/>
             </div>
             : item.type === 'port' ?
                 <div key={item.id} className={styles.tableRow}>
                     <span>{item.title}</span>
-                    <input
-                        type='number'
-                        className={styles.networkValue}
-                        value={value}
-                        disabled={disabled}
-                        onChange={(e) => maxValue(e)}/>
+                    <div className={styles.field}>
+                        <input
+                            type='number'
+                            className={styles.networkValue}
+                            value={value}
+                            disabled={disabled}
+                            onChange={(e) => maxValue(e)}/>
+                        <div className={styles.validation}>{validation}</div>
+                    </div>
                 </div>
                 : item.type === 'mode' ?
                     <div key={item.id} className={styles.tableRow}>
@@ -174,27 +121,17 @@ export const Table = ({item, objKey, disabled = true, primary, enable, secondary
                                             </div>
                                         </div>
                                         <div>
-
                                             <span>{item.title[1]}</span>
-                                            <MaskedInput
-                                                mask={(e) => mask(e)}
-                                                pipe={(e) => pipe(e)}
-                                                name='primaryDNS'
-                                                type='text' className={styles.networkValue}
-                                                value={primaryDNS}
-                                                disabled={disabled}
-                                                onChange={(e) => handleChange(e)}/>
+                                            <Input name={'primaryDNS'}
+                                                   item={item.type} objKey={objKey}
+                                                   disabled={disabled}/>
                                         </div>
                                         <div>
                                             <span>{item.title[2]}</span>
-                                            <MaskedInput
-                                                mask={(e) => mask(e)}
-                                                pipe={(e) => pipe(e)}
-                                                name='secondaryDNS'
-                                                type='text' className={styles.networkValue}
-                                                value={secondaryDNS}
-                                                disabled={disabled}
-                                                onChange={(e) => handleChange(e)}/>
+                                            <Input name={'secondaryDNS'}
+                                                   item={item.type} objKey={objKey}
+                                                   disabled={disabled}/>
+
                                         </div>
                                     </div>
                                 </div> : '')
