@@ -83,42 +83,39 @@ export const Network = () => {
     const savingData = async () => {
 
         // validation form
-        if (fieldValidation) {
-            setDisabled(!disabled);
-            await server.setNetwork({
-                network: {
-                    myIP: data.myIP,
-                    mode: data.mode,
-                    enabled: data.enabled,
-                    primaryDNS: data.primaryDNS,
-                    secondaryDNS: data.secondaryDNS,
-                    dspIP: data.dspIP,
-                    dspPort: data.dspPort,
-                    comType: data.comType,
-                    mac: data.mac,
+        setDisabled(!disabled);
+        await server.setNetwork({
+            network: {
+                myIP: data.myIP,
+                mode: data.mode,
+                enabled: data.enabled,
+                primaryDNS: data.primaryDNS,
+                secondaryDNS: data.secondaryDNS,
+                dspIP: data.dspIP,
+                dspPort: data.dspPort,
+                comType: data.comType,
+                mac: data.mac,
+            }
+        })
+            .then((response) => {
+                if (response.status === 200) {
+                    setNotice('The data was saved successfully');
+                    setTimeout(() => {
+                        setNotice('');
+                    }, 3000);
                 }
             })
-                .then((response) => {
-                    if (response.status === 200) {
-                        setNotice('The data was saved successfully');
-                        setTimeout(() => {
-                            setNotice('');
-                        }, 3000);
-                    }
-                })
-                .catch(() => {
-                    setError('The internet connection has timed out');
-                    setTimeout(() => {
-                        setError('');
-                    }, 3000);
-                });
+            .catch(() => {
+                setError('The internet connection has timed out');
+                setTimeout(() => {
+                    setError('');
+                }, 3000);
+            });
 
-            dispatch(mysteryActions.setShowPopup(true));
-            setTimeout(() => {
-                dispatch(mysteryActions.setShowPopup(false));
-            }, 1000)
-        }
-
+        dispatch(mysteryActions.setShowPopup(true));
+        setTimeout(() => {
+            dispatch(mysteryActions.setShowPopup(false));
+        }, 1000)
     };
 
     useEffect(() => {

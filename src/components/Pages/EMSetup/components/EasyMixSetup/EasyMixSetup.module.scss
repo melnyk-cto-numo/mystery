@@ -7,6 +7,21 @@
   margin:                1.5rem 0;
   min-height:            2.5rem;
   align-items:           center;
+  .field {
+    position: relative;
+    .validation {
+      position:  absolute;
+      color:     $redColor;
+      bottom:    -1rem;
+      left:      0;
+      z-index:   1;
+      font-size: 0.75rem;
+    }
+  }
+  .networkValue {
+    width: 100%;
+  }
+
 }
 
 

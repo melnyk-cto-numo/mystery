@@ -1,5 +1,5 @@
 // core
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 
 // components
@@ -14,6 +14,7 @@ export const EasyMixSetup = ({item, objKey, disabled}) => {
     const dispatch = useDispatch();
     const emsetup = useSelector(getEmSetup);
     const [value, setValue] = useState(item[objKey]);
+    const [validation, setValidation] = useState('');
 
     const handleChange = async (e) => {
         if (e.target.value < 120) {
@@ -32,14 +33,26 @@ export const EasyMixSetup = ({item, objKey, disabled}) => {
 
     };
 
+    useEffect(() => {
+        if (item[objKey] === '') {
+            setValidation('fill in the field please')
+        } else {
+            setValidation('');
+        }
+    }, [emsetup]);
+
     return (
         <div key={item.id} className={styles.tableRow}>
             <span>{item.title}</span>
-            <input type='number'
-                   className={styles.emSetupValue}
-                   value={value}
-                   disabled={disabled}
-                   onChange={(e) => handleChange(e)}/>
+            <div className={styles.field}>
+                <input type='number'
+                       className={styles.emSetupValue}
+                       value={value}
+                       disabled={disabled}
+                       onChange={(e) => handleChange(e)}/>
+                <div className={styles.validation}>{validation}</div>
+            </div>
+
         </div>
     );
 };

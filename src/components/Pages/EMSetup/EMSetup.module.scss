@@ -14,6 +14,12 @@
 
 .emSetupButtons {
   margin: 6.875rem 0;
+  .disabled {
+    user-select:    none;
+    pointer-events: none;
+    opacity:        .8;
+    filter:         grayscale(.4);
+  }
 }
 
 .emSetupTitle {

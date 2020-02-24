@@ -33,6 +33,20 @@ export const EMSetup = () => {
     const [column, setColumn] = useState('EM4');
     const [notice, setNotice] = useState('');
     const [error, setError] = useState('');
+    const [fieldValidation, setFieldValidation] = useState(true);
+
+    useEffect(() => {
+        if (Object.keys(data).length === 0) return;
+
+        if (data.Settings.altFaderTimeout !== '' && data.Settings.altToggleTimeout !== '') {
+            setFieldValidation(true)
+
+        } else {
+            setFieldValidation(false)
+
+        }
+    }, [data]);
+
 
     const editingData = () => {
         setDisabled(!disabled)
@@ -171,7 +185,9 @@ export const EMSetup = () => {
             </Tabs>
 
             <div className={styles.emSetupButtons}>
-                <button type="button" className={styles.primaryBtn} disabled={disabled}
+                <button type="button"
+                        className={fieldValidation ? styles.primaryBtn : styles.primaryBtn + ' ' + styles.disabled}
+                        disabled={disabled}
                         onClick={() => savingData()}>Save Settings
                 </button>
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
