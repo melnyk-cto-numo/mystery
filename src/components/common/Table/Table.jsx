@@ -12,7 +12,7 @@ import {getNetwork} from "../../../bus/network/selectors";
 // styles
 import styles from './Table.module.scss';
 
-export const Table = ({item, objKey, disabled = true, primary, enable, secondary,}) => {
+export const Table = ({item, objKey, disabled = true, primary, enable, secondary, ip, setIp, disableIp, setDisableIp}) => {
     const dispatch = useDispatch();
     const network = useSelector(getNetwork);
     const [value, setValue] = useState(item[objKey]);
@@ -30,6 +30,19 @@ export const Table = ({item, objKey, disabled = true, primary, enable, secondary
         } else if (e.target.name === 'secondaryDNS') {
             setSecondaryDNS(e.target.value);
             dispatch(networkActions.setNetwork({...network, 'secondaryDNS': e.target.value}));
+        } else if (item.type === 'mode') {
+            setValue(e.target.value);
+            if (e.target.value === 'DHCP') {
+                setIp('192.168.0.123');
+                setDisableIp(true);
+                dispatch(networkActions.setNetwork({...network, myIP: '192.168.0.123', mode: e.target.value}));
+            } else {
+                setDisableIp(false);
+                dispatch(networkActions.setNetwork({...network, mode: e.target.value}));
+            }
+        } else if (item.type === 'ip') {
+            setIp(e.target.value);
+            dispatch(networkActions.setNetwork({...network, [objKey]: e.target.value}));
         } else {
             setValue(e.target.value);
             dispatch(networkActions.setNetwork({...network, [objKey]: e.target.value}));
@@ -92,8 +105,8 @@ export const Table = ({item, objKey, disabled = true, primary, enable, secondary
                              mask={(e) => mask(e)}
                              pipe={(e) => pipe(e)}
                              className={styles.networkValue}
-                             value={value}
-                             disabled={disabled}
+                             value={ip}
+                             disabled={disabled || disableIp}
                              onChange={(e) => handleChange(e)}/>
             </div>
             : item.type === 'port' ?

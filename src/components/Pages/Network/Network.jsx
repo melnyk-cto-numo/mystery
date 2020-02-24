@@ -56,6 +56,8 @@ export const Network = () => {
     const [disabled, setDisabled] = useState(true);
     const [notice, setNotice] = useState('');
     const [error, setError] = useState('');
+    const [ip, setIp] = useState(array[3].value.myIP);
+    const [disableIp, setDisableIp] = useState(false);
 
     const editingData = () => {
         setDisabled(!disabled);
@@ -138,6 +140,10 @@ export const Network = () => {
                             enable={enabled}
                             primary={primaryDNS}
                             secondary={secondaryDNS}
+                            ip={ip}
+                            setIp={setIp}
+                            disableIp={disableIp}
+                            setDisableIp={setDisableIp}
                         />)
                     })}
                 </div>
