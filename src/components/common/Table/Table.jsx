@@ -52,6 +52,7 @@ export const Table = ({item, objKey, disabled = true, enable}) => {
             <div key={item.id} className={styles.tableRow}>
                 <span>{item.title}</span>
                 <Input
+                    data={item.myIP}
                     item={item.type}
                     objKey={objKey}
                     disabled={disabled}/>
@@ -60,6 +61,7 @@ export const Table = ({item, objKey, disabled = true, enable}) => {
             <div key={item.id} className={styles.tableRow}>
                 <span>{item.title}</span>
                 <Input
+                    data={item.dspIP}
                     item={item.type}
                     objKey={objKey}
                     disabled={disabled}/>
@@ -122,15 +124,19 @@ export const Table = ({item, objKey, disabled = true, enable}) => {
                                         </div>
                                         <div>
                                             <span>{item.title[1]}</span>
-                                            <Input name={'primaryDNS'}
-                                                   item={item.type} objKey={objKey}
-                                                   disabled={disabled}/>
+                                            <Input
+                                                data={item.value.primaryDNS}
+                                                name={'primaryDNS'}
+                                                item={item.type} objKey={objKey}
+                                                disabled={disabled}/>
                                         </div>
                                         <div>
                                             <span>{item.title[2]}</span>
-                                            <Input name={'secondaryDNS'}
-                                                   item={item.type} objKey={objKey}
-                                                   disabled={disabled}/>
+                                            <Input
+                                                data={item.value.secondaryDNS}
+                                                name={'secondaryDNS'}
+                                                item={item.type} objKey={objKey}
+                                                disabled={disabled}/>
 
                                         </div>
                                     </div>

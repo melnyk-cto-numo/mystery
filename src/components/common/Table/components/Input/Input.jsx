@@ -12,12 +12,12 @@ import {getNetwork} from "../../../../../bus/network/selectors";
 import styles from './Input.module.scss';
 
 const ip = '192.168.0.123';
-export const Input = ({name, item, objKey, disabled}) => {
+export const Input = ({ data, name, item, objKey, disabled}) => {
     const dispatch = useDispatch();
     const network = useSelector(getNetwork);
     const [disableIp, setDisableIp] = useState(false);
 
-    const [value, setValue] = useState(network[objKey]);
+    const [value, setValue] = useState(data);
     const [validation, setValidation] = useState('');
 
     const mask = (value) => {
