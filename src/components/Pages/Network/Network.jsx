@@ -49,7 +49,7 @@ export const Network = () => {
     ];
 
     const DSP = [
-        {id: 0, type: 'ip', title: 'DSP IP Address', dspIP: data.dspIP},
+        {id: 0, type: 'dspIp', title: 'DSP IP Address', dspIP: data.dspIP},
         {id: 1, type: 'port', title: 'DSP Port', dspPort: data.dspPort},
     ];
 
