@@ -30,12 +30,17 @@ export const DspTable = ({fields, dspType, setDspType, disabled = true}) => {
     const data = useSelector(getSiteSetup);
 
     const [siteName, seSiteName] = useState(fields.siteName.value);
+    const [dspId, seDspId] = useState(fields.DspID.value);
     const [validation, setValidation] = useState('');
+    const [validationDspId, setValidationDspId] = useState('');
 
     const handleSiteName = (e) => {
         seSiteName(e.target.value);
-
         dispatch(siteSetupActions.setSiteSetup({...data, SiteName: e.target.value}))
+    };
+    const handleDspId = (e) => {
+        seDspId(e.target.value);
+        dispatch(siteSetupActions.setSiteSetup({...data, DspID: e.target.value}))
     };
 
     const handleDsp = (e) => {
@@ -82,6 +87,11 @@ export const DspTable = ({fields, dspType, setDspType, disabled = true}) => {
         } else {
             setValidation('');
         }
+        if (data.DspID === '') {
+            setValidationDspId('fill in the field please')
+        } else {
+            setValidationDspId('');
+        }
     }, [data]);
 
     return (
@@ -113,6 +123,19 @@ export const DspTable = ({fields, dspType, setDspType, disabled = true}) => {
                         </select>
                     </div>
                 </div>
+                {dspType === 'bss' && <div className={styles.tableRow}>
+                    <span>{fields.DspID.label}</span>
+                    <div className={styles.field}>
+                        <input
+                            type={fields.DspID.type}
+                            className={styles.value}
+                            value={dspId}
+                            disabled={disabled}
+                            onChange={(e) => handleDspId(e)}
+                        />
+                        <div className={styles.validation}>{validationDspId}</div>
+                    </div>
+                </div>}
             </div>
         </div>)
 

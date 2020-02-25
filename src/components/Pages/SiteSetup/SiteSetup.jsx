@@ -26,6 +26,7 @@ import {mysteryActions} from "../../../bus/mystery/actions";
 const DSP = {
     siteName: {label: 'Site name', type: 'text', value: 'QSYS'},
     dsp: {label: 'DSP', type: 'select', value: ['BSS', 'Hal', 'Jupiter', 'QSYS', 'Symetrix', 'Tesira', 'Xilica']},
+    DspID: {label: 'ID', type: 'text', value: '0000'},
 };
 
 const headerTableName = {
@@ -173,7 +174,7 @@ export const SiteSetup = () => {
 
     useEffect(() => {
         if (Object.keys(data).length === 0) return;
-        if (data.SiteName !== '') {
+        if (data.SiteName !== '' && data.DspID !== '') {
             setFieldValidation(true)
         } else {
             setFieldValidation(false)
