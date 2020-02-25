@@ -42,7 +42,7 @@ export const TableSmall = ({fields, disabled = true}) => {
                             <div key={field.id} className={styles.tableRow}>
                                 <span>{field.label}</span>
                                 <input type={field.type} className={styles.value} defaultValue={field.value}
-                                       disabled={disabled}/>
+                                       disabled/>
                             </div>)
                     }
                 })}

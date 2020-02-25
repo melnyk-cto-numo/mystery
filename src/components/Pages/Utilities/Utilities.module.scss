@@ -34,7 +34,12 @@
   justify-content: flex-end;
   align-items:     center;
   position:        relative;
-
+  .disabled {
+    user-select:    none;
+    pointer-events: none;
+    opacity:        .8;
+    filter:         grayscale(.4);
+  }
 }
 
 .utilitiesTitle {

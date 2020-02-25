@@ -1,5 +1,5 @@
 // core
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 
 
@@ -17,6 +17,7 @@ export const Input = ({index, item, name, disabled}) => {
 
     const fader = useSelector(getFader);
     const [value, setValue] = useState(item);
+    const [validation, setValidation] = useState('');
 
 
     const handleChange = (e) => {
@@ -27,8 +28,18 @@ export const Input = ({index, item, name, disabled}) => {
         }))
     };
 
+
+    useEffect(() => {
+        if (value === '') {
+            setValidation('fill in the field please')
+        } else {
+            setValidation('')
+        }
+
+    }, [value]);
     return (
-        <input key={index} className={styles.tableCell} value={value}
+        <input key={index} className={!validation ? styles.tableCell : styles.tableCell + ' ' + 'validation'}
+               value={value}
                onChange={(e) => handleChange(e)} disabled={disabled}/>
     );
 };

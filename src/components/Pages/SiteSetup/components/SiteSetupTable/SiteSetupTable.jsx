@@ -58,7 +58,9 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
             array[keys].updateRate !== ' ' &&
             array[keys].dspMinGain !== ' ' &&
             array[keys].minGain !== ' ' &&
-            array[keys].name !== ' '
+            array[keys].name !== ' ' &&
+            array[keys].names.find(item => item === ' ') !== ' ' &&
+            array[keys].controlNo.find(item => item === ' ') !== ' '
         ) {
             setInputHeaderValidation(true);
             // console.log(1)

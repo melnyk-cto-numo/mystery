@@ -24,6 +24,7 @@ export const Utilities = () => {
     const [disabled, setDisabled] = useState(true);
     const [notice, setNotice] = useState('');
     const [error, setError] = useState('');
+    const [fieldValidation, setFieldValidation] = useState(true);
 
     const dispatch = useDispatch();
     const data = useSelector(getFader);
@@ -49,6 +50,18 @@ export const Utilities = () => {
             dispatch(faderActions.getFaderAsync());
         }, 1000);
     };
+
+    useEffect(() => {
+
+        // check validation
+        if (Object.keys(data).length === 0) return;
+        if (data.leftCalibration.find(item => item === '') !== '' &&
+            data.rightCalibration.find(item => item === '') !== '') {
+            setFieldValidation(true);
+        } else {
+            setFieldValidation(false);
+        }
+    }, [data]);
 
     const savingData = async () => {
         setDisabled(!disabled);
@@ -109,7 +122,8 @@ export const Utilities = () => {
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
                         onClick={() => cancelingData()}>Cancel
                 </button>
-                <button type="button" className={styles.primaryBtn} disabled={disabled}
+                <button type="button"
+                        className={fieldValidation ? styles.primaryBtn : styles.primaryBtn + ' ' + styles.disabled}
                         onClick={() => savingData()}>Save changes
                 </button>
             </div>
