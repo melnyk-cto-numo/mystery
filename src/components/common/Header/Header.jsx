@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import {MenuItem} from "./MenuItem/MenuItem";
 
 
-import logo from '../../../assets/img/logo.png'
+import logo from '../../../assets/img/logo_white.png'
 import styles from './Header.module.scss';
 
 export const Header = () => {

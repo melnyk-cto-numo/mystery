@@ -3,10 +3,10 @@
 @media (any-hover: hover) {
   a:hover span {
     font-size: 1.5rem;
-    color:     $mainColor;
+    color:     $whiteColor;
   }
   a:hover svg {
-    fill: $mainColor;
+    fill: $whiteColor;
   }
 }
 
@@ -39,20 +39,20 @@ body {
 a {
   font-size:       1.125rem;
   text-decoration: none;
-  color:           $secondColor;
+  color:           $whiteColor;
   font-weight:     bold;
   line-height:     1.25;
   svg {
-    fill: $secondColor;
+    fill: $whiteColor;
   }
   &:active span {
     opacity:   .7;
     font-size: 1.5rem;
-    color:     $mainColor;
+    color:     $whiteColor;
   }
   &:active svg {
     opacity: .7;
-    fill:    $mainColor;
+    fill:    $whiteColor;
   }
 }
 
@@ -83,7 +83,7 @@ ul {
   li {
     font-size:   1.125rem;
     line-height: 1.67;
-    color:       $secondColor;
+    color:       $whiteColor;
   }
 }
 
@@ -190,12 +190,12 @@ input[type='file'] {
 
 ::-webkit-scrollbar-track-piece { background-color: transparent;}
 
-::-webkit-scrollbar-thumb { height: 3.125rem; background-color: #dfcefa; border-radius: 0.3125rem;}
+::-webkit-scrollbar-thumb { height: 3.125rem; background-color: #d8dfff; border-radius: 0.3125rem;}
 
 ::-webkit-scrollbar-corner { background-color: transparent;}
 
 
-::-webkit-resizer { background-color: #dfcefa;}
+::-webkit-resizer { background-color: #d8dfff;}
 
 .react-tabs__tab--selected {
   color:      $lightBlackColor;

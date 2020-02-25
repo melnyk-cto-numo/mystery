@@ -19,14 +19,14 @@
     }
     &.active {
       font-size: 1.5rem;
-      color:     $mainColor;
+      color:     $whiteColor;
       svg {
-        fill: $mainColor;
+        fill: $whiteColor;
       }
       &:before {
         content:       '';
         position:      absolute;
-        background:    $mainColor;
+        background:    $whiteColor;
         width:         0.625rem;
         border-radius: 0 0.625rem 0.625rem 0;
         height:        3.125rem;

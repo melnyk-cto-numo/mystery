@@ -1,3 +1,5 @@
+@import "../../../assets/scss/variable";
+
 .help {
   .helpTitle, .helpButtons {
     margin:          4.375rem 0;
@@ -31,6 +33,7 @@
     li {
       position:     relative;
       padding-left: 2.5rem;
+      color:        $secondColor;
     }
     &.map li {
       &:before {
