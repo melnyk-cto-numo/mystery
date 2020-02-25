@@ -1,5 +1,5 @@
 // core
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 
 // components
@@ -30,6 +30,7 @@ export const DspTable = ({fields, dspType, setDspType, disabled = true}) => {
     const data = useSelector(getSiteSetup);
 
     const [siteName, seSiteName] = useState(fields.siteName.value);
+    const [validation, setValidation] = useState('');
 
     const handleSiteName = (e) => {
         seSiteName(e.target.value);
@@ -75,17 +76,28 @@ export const DspTable = ({fields, dspType, setDspType, disabled = true}) => {
         }
     };
 
+    useEffect(() => {
+        if (data.SiteName === '') {
+            setValidation('fill in the field please')
+        } else {
+            setValidation('');
+        }
+    }, [data]);
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.table}>
                 <div className={styles.tableRow}>
                     <span>{fields.siteName.label}</span>
-                    <input
-                        type={fields.siteName.type}
-                        className={styles.value}
-                        value={siteName}
-                        disabled={disabled}
-                        onChange={(e) => handleSiteName(e)}/>
+                    <div className={styles.field}>
+                        <input
+                            type={fields.siteName.type}
+                            className={styles.value}
+                            value={siteName}
+                            disabled={disabled}
+                            onChange={(e) => handleSiteName(e)}/>
+                        <div className={styles.validation}>{validation}</div>
+                    </div>
                 </div>
                 <div className={styles.tableRow}>
                     <span>{fields.dsp.label}</span>

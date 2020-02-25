@@ -33,6 +33,12 @@
       .primaryBtn {
         margin: 1.875rem 0 1.25rem 3.125rem;
       }
+      .disabled {
+        user-select:    none;
+        pointer-events: none;
+        opacity:        .8;
+        filter:         grayscale(.4);
+      }
     }
   }
 }

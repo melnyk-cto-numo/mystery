@@ -19,10 +19,22 @@
       min-height:            2.5rem;
       font-size:             1.25rem;
       align-items:           center;
+      position:              relative;
       .select, input {
         padding:         0;
         text-align:      center;
         text-align-last: center;
+      }
+      .field {
+        position: relative;
+        .validation {
+          position:  absolute;
+          color:     $redColor;
+          bottom:    -1rem;
+          left:      0;
+          z-index:   1;
+          font-size: 0.75rem;
+        }
       }
     }
     .select {

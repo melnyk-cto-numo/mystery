@@ -178,6 +178,10 @@ input[type='file'] {
   color: $redColor;
 }
 
+.validation {
+  border: 1px solid $redColor;
+}
+
 ::-webkit-scrollbar { width: 0.3125rem; height: 0.3125rem;}
 
 ::-webkit-scrollbar-button { background-color: transparent; }

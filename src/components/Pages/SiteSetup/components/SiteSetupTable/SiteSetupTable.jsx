@@ -1,5 +1,5 @@
 // core
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 // library
 import {useDispatch, useSelector} from "react-redux";
@@ -28,7 +28,7 @@ import warning from '../../../../../assets/img/warning.svg'
 import error from '../../../../../assets/img/remove.svg'
 
 
-export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = true}) => {
+export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = true, setInputHeaderValidation}) => {
     const dispatch = useDispatch();
 
     const bss = useSelector(getBss);
@@ -49,6 +49,25 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
         no: [],
         banks: [],
     };
+
+    useEffect(() => {
+
+        // validation
+        if (
+            array[keys].maxGain !== ' ' &&
+            array[keys].updateRate !== ' ' &&
+            array[keys].dspMinGain !== ' ' &&
+            array[keys].minGain !== ' ' &&
+            array[keys].name !== ' '
+        ) {
+            setInputHeaderValidation(true);
+            // console.log(1)
+        } else {
+            setInputHeaderValidation(false);
+            // console.log(2)
+        }
+    }, [array]);
+
 
     if (errors[keys] === undefined) {
         return false;
@@ -116,31 +135,41 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                     {array[keys].maxGain &&
                     <div className={styles.siteSetupButtons}>
                         Max Gain:
-                        <Input item={array[keys].maxGain} keys={keys} value={'maxGain'} disabled={disabled}/>
+                        <Input item={array[keys].maxGain}
+                               keys={keys}
+                               value={'maxGain'} disabled={disabled}/>
                         (dB)
                     </div>}
                     {array[keys].updateRate &&
                     <div className={styles.siteSetupButtons}>
                         Rate:
-                        <Input item={array[keys].updateRate} keys={keys} value={'updateRate'} disabled={disabled}/>
+                        <Input item={array[keys].updateRate}
+                               keys={keys} value={'updateRate'}
+                               disabled={disabled}/>
                     </div>}
                     {array[keys].dspMinGain &&
                     <div className={styles.siteSetupButtons}>
                         DSP Min Gain:
-                        <Input item={array[keys].dspMinGain} keys={keys} value={'dspMinGain'} disabled={disabled}/>
+                        <Input
+                            item={array[keys].dspMinGain}
+                            keys={keys} value={'dspMinGain'}
+                            disabled={disabled}/>
                         (dB)
                     </div>}
                     <p>Fader Off = DSP Min Gain</p>
                     {array[keys].minGain &&
                     <div className={styles.siteSetupButtons}>
                         Min Gain:
-                        <Input item={array[keys].minGain} keys={keys} value={'minGain'} disabled={disabled}/>
+                        <Input item={array[keys].minGain}
+                               keys={keys} value={'minGain'}
+                               disabled={disabled}/>
                         (dB)
                     </div>}
                     {array[keys].name &&
                     <div className={styles.siteSetupButtons}>
                         Name:
-                        <Input item={array[keys].name} keys={keys} value={'name'} disabled={disabled}/>
+                        <Input item={array[keys].name} keys={keys}
+                               value={'name'} disabled={disabled}/>
                     </div>}
                 </div>
                 <div className={styles.tableHeader}>
@@ -179,11 +208,13 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                                                         value={value}
                                                         disabled={disabled}/>
                                                     : value === 'names' || value === 'controlNo' ?
-                                                        <Input index={index}
-                                                               item={item}
-                                                               keys={keys}
-                                                               value={value}
-                                                               disabled={disabled}/>
+                                                        <Input
+                                                            invalid={true}
+                                                            index={index}
+                                                            item={item}
+                                                            keys={keys}
+                                                            value={value}
+                                                            disabled={disabled}/>
                                                         : <span>{item}</span>}
                                             </div>))}
                                     </div>

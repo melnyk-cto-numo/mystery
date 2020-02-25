@@ -128,6 +128,9 @@ export const SiteSetup = () => {
     const [selectedTab, setSelectedTab] = useState(headerTableName.qsys);
     const [notice, setNotice] = useState('');
     const [error, setError] = useState('');
+    const [fieldValidation, setFieldValidation] = useState(true);
+    const [inputHeaderValidation, setInputHeaderValidation] = useState(true);
+
 
     useEffect(() => {
         setSelectedTab(headerTableName[dspType]);
@@ -167,6 +170,15 @@ export const SiteSetup = () => {
         dispatch(siteSetupActions.getXilicaAsync());
     }, [dispatch]);
 
+
+    useEffect(() => {
+        if (Object.keys(data).length === 0) return;
+        if (data.SiteName !== '') {
+            setFieldValidation(true)
+        } else {
+            setFieldValidation(false)
+        }
+    }, [data]);
 
     if (data.DspType === undefined) {
         return false;
@@ -253,8 +265,11 @@ export const SiteSetup = () => {
                     setDspType={setDspType}
                     disabled={disabled}/>
                 <div className={styles.siteSetupButtons}>
-                    <button type="button" className={styles.primaryBtn} onClick={() => savingData()}
-                            disabled={disabled}>Save
+                    <button
+                        type="button"
+                        className={fieldValidation && inputHeaderValidation ? styles.primaryBtn : styles.primaryBtn + ' ' + styles.disabled}
+                        onClick={() => savingData()}
+                        disabled={disabled}>Save
                     </button>
                     <button type="button" className={styles.primaryBtn} disabled={disabled}
                             onClick={() => cancelingData()}>Cancel
@@ -291,7 +306,8 @@ export const SiteSetup = () => {
                                         titles={headerTableName[dspType][keys]}
                                         errors={dataErrors}
                                         bank={bank}
-                                        disabled={disabled}/>
+                                        disabled={disabled}
+                                        setInputHeaderValidation={setInputHeaderValidation}/>
                                 </TabPanel>)
                         }
                         return null;

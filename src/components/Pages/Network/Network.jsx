@@ -68,6 +68,8 @@ export const Network = () => {
     };
 
     useEffect(() => {
+
+        // check validation
         if (Object.keys(data).length === 0) return;
         if (data.myIP !== '' && data.myIP.indexOf('_') === -1 &&
             data.primaryDNS !== '' && data.primaryDNS.indexOf('_') === -1 &&
