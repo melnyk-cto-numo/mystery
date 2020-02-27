@@ -21,9 +21,7 @@ export const UtilitiesTable = ({data, title, disabled}) => {
         buttonOne.push(String(i));
         buttonTwo.push(String(i));
     }
-
-
-    if (data.rawFader === undefined) {
+    if (data.rawFader === undefined || data.leftCalibration === undefined || data.rightCalibration === undefined) {
         return false;
     }
     const utilities = {
@@ -54,14 +52,16 @@ export const UtilitiesTable = ({data, title, disabled}) => {
                             {row['Left value'].map((left, index) => (
                                 index === 0 ? <div key={index} className={styles.tableCell}>{left}</div> :
                                     <div key={index} className={styles.inputWrapper}>
-                                        <Input index={index} data={data} item={left} name={'leftCalibration'} disabled={disabled}/>
+                                        <Input index={index} data={data} item={left} name={'leftCalibration'}
+                                               disabled={disabled}/>
                                     </div>))}
                         </div>
                         <div className={styles.tableRow}>
                             {row['Right value'].map((right, index) => (
                                 index === 0 ? <div key={index} className={styles.tableCell}>{right}</div> :
                                     <div key={index} className={styles.inputWrapper}>
-                                        <Input index={index} data={data} item={right} name={'rightCalibration'} disabled={disabled}/>
+                                        <Input index={index} data={data} item={right} name={'rightCalibration'}
+                                               disabled={disabled}/>
                                     </div>))}
                         </div>
                         <div className={styles.tableRow}>
