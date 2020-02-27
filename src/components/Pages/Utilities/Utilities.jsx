@@ -55,8 +55,9 @@ export const Utilities = () => {
 
         // check validation
         if (Object.keys(data).length === 0) return;
-        if (data.leftCalibration.find(item => item === '') !== '' &&
-            data.rightCalibration.find(item => item === '') !== '') {
+        if (
+            (data.leftCalibration === undefined ? 1 : data.leftCalibration.find(item => item === '') !== '') &&
+            (data.rightCalibration === undefined ? 1 : data.rightCalibration.find(item => item === '') !== '')) {
             setFieldValidation(true);
         } else {
             setFieldValidation(false);
