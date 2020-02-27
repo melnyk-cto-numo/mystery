@@ -17,7 +17,7 @@ import {server} from "../../../REST";
 
 const titleUtilities = {
     header: ['', 'Fader 1', 'Fader 2', 'Fader 3', 'Fader 4', 'Fader 5', 'Fader 6', 'Fader 7', 'Fader 8', 'Fader 9', 'Fader 10', 'Fader 11', 'Fader 12'],
-    column: ['', 'Raw value', 'Left Value', 'Right Value', 'Move to 0 db', 'Move to -30 db'],
+    column: ['', 'Raw value', 'Center Value', 'Move to 0 db', 'Move to -30 db'],
 };
 let interval = null;
 export const Utilities = () => {
@@ -51,13 +51,13 @@ export const Utilities = () => {
         }, 1000);
     };
 
+
     useEffect(() => {
 
         // check validation
         if (Object.keys(data).length === 0) return;
         if (
-            (data.leftCalibration === undefined ? 1 : data.leftCalibration.find(item => item === '') !== '') &&
-            (data.rightCalibration === undefined ? 1 : data.rightCalibration.find(item => item === '') !== '')) {
+            data.centerCalibration.find(item => item === '') !== '') {
             setFieldValidation(true);
         } else {
             setFieldValidation(false);
@@ -69,8 +69,7 @@ export const Utilities = () => {
 
         await server.setFader({
             fader: {
-                leftCalibration: data.leftCalibration,
-                rightCalibration: data.rightCalibration,
+                centerCalibration: data.centerCalibration,
             }
         }).then((response) => {
             if (response.status === 200) {

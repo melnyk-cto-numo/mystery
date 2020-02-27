@@ -21,13 +21,12 @@ export const UtilitiesTable = ({data, title, disabled}) => {
         buttonOne.push(String(i));
         buttonTwo.push(String(i));
     }
-    if (data.rawFader === undefined || data.leftCalibration === undefined || data.rightCalibration === undefined) {
+    if (data.rawFader === undefined) {
         return false;
     }
     const utilities = {
         'Raw value': ['Raw value', ...data.rawFader],
-        'Left value': ['Left value', ...data.leftCalibration],
-        'Right value': ['Right value', ...data.rightCalibration],
+        'Center value': ['Center value', ...data.centerCalibration],
     };
 
     const sendData = async (e) => {
@@ -49,18 +48,10 @@ export const UtilitiesTable = ({data, title, disabled}) => {
                                 <div key={index} className={styles.tableCell}>{raw}</div>))}
                         </div>
                         <div className={styles.tableRow}>
-                            {row['Left value'].map((left, index) => (
-                                index === 0 ? <div key={index} className={styles.tableCell}>{left}</div> :
+                            {row['Center value'].map((center, index) => (
+                                index === 0 ? <div key={index} className={styles.tableCell}>{center}</div> :
                                     <div key={index} className={styles.inputWrapper}>
-                                        <Input index={index} data={data} item={left} name={'leftCalibration'}
-                                               disabled={disabled}/>
-                                    </div>))}
-                        </div>
-                        <div className={styles.tableRow}>
-                            {row['Right value'].map((right, index) => (
-                                index === 0 ? <div key={index} className={styles.tableCell}>{right}</div> :
-                                    <div key={index} className={styles.inputWrapper}>
-                                        <Input index={index} data={data} item={right} name={'rightCalibration'}
+                                        <Input index={index} data={data} item={center} name={'centerCalibration'}
                                                disabled={disabled}/>
                                     </div>))}
                         </div>
