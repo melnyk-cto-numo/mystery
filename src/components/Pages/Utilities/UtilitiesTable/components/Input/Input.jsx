@@ -38,7 +38,7 @@ export const Input = ({index, item, name, disabled}) => {
 
     }, [value]);
     return (
-        <input key={index} className={!validation ? styles.tableCell : styles.tableCell + ' ' + 'validation'}
+        <input key={index} className={!validation ? styles.tableCell : `${styles.tableCell} validation`}
                value={value}
                onChange={(e) => handleChange(e)} disabled={disabled}/>
     );

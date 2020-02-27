@@ -41,7 +41,7 @@ export const Input = ({invalid, index, item, keys, value, disabled}) => {
         } else {
             setValidation('');
         }
-    }, [item]);
+    }, [item, valueInput]);
 
     return (
         <>

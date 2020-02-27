@@ -59,16 +59,14 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
             array[keys].dspMinGain !== ' ' &&
             array[keys].minGain !== ' ' &&
             array[keys].name !== ' ' &&
-            array[keys].names.find(item => item === ' ') !== ' ' &&
-            array[keys].controlNo.find(item => item === ' ') !== ' '
+            (array[keys].names === undefined ? 1 : array[keys].names.find(item => item === ' ') !== ' ') &&
+            (array[keys].controlNo === undefined ? 1 : array[keys].controlNo.find(item => item === ' ') !== ' ')
         ) {
             setInputHeaderValidation(true);
-            // console.log(1)
         } else {
             setInputHeaderValidation(false);
-            // console.log(2)
         }
-    }, [array]);
+    }, [array, keys, setInputHeaderValidation]);
 
 
     if (errors[keys] === undefined) {

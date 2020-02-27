@@ -39,7 +39,7 @@ export const EasyMixSetup = ({item, objKey, disabled}) => {
         } else {
             setValidation('');
         }
-    }, [emsetup]);
+    }, [emsetup, item, objKey]);
 
     return (
         <div key={item.id} className={styles.tableRow}>
