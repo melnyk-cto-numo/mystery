@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 
 //library
 import {useDispatch, useSelector} from "react-redux";
+import AutosizeInput from 'react-input-autosize';
 
 // components
 import {siteSetupActions} from "../../../../../../../bus/siteSetup/actions";
@@ -45,8 +46,16 @@ export const Input = ({invalid, index, item, keys, value, disabled}) => {
 
     return (
         <>
-            <input type="text" className={validation ? 'validation' : ''} value={valueInput} disabled={disabled}
-                   onChange={(e) => handleChange(e)}/>
+            {(value !== 'controlNo' && value !== 'names')
+                ? <AutosizeInput
+                    type="text"
+                    value={valueInput}
+                    disabled={disabled} onChange={(e) => handleChange(e)}/>
+                : <input
+                    type="text"
+                    className={validation ? 'validation' : ''}
+                    value={valueInput} disabled={disabled}
+                    onChange={(e) => handleChange(e)}/>}
             {!invalid && <div className={styles.validation}>{validation}</div>}
         </>)
 };
