@@ -12,7 +12,7 @@ import {getNetwork} from "../../../../../bus/network/selectors";
 import styles from './Input.module.scss';
 
 const ip = '192.168.0.123';
-export const Input = ({ data, name, item, objKey, disabled}) => {
+export const Input = ({data, name, item, objKey, disabled}) => {
     const dispatch = useDispatch();
     const network = useSelector(getNetwork);
     const [disableIp, setDisableIp] = useState(false);
@@ -85,7 +85,8 @@ export const Input = ({ data, name, item, objKey, disabled}) => {
         } else {
             setDisableIp(false);
         }
-    }, [network.mode]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch, network.mode, item]);
 
     return (
         <div className={styles.field}>

@@ -45,7 +45,7 @@ export const Table = ({item, objKey, disabled = true, enable}) => {
         } else {
             setValidation('');
         }
-    }, [item]);
+    }, [item, objKey]);
 
     return (
         item.type === 'ip' ?
