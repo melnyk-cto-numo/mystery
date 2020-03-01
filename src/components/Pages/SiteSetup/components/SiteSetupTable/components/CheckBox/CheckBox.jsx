@@ -31,13 +31,13 @@ export const CheckBox = ({index, item, keys, value, disabled}) => {
     return (
         <div className='checkbox'>
             <input
-                id={'enabled_' + index}
+                id={value + index}
                 type="checkbox"
                 value={valueCheckBox}
                 checked={valueCheckBox}
                 disabled={disabled}
                 onChange={(e) => handleChange(e)}/>
-            <label htmlFor={'enabled_' + index}/>
+            <label htmlFor={value + index}/>
         </div>
     )
 };

@@ -187,18 +187,19 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                     {values.map((value, index) => {
                             if (Array.isArray(array[keys][value])) {
                                 return (
+                                    (value !== 'linkedPairs' && value !== 'updateRate') &&
                                     <div key={index} className={styles.tableRow}>
                                         {(array[keys][value].slice(0, 2 * bank).map((item, index) =>
                                             <div key={index} className={styles.tableCell}>
-                                                {value === 'enabled' ?
-                                                    <CheckBox
+                                                {value === 'enabled' || value === 'readOnly'
+                                                    ? <CheckBox
                                                         index={index}
                                                         keys={keys}
                                                         item={item}
                                                         value={value}
                                                         disabled={disabled}/>
-                                                    : value === 'names' || value === 'controlNo' ?
-                                                        <Input
+                                                    : (value === 'names' || value === 'controlNo')
+                                                        ? <Input
                                                             invalid={true}
                                                             index={index}
                                                             item={item}
