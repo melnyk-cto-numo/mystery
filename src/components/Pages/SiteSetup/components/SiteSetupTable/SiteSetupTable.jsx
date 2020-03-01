@@ -47,7 +47,6 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
     const values = Object.keys(array[keys]);
     const noAndBank = {
         no: [],
-        banks: [],
     };
 
     useEffect(() => {
@@ -76,11 +75,6 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
     // data for 2 column table
     for (let b = 1; b <= 2 * bank; b++) {
         noAndBank.no.push(b);
-        if (b <= bank) {
-            noAndBank.banks.push('A');
-        } else {
-            noAndBank.banks.push('B');
-        }
     }
 
     const handleChangeSelect = (e) => {
@@ -182,10 +176,6 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                     <div className={styles.tableRow}>
                         {(noAndBank.no.map((item, index) =>
                             <div key={index} className={styles.tableCell}>{item}</div>))}
-                    </div>
-                    <div className={styles.tableRow}>
-                        {(noAndBank.banks.map((bank, index) =>
-                            <div key={index} className={styles.tableCell}>{bank}</div>))}
                     </div>
                     {/* errors array */}
                     <div className={styles.tableRow}>
