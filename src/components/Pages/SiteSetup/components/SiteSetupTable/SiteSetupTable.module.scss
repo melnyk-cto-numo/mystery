@@ -99,8 +99,17 @@
     }
   }
   p {
-    margin-bottom: 1.25rem;
-    margin-right:  2.5rem;
+    margin-right: 0.5rem;
+  }
+  .fader {
+    display:         flex;
+    align-items:     center;
+    justify-content: flex-start;
+    margin-bottom:   1.25rem;
+    margin-right:    2.5rem;
+    > div {
+      transform: scale(0.6);
+    }
   }
 }
 
