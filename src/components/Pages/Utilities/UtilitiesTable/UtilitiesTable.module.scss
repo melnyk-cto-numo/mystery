@@ -12,15 +12,12 @@
   .table {
     overflow: auto;
     .tableBody, .tableHeader {
-
       line-height: 1.5;
-      min-width:   9.5rem;
     }
     .tableHeader {
       background-color:      $lightBlueColor;
       display:               grid;
-      grid-template-columns: repeat(auto-fit, minmax(7.5rem, auto));
-      min-width:             97.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
       grid-auto-flow:        column;
       &:nth-child(1) {
         font-weight: bold;
@@ -39,13 +36,14 @@
         flex-direction:  column;
         align-items:     flex-start;
         justify-content: center;
+        min-width:       7.5rem;
       }
     }
     .tableRow {
       background-color:      $lightBlueColor;
       display:               grid;
-      grid-template-columns: repeat(auto-fit, minmax(7.5rem, auto));
-      min-width:             97.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+      grid-auto-flow:        column;
       &:nth-child(1) .tableCell {
         font-size: 1.125rem;
       }
@@ -62,6 +60,7 @@
         padding-left:    0.625rem;
         text-align:      center;
         border-radius:   0;
+        min-width:       7.5rem;
         &:nth-child(1) {
           min-height:  3.125rem;
           align-items: flex-start;
@@ -82,15 +81,15 @@
         text-align:      center;
         border-radius:   0;
         &:before {
-          content:    '';
-          background: $veryLightBlueColor;
-          width:      80%;
-          height:     57.15%;
-          position:   absolute;
-          z-index:    0;
-          left:       50%;
-          top:        50%;
-          transform:  translate(-50%, -50%);
+          content:       '';
+          background:    $veryLightBlueColor;
+          width:         80%;
+          height:        57.15%;
+          position:      absolute;
+          z-index:       0;
+          left:          50%;
+          top:           50%;
+          transform:     translate(-50%, -50%);
           border-radius: 0.625rem;
         }
       }
