@@ -175,10 +175,16 @@ export const EMSetup = () => {
                 </TabPanel>
                 <TabPanel>
                     <div className={styles.wrapper}>
-                        <div className={styles.table + ' ' + styles.tableTopRowButtons}>
+                        <div className={`${styles.table} ${styles.tableTopRowButtons} ${model}`}>
                             {data.Buttons.slice(0, column).map((item, index) => (
-                                <TopRowButtons key={index} item={item} data={data} row={index}
-                                               controls={controls} disabled={disabled}/>))}
+                                <TopRowButtons
+                                    key={index}
+                                    item={item}
+                                    data={data}
+                                    row={index}
+                                    controls={controls}
+                                    disabled={disabled}
+                                    model={model}/>))}
                         </div>
                     </div>
                 </TabPanel>

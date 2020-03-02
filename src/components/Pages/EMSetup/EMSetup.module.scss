@@ -68,11 +68,13 @@
   .table {
     overflow: auto;
   }
-  .tableTopRowButtons {
-    display:               grid;
-    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
-    line-height:           1.5;
-  }
+}
+
+.tableTopRowButtons {
+  display:               grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  line-height:           1.5;
+  grid-gap:              0.5rem 0;
 }
 
 @media screen and (max-width: 1200px) {
@@ -107,3 +109,46 @@
   }
 
 }
+
+// BEGIN EM12
+@media screen and (max-width: 2000px) {
+  :global {
+    .EM12 {
+      grid-template-columns: 33.33% 33.33% 33.33%;
+    }
+  }
+}
+
+// END EM12
+
+
+// BEGIN EM8
+@media screen and (max-width: 1500px) {
+  :global {
+    .EM8 {
+      grid-template-columns: 25% 25% 25% 25%;
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  :global {
+    .EM8 {
+      grid-template-columns: 50% 50%;
+    }
+  }
+}
+
+// END EM8
+
+
+// BEGIN EM4
+@media screen and (max-width: 420px) {
+  :global {
+    .EM4 {
+      grid-template-columns: 50% 50%;
+    }
+  }
+}
+
+// END EM4
