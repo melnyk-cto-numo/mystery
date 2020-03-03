@@ -11,32 +11,21 @@
   z-index:       1;
   .table {
     overflow: auto;
-    .tableBody, .tableHeader {
+    .tableBody {
       line-height: 1.5;
-    }
-    .tableHeader {
-      background-color:      $lightBlueColor;
-      display:               grid;
-      grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
-      grid-auto-flow:        column;
-      &:nth-child(1) {
-        font-weight: bold;
-        font-size:   1.25rem;
-        color:       $mainColor;
-        .tableCell {
-          align-items: center;
+      display:     grid;
+      .tableRowWrapper:nth-child(1) {
+        .tableCell:nth-child(1) {
+          align-items: flex-start;
         }
       }
-      .tableCell {
-        background:      $whiteColor;
-        font-size:       1rem;
-        line-height:     1.67;
-        min-height:      3.125rem;
-        display:         flex;
-        flex-direction:  column;
-        align-items:     flex-start;
-        justify-content: center;
-        min-width:       7.5rem;
+      .tableRowWrapper {
+        .tableRow:nth-child(1) {
+          .tableCell {
+            font-size:   1.125rem;
+            font-weight: bold;
+          }
+        }
       }
     }
     .tableRow {
@@ -44,9 +33,6 @@
       display:               grid;
       grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
       grid-auto-flow:        column;
-      &:nth-child(1) .tableCell {
-        font-size: 1.125rem;
-      }
       .tableCell {
         margin-bottom:   0.0625rem;
         background:      $whiteColor;
@@ -61,10 +47,6 @@
         text-align:      center;
         border-radius:   0;
         min-width:       7.5rem;
-        &:nth-child(1) {
-          min-height:  3.125rem;
-          align-items: flex-start;
-        }
       }
       .inputWrapper {
         position:        relative;
@@ -103,3 +85,74 @@
     padding: 1.25rem;
   }
 }
+
+
+.tableBody {
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-gap:              1.5rem 0;
+}
+
+
+// BEGIN EM12
+:global {
+  .EM12 {
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-gap:              1.5rem 0;
+  }
+}
+
+@media screen and (max-width: 2400px) {
+  :global {
+    .EM12 {
+      grid-template-columns: 50% 50%;
+    }
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  :global {
+    .EM12 {
+      grid-template-columns: 100%;
+    }
+  }
+}
+
+// END EM12
+
+
+// BEGIN EM8
+:global {
+  .EM8 {
+    grid-template-columns: repeat(auto-fit, minmax(22.5rem, 1fr));
+    grid-gap:              1.5rem 0;
+  }
+}
+
+@media screen and (max-width: 1950px) {
+  :global {
+    .EM8 {
+      grid-template-columns: 50% 50%;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  :global {
+    .EM8 {
+      grid-template-columns: 100%;
+    }
+  }
+}
+
+// END EM8
+
+
+// BEGIN EM4
+:global {
+  .EM4 {
+    grid-template-columns: repeat(auto-fit, minmax(22.5rem, 1fr));
+    grid-gap:              1.5rem 0;
+  }
+}
+
+// END EM4
