@@ -37,6 +37,11 @@ export const TableSmall = ({fields, disabled = true}) => {
                                         className={styles.primaryBtn + ' ' + styles.small}
                                         onClick={(e) => sendData(e)}>{field.value}</button>
                             </div>)
+                    } else if (field.type === 'link') {
+                        return (
+                            <div key={field.id} className={`${styles.tableRow} ${styles.link}`}>
+                                <a href={field.value}>{field.label}</a>
+                            </div>)
                     } else {
                         return (
                             <div key={field.id} className={styles.tableRow}>

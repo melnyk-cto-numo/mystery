@@ -31,6 +31,8 @@ export const Utilities = () => {
         {id: '1', name: 'Fader Pressed', label: 'Fader Pressed', type: 'text', value: pressed.faderTouch},
         {id: '2', name: 'TestFader', label: 'Test Faders', type: 'button', value: 'Go'},
         {id: '3', name: 'TestLed', label: 'Test Indicators', type: 'button', value: 'Go'},
+        {id: '4', name: 'LogLevel', label: 'Log Level', type: 'select', value: ['Normal', 'Debug']},
+        {id: '5', name: 'DownLoadLog', label: 'DownLoad Log', type: 'link', value: '/'},
     ];
 
     const editingData = () => {

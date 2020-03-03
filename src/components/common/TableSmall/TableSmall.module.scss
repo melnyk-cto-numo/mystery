@@ -1,6 +1,14 @@
 @import "../../../assets/scss/variable";
 @import "../../common/Button/Button.module";
 
+@media (any-hover: hover) {
+  .wrapper {
+    .table .tableRow.link a:hover {
+      text-decoration: none;
+    }
+  }
+}
+
 .wrapper {
   background:    $whiteColor;
   border-radius: 1.25rem;
@@ -23,6 +31,14 @@
         padding:         0;
         text-align:      center;
         text-align-last: center;
+      }
+      &.link a {
+        color:           #009cff;
+        text-decoration: underline;
+        &:active {
+          opacity:         0.8;
+          text-decoration: none;
+        }
       }
     }
     .select {
