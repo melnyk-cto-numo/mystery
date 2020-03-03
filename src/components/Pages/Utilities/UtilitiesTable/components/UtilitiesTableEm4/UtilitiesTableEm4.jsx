@@ -37,10 +37,10 @@ export const UtilitiesTableEm4 = ({utilities, data, disabled, model}) => {
             </div>
             <div className={styles.tableRow}>
                 {row['Center value'].slice(startRow, endRow).map((center, index) => (
-                    index === 0 ? <div key={index} className={styles.tableCell}>{center}</div> :
+                    center === 'Center value' ? <div key={index} className={styles.tableCell}>{center}</div> :
                         <div key={index} className={styles.tableCell}>
                             <div key={index} className={styles.inputWrapper}>
-                                <Input index={index}
+                                <Input index={startRow + index}
                                        data={data}
                                        item={center}
                                        name={'centerCalibration'}
@@ -52,7 +52,7 @@ export const UtilitiesTableEm4 = ({utilities, data, disabled, model}) => {
                 {buttonOne.slice(startRow, endRow).map((button, index) => (button === 'Move to 0 db' ?
                     <div key={index} className={styles.tableCell}>{button}</div> :
                     <div key={index} className={styles.tableCell}>
-                        <button name={moveButtons.move0[index - 1]} type="button"
+                        <button name={moveButtons.move0.slice(startRow, endRow)[index]} type="button"
                                 className={styles.primaryBtn + ' ' + styles.small}
                                 onClick={(e) => sendData(e)}>Go
                         </button>
@@ -62,7 +62,7 @@ export const UtilitiesTableEm4 = ({utilities, data, disabled, model}) => {
                 {buttonTwo.slice(startRow, endRow).map((button, index) => (button === 'Move to -30 db' ?
                     <div key={index} className={styles.tableCell}>{button}</div> :
                     <div key={index} className={styles.tableCell}>
-                        <button name={moveButtons.move30[index - 1]} type="button"
+                        <button name={moveButtons.move30.slice(startRow, endRow)[index]} type="button"
                                 className={styles.primaryBtn + ' ' + styles.small}
                                 onClick={(e) => sendData(e)}>Go
                         </button>
