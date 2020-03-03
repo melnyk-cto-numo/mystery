@@ -15,10 +15,6 @@ import {getStatus} from "../../../bus/status/selectors";
 import styles from './Utilities.module.scss';
 import {server} from "../../../REST";
 
-const titleUtilities = {
-    header: ['', 'Fader 1', 'Fader 2', 'Fader 3', 'Fader 4', 'Fader 5', 'Fader 6', 'Fader 7', 'Fader 8', 'Fader 9', 'Fader 10', 'Fader 11', 'Fader 12'],
-    column: ['', 'Raw value', 'Center Value', 'Move to 0 db', 'Move to -30 db'],
-};
 let interval = null;
 export const Utilities = () => {
     const [disabled, setDisabled] = useState(true);
@@ -45,10 +41,7 @@ export const Utilities = () => {
         setDisabled(!disabled);
 
         dispatch(faderActions.setFader({}));
-        interval = setInterval(() => {
-            dispatch(statusActions.getStatusAsync());
-            dispatch(faderActions.getFaderAsync());
-        }, 1000);
+        dispatch(faderActions.getFaderAsync());
     };
 
 
@@ -117,7 +110,7 @@ export const Utilities = () => {
                 <div className="error">{error}</div>
             </div>
             <TableSmall fields={smallTable} disabled={disabled}/>
-            <UtilitiesTable data={data} title={titleUtilities} disabled={disabled}/>
+            <UtilitiesTable data={data} disabled={disabled}/>
             <div className={styles.utilitiesButtons}>
                 <button type="button" className={styles.primaryBtn} disabled={disabled}
                         onClick={() => cancelingData()}>Cancel

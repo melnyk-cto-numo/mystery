@@ -115,6 +115,7 @@ const headerTableName = {
     },
 };
 
+let interval = null;
 export const SiteSetup = () => {
     const dispatch = useDispatch();
 
@@ -169,7 +170,14 @@ export const SiteSetup = () => {
         dispatch(siteSetupActions.getSymetrixAsync());
         dispatch(siteSetupActions.getTesiraAsync());
         dispatch(siteSetupActions.getXilicaAsync());
-    }, [dispatch]);
+
+        interval = setInterval(() => {
+            dispatch(errorsActions.getErrorsAsync());
+        }, 1000);
+
+        if (!disabled) clearInterval(interval);
+        return () => clearInterval(interval);
+    }, [dispatch, disabled]);
 
 
     useEffect(() => {
