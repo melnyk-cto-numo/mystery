@@ -113,7 +113,7 @@
 // BEGIN EM12
 @media screen and (max-width: 2000px) {
   :global {
-    .EM12 {
+    .emSetup .EM12 {
       grid-template-columns: 33.33% 33.33% 33.33%;
     }
   }
@@ -125,7 +125,7 @@
 // BEGIN EM8
 @media screen and (max-width: 1500px) {
   :global {
-    .EM8 {
+    .emSetup .EM8 {
       grid-template-columns: 25% 25% 25% 25%;
     }
   }
@@ -133,7 +133,7 @@
 
 @media screen and (max-width: 420px) {
   :global {
-    .EM8 {
+    .emSetup .EM8 {
       grid-template-columns: 50% 50%;
     }
   }
@@ -145,7 +145,7 @@
 // BEGIN EM4
 @media screen and (max-width: 420px) {
   :global {
-    .EM4 {
+    .emSetup .EM4 {
       grid-template-columns: 50% 50%;
     }
   }

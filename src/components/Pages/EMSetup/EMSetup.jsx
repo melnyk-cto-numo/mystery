@@ -148,7 +148,7 @@ export const EMSetup = () => {
     ];
 
     return (
-        <section>
+        <section className='emSetup'>
             <div className={styles.emSetupTitle}>
                 <h2>EM Setup</h2>
                 <button type="button" className={styles.primaryBtn} disabled={!disabled}

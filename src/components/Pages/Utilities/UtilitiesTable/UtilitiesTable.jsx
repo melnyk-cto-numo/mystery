@@ -27,7 +27,7 @@ export const UtilitiesTable = ({data, disabled}) => {
     };
 
     return (
-        <div className={styles.wrapper}>
+        <div className={`${styles.wrapper} utilitiesTable`}>
             {status.model === 'EM12' &&
             <UtilitiesTableEm12
                 utilities={utilities}

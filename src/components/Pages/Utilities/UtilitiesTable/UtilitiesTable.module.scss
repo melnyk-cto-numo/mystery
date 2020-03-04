@@ -95,7 +95,7 @@
 
 // BEGIN EM12
 :global {
-  .EM12 {
+  .utilitiesTable .EM12 {
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     grid-gap:              1.5rem 0;
   }
@@ -103,7 +103,7 @@
 
 @media screen and (max-width: 2400px) {
   :global {
-    .EM12 {
+    .utilitiesTable .EM12 {
       grid-template-columns: 50% 50%;
     }
   }
@@ -111,7 +111,7 @@
 
 @media screen and (max-width: 1500px) {
   :global {
-    .EM12 {
+    .utilitiesTable .EM12 {
       grid-template-columns: 100%;
     }
   }
@@ -122,7 +122,7 @@
 
 // BEGIN EM8
 :global {
-  .EM8 {
+  .utilitiesTable .EM8 {
     grid-template-columns: repeat(auto-fit, minmax(22.5rem, 1fr));
     grid-gap:              1.5rem 0;
   }
@@ -130,7 +130,7 @@
 
 @media screen and (max-width: 1950px) {
   :global {
-    .EM8 {
+    .utilitiesTable .EM8 {
       grid-template-columns: 50% 50%;
     }
   }
@@ -138,7 +138,7 @@
 
 @media screen and (max-width: 1200px) {
   :global {
-    .EM8 {
+    .utilitiesTable .EM8 {
       grid-template-columns: 100%;
     }
   }
@@ -149,7 +149,7 @@
 
 // BEGIN EM4
 :global {
-  .EM4 {
+  .utilitiesTable .EM4 {
     grid-template-columns: repeat(auto-fit, minmax(22.5rem, 1fr));
     grid-gap:              1.5rem 0;
   }
