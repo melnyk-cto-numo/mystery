@@ -152,7 +152,7 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                     </div>}
                     <div className={styles.fader}>
                         <p>Fader Off = DSP Min Gain</p>
-                        {(keys === 'faders' || keys === 'altFader1' || keys === 'altFader2')
+                        {(keys === 'faders' || keys === 'altFader1' || keys === 'altFader2' || keys === 'altFader3')
                         && <div className='checkbox'>
                             <input
                                 id='fader'
