@@ -3,17 +3,17 @@ import React, {useEffect, useState} from 'react';
 
 //library
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
+import {useDispatch, useSelector} from "react-redux";
 
 //components
 import {TopRowButtons} from "./components";
-import {useDispatch, useSelector} from "react-redux";
 import {emSetupActions} from "../../../bus/emSetup/actions";
 import {mysteryActions} from "../../../bus/mystery/actions";
 import {statusActions} from "../../../bus/status/actions";
 import {siteSetupActions} from "../../../bus/siteSetup/actions";
 import {getEmSetup} from "../../../bus/emSetup/selectors";
 import {getStatus} from "../../../bus/status/selectors";
-import {getSiteSetup} from "../../../bus/siteSetup/selectors";
+import {getQsys} from "../../../bus/siteSetup/selectors";
 import {server} from "../../../REST";
 import {EasyMixSetup} from "./components/EasyMixSetup/EasyMixSetup";
 
@@ -25,8 +25,7 @@ export const EMSetup = () => {
     const dispatch = useDispatch();
     const data = useSelector(getEmSetup);
     const status = useSelector(getStatus);
-    const siteSetup = useSelector(getSiteSetup);
-    const controls = siteSetup.control;
+    const qsys = useSelector(getQsys);
     const model = status.model;
 
     const [disabled, setDisabled] = useState(true);
@@ -117,6 +116,7 @@ export const EMSetup = () => {
         dispatch(emSetupActions.getEmSetupAsync());
         dispatch(statusActions.getStatusAsync());
         dispatch(siteSetupActions.getSiteSetupAsync());
+        dispatch(siteSetupActions.getQsysAsync());
     }, [dispatch]);
 
     useEffect(() => {
@@ -182,7 +182,7 @@ export const EMSetup = () => {
                                     item={item}
                                     data={data}
                                     row={index}
-                                    controls={controls}
+                                    controls={qsys.control}
                                     disabled={disabled}
                                     model={model}/>))}
                         </div>
