@@ -151,16 +151,20 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                         (dB)
                     </div>}
                     <div className={styles.fader}>
-                        <p>Fader Off = DSP Min Gain</p>
                         {(keys === 'faders' || keys === 'altFader1' || keys === 'altFader2' || keys === 'altFader3')
-                        && <div className='checkbox'>
-                            <input
-                                id='fader'
-                                type="checkbox"
-                                disabled='disabled'
-                                checked/>
-                            <label htmlFor='fader'/>
-                        </div>}
+                        &&
+                        <>
+                            <p>Fader Off = DSP Min Gain</p>
+                            <div className='checkbox'>
+                                <input
+                                    id='fader'
+                                    type="checkbox"
+                                    disabled='disabled'
+                                    checked/>
+                                <label htmlFor='fader'/>
+                            </div>
+                        </>
+                        }
                     </div>
                     {array[keys].minGain &&
                     <div className={styles.siteSetupButtons}>
