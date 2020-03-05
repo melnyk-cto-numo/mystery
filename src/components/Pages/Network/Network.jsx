@@ -71,10 +71,10 @@ export const Network = () => {
 
         // check validation
         if (Object.keys(data).length === 0) return;
-        if (data.myIP !== '' && data.myIP.indexOf('_') === -1 &&
-            data.primaryDNS !== '' && data.primaryDNS.indexOf('_') === -1 &&
-            data.secondaryDNS !== '' && data.secondaryDNS.indexOf('_') === -1 &&
-            data.dspIP !== '' && data.dspIP.indexOf('_') === -1 &&
+        if (data.myIP.search(/[0-9]/g) === 0 &&
+            data.primaryDNS.search(/[0-9]/g) === 0 &&
+            data.secondaryDNS.search(/[0-9]/g) === 0 &&
+            data.dspIP.search(/[0-9]/g) === 0 &&
             data.dspPort !== '') {
             setFieldValidation(true)
         } else {
