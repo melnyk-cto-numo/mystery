@@ -24,7 +24,7 @@ export const Input = ({data, name, item, objKey, disabled}) => {
         let result = [];
         const chunks = value.split(".");
         for (let i = 0; i < 4; ++i) {
-            const chunk = (chunks[i] || "").replace(/_/gi, "");
+            const chunk = (chunks[i] || "").replace(/ /gi, "");
 
             if (chunk === "") {
                 result.push(/\d/, /\d/, /\d/, ".");
@@ -32,7 +32,7 @@ export const Input = ({data, name, item, objKey, disabled}) => {
             } else if (+chunk === 0) {
                 result.push(/\d/, ".");
                 setValidation(3)
-            } else if (chunks.length < 4 || (chunk.length < 3 && chunks[i].indexOf("_") !== -1)) {
+            } else if (chunks.length < 4 || (chunk.length < 3 && chunks[i].indexOf(" ") !== -1)) {
                 if ((chunk.length < 2 && +`${chunk}00` > 255) || (chunk.length < 3 && +`${chunk}0` > 255)) {
                     result.push(/\d/, /\d/, ".");
                 } else {
@@ -93,6 +93,10 @@ export const Input = ({data, name, item, objKey, disabled}) => {
             <MaskedInput type='text'
                          mask={(e) => mask(e)}
                          pipe={(e) => pipe(e)}
+                         placeholderChar={' '}
+                         guide
+                         keepCharPositions
+                         showMask
                          name={name}
                          className={styles.networkValue}
                          value={value}
