@@ -24,16 +24,14 @@ export const Input = ({invalid, index, item, keys, value, disabled}) => {
         setValueInput(e.target.value);
 
         // set state "Name" and "Control No"
-        const stateCopy = Object.assign({...item}, api);
-
+        const stateCopy = Object.assign(api);
         if (index === undefined) {
             stateCopy[keys][value] = e.target.value === "" ? " " : e.target.value;
         } else {
             stateCopy[keys][value][index] = e.target.value === "" ? " " : e.target.value;
         }
         setApi(stateCopy);
-
-        dispatch(siteSetupActions.setSiteSetup({...data}))
+        dispatch(siteSetupActions.setSiteSetup({...api}))
     };
 
     useEffect(() => {
