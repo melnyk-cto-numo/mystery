@@ -26,7 +26,7 @@ export const UtilitiesTableEm8 = ({utilities, data, disabled, model}) => {
 
 
     const Column = ({row, startRow, endRow}) => {
-        return (<div className={styles.tableRowWrapper}>
+        return (<div className='tableRowWrapper'>
             <div className={styles.tableRow}>
                 {row['Header'].slice(startRow, endRow).map((raw, index) => (
                     <div key={index} className={styles.tableCell}>{raw}</div>))}
@@ -75,10 +75,11 @@ export const UtilitiesTableEm8 = ({utilities, data, disabled, model}) => {
         <div className={styles.table}>
             {[utilities].map((row, index) => (
                 <div key={index} className={`${styles.tableBody} ${model}`}>
-                    <Column row={row} startRow={0} endRow={2}/>
-                    <Column row={row} startRow={2} endRow={4}/>
-                    <Column row={row} startRow={4} endRow={6}/>
-                    <Column row={row} startRow={6} endRow={9}/>
+                    <Column row={row} startRow={0} endRow={1}/>
+                    <Column row={row} startRow={1} endRow={3}/>
+                    <Column row={row} startRow={3} endRow={5}/>
+                    <Column row={row} startRow={5} endRow={7}/>
+                    <Column row={row} startRow={7} endRow={9}/>
                 </div>
             ))}
 

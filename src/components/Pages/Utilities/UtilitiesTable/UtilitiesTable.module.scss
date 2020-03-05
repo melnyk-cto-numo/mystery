@@ -14,19 +14,6 @@
     .tableBody {
       line-height: 1.5;
       display:     grid;
-      .tableRowWrapper:nth-child(1) {
-        .tableCell:nth-child(1) {
-          align-items: flex-start;
-        }
-      }
-      .tableRowWrapper {
-        .tableRow:nth-child(1) {
-          .tableCell {
-            font-size:   1.125rem;
-            font-weight: bold;
-          }
-        }
-      }
     }
     .tableRow {
       background-color:      $lightBlueColor;
@@ -80,6 +67,21 @@
 
 }
 
+.tableRowWrapper:nth-child(1) {
+  .tableCell:nth-child(1) {
+    align-items: flex-start;
+  }
+}
+
+.tableRowWrapper {
+  .tableRow:nth-child(1) {
+    .tableCell {
+      font-size:   1.125rem;
+      font-weight: bold;
+    }
+  }
+}
+
 @media screen and (max-width: 768px) {
   .wrapper {
     padding: 1.25rem;
@@ -88,7 +90,7 @@
 
 
 .tableBody {
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-columns: 7.5rem repeat(auto-fit, minmax(22.5rem, 1fr));
   grid-gap:              1.5rem 0;
 }
 
@@ -96,23 +98,64 @@
 // BEGIN EM12
 :global {
   .utilitiesTable .EM12 {
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-template-columns: 7.5rem repeat(auto-fit, minmax(7.5rem, 1fr));
     grid-gap:              1.5rem 0;
   }
 }
 
-@media screen and (max-width: 2400px) {
+@media screen and (max-width: 2050px) {
   :global {
     .utilitiesTable .EM12 {
-      grid-template-columns: 50% 50%;
+      grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
+      .tableRowWrapper {
+        &:nth-child(8) {
+          grid-column: 2;
+        }
+      }
     }
   }
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1300px) {
   :global {
     .utilitiesTable .EM12 {
-      grid-template-columns: 100%;
+      grid-template-columns: 20% 20% 20% 20% 20%;
+      .tableRowWrapper {
+        &:nth-child(10) {
+          grid-column: 2;
+        }
+        &:nth-child(8) {
+          grid-column: 4;
+        }
+        &:nth-child(6) {
+          grid-column: 2;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  :global {
+    .utilitiesTable .EM12 {
+      grid-template-columns: 25% 25% 25% 25%;
+      .tableRowWrapper {
+        &:nth-child(11) {
+          grid-column: 2;
+        }
+        &:nth-child(10) {
+          grid-column: 4;
+        }
+        &:nth-child(8) {
+          grid-column: 2;
+        }
+        &:nth-child(6) {
+          grid-column: 3;
+        }
+        &:nth-child(5) {
+          grid-column: 2;
+        }
+      }
     }
   }
 }
@@ -123,23 +166,39 @@
 // BEGIN EM8
 :global {
   .utilitiesTable .EM8 {
-    grid-template-columns: repeat(auto-fit, minmax(22.5rem, 1fr));
+    grid-template-columns: 7.5rem repeat(auto-fit, minmax(15rem, 1fr));
     grid-gap:              1.5rem 0;
   }
 }
 
-@media screen and (max-width: 1950px) {
+@media screen and (max-width: 1600px) {
   :global {
     .utilitiesTable .EM8 {
-      grid-template-columns: 50% 50%;
+      grid-template-columns: 7.5rem calc(50% - 3.75rem) calc(50% - 3.75rem);
+      .tableRowWrapper {
+        &:nth-child(4) {
+          grid-column: 2;
+        }
+      }
     }
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1150px) {
   :global {
     .utilitiesTable .EM8 {
-      grid-template-columns: 100%;
+      grid-template-columns: 7.5rem calc(100% - 7.5rem);
+      .tableRowWrapper {
+        &:nth-child(5) {
+          grid-column: 2;
+        }
+        &:nth-child(4) {
+          grid-column: 2;
+        }
+        &:nth-child(3) {
+          grid-column: 2;
+        }
+      }
     }
   }
 }
@@ -150,8 +209,21 @@
 // BEGIN EM4
 :global {
   .utilitiesTable .EM4 {
-    grid-template-columns: repeat(auto-fit, minmax(22.5rem, 1fr));
+    grid-template-columns: 7.5rem repeat(auto-fit, minmax(15rem, 1fr));
     grid-gap:              1.5rem 0;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  :global {
+    .utilitiesTable .EM4 {
+      grid-template-columns: 7.5rem calc(100% - 7.5rem);
+      .tableRowWrapper {
+        &:nth-child(3) {
+          grid-column: 2;
+        }
+      }
+    }
   }
 }
 
