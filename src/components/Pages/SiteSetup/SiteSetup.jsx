@@ -14,6 +14,7 @@ import {server} from "../../../REST";
 import {siteSetupActions} from "../../../bus/siteSetup/actions";
 import {errorsActions} from "../../../bus/errors/actions";
 import {statusActions} from "../../../bus/status/actions";
+import {mysteryActions} from "../../../bus/mystery/actions";
 import {getSiteSetup} from "../../../bus/siteSetup/selectors";
 import {getErrors} from "../../../bus/errors/selectors";
 import {getStatus} from "../../../bus/status/selectors";
@@ -21,7 +22,6 @@ import {getStatus} from "../../../bus/status/selectors";
 
 //styles
 import styles from './SiteSetup.module.scss';
-import {mysteryActions} from "../../../bus/mystery/actions";
 
 const DSP = {
     siteName: {label: 'Site name', type: 'text', value: 'QSYS'},
@@ -39,7 +39,7 @@ const headerTableName = {
         meter1: ['No', 'Bank', 'Link', 'ON', 'Object ID', 'SV ID'],
         meter2: ['No', 'Bank', 'Link', 'ON', 'Object ID', 'SV ID'],
         hg: ['No', 'Bank', 'Link', 'ON', 'Object ID', 'SV ID'],
-        control: ['No', 'Link', 'Name', 'Type', 'Types', 'ON', 'Read Only', 'Object ID', 'SV ID'],
+        control: ['No', 'Link', 'On Name', 'Off Name', 'Type', 'Types', 'ON', 'Read Only', 'Object ID', 'SV ID'],
     },
     hal: {
         faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Control No.'],

@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 // components
 import {Input} from "./components/Input/Input";
 import {CheckBox} from "./components/CheckBox/CheckBox";
+import {Select} from "./components/Select/Select";
 import {siteSetupActions} from "../../../../../bus/siteSetup/actions";
 import {
     getBss,
@@ -211,35 +212,43 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                             </div>))}
                     </div>
                     {values.map((value, index) => {
-                        if (Array.isArray(array[keys][value])) {
-                            return (
-                                (value !== 'linkedPairs' && value !== 'updateRate' && value !== 'offNames') &&
-                                <div key={index} className={styles.tableRow}>
-                                    {(array[keys][value].slice(0, 2 * bank).map((item, index) =>
-                                        <div key={index} className={styles.tableCell}>
-                                            {value === 'enabled' || value === 'readOnly'
-                                                ? <CheckBox
-                                                    index={index}
-                                                    keys={keys}
-                                                    item={item}
-                                                    value={value}
-                                                    disabled={disabled}/>
-                                                : (value === 'names' || value === 'controlNo' || value === 'controlNo')
-                                                    ? <Input
-                                                        invalid={true}
+                            if (Array.isArray(array[keys][value])) {
+                                return (
+                                    (value !== 'linkedPairs' && value !== 'updateRate' && value) &&
+                                    <div key={index} className={styles.tableRow}>
+                                        {(array[keys][value].slice(0, 2 * bank).map((item, index) => {
+                                            return (<div key={index} className={styles.tableCell}>
+                                                {value === 'enabled' || value === 'readOnly'
+                                                    ? <CheckBox
                                                         index={index}
-                                                        item={item}
                                                         keys={keys}
+                                                        item={item}
                                                         value={value}
                                                         disabled={disabled}/>
-                                                    : <span>{item}</span>}
-                                        </div>))}
-                                </div>
+                                                    : (value === 'names' || value === 'controlNo' || value === 'controlNo' || value === 'onNames' || value === 'offNames')
+                                                        ? <Input
+                                                            invalid={true}
+                                                            index={index}
+                                                            item={item}
+                                                            keys={keys}
+                                                            value={value}
+                                                            disabled={disabled}/>
+                                                        : value === 'bssTypes'
+                                                            ? <Select
+                                                                index={index}
+                                                                keys={keys}
+                                                                item={item}
+                                                                value={value}
+                                                                disabled={disabled}/>
+                                                            : <span>{item}</span>}
+                                            </div>)
+                                        }))}
+                                    </div>
 
-                            )
+                                )
+                            }
+                            return null;
                         }
-                        return null;
-                    }
                     )}
                 </div>
 
