@@ -47,6 +47,7 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
     const values = Object.keys(array[keys]);
     const noAndBank = {
         no: [],
+        banks: [],
     };
 
     useEffect(() => {
@@ -75,6 +76,11 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
     // data for 2 column table
     for (let b = 1; b <= 2 * bank; b++) {
         noAndBank.no.push(b);
+        if (b <= bank) {
+            noAndBank.banks.push('A');
+        } else {
+            noAndBank.banks.push('B');
+        }
     }
 
     const handleChangeSelect = (e) => {
@@ -192,6 +198,11 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                         {(noAndBank.no.map((item, index) =>
                             <div key={index} className={styles.tableCell}>{item}</div>))}
                     </div>
+                    {keys !== 'control'
+                    && <div className={styles.tableRow}>
+                        {(noAndBank.banks.map((bank, index) =>
+                            <div key={index} className={styles.tableCell}>{bank}</div>))}
+                    </div>}
                     {/* errors array */}
                     <div className={styles.tableRow}>
                         {(errors[keys].slice(0, 2 * bank).map((item, index) =>
@@ -200,35 +211,35 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                             </div>))}
                     </div>
                     {values.map((value, index) => {
-                            if (Array.isArray(array[keys][value])) {
-                                return (
-                                    (value !== 'linkedPairs' && value !== 'updateRate') &&
-                                    <div key={index} className={styles.tableRow}>
-                                        {(array[keys][value].slice(0, 2 * bank).map((item, index) =>
-                                            <div key={index} className={styles.tableCell}>
-                                                {value === 'enabled' || value === 'readOnly'
-                                                    ? <CheckBox
+                        if (Array.isArray(array[keys][value])) {
+                            return (
+                                (value !== 'linkedPairs' && value !== 'updateRate' && value !== 'offNames') &&
+                                <div key={index} className={styles.tableRow}>
+                                    {(array[keys][value].slice(0, 2 * bank).map((item, index) =>
+                                        <div key={index} className={styles.tableCell}>
+                                            {value === 'enabled' || value === 'readOnly'
+                                                ? <CheckBox
+                                                    index={index}
+                                                    keys={keys}
+                                                    item={item}
+                                                    value={value}
+                                                    disabled={disabled}/>
+                                                : (value === 'names' || value === 'controlNo' || value === 'controlNo')
+                                                    ? <Input
+                                                        invalid={true}
                                                         index={index}
-                                                        keys={keys}
                                                         item={item}
+                                                        keys={keys}
                                                         value={value}
                                                         disabled={disabled}/>
-                                                    : (value === 'names' || value === 'controlNo')
-                                                        ? <Input
-                                                            invalid={true}
-                                                            index={index}
-                                                            item={item}
-                                                            keys={keys}
-                                                            value={value}
-                                                            disabled={disabled}/>
-                                                        : <span>{item}</span>}
-                                            </div>))}
-                                    </div>
+                                                    : <span>{item}</span>}
+                                        </div>))}
+                                </div>
 
-                                )
-                            }
-                            return null;
+                            )
                         }
+                        return null;
+                    }
                     )}
                 </div>
 
