@@ -44,6 +44,7 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
     const [selectValue, setSelectValue] = useState(array[keys].type);
     const [api, setApi] = useState(data);
     const [type, setType] = useState(array[keys].type);
+    const [faderOff, setFaderOff] = useState(array[keys]['fader_off'] || "");
 
     const values = Object.keys(array[keys]);
     const noAndBank = {
@@ -121,6 +122,14 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
         dispatch(siteSetupActions.setSiteSetup({...data}))
     };
 
+    const dSPMinGain = (e) => {
+        setFaderOff(e.target.checked);
+        const stateCopy = Object.assign(api);
+        stateCopy[keys]['fader_off'] = e.target.checked;
+        dispatch(siteSetupActions.setSiteSetup({...api}))
+    };
+
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.table}>
@@ -128,7 +137,10 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                     {array[keys].type &&
                     <div className={styles.siteSetupButtons}>
                         Type:
-                        <select value={selectValue} disabled={disabled} onChange={(e) => handleChangeSelect(e)}>
+                        <select
+                            value={selectValue}
+                            disabled={disabled}
+                            onChange={(e) => handleChangeSelect(e)}>
                             <option value={type}>{type}</option>
                             <option value='fader'>fader</option>
                         </select>
@@ -165,9 +177,11 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                             <div className='checkbox'>
                                 <input
                                     id='fader'
+                                    name='fader_off'
                                     type="checkbox"
                                     disabled={disabled}
-                                    checked={array[keys]['fader_off']}/>
+                                    checked={faderOff}
+                                    onChange={(e) => dSPMinGain(e)}/>
                                 <label htmlFor='fader'/>
                             </div>
                         </>
