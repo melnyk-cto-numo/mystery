@@ -91,7 +91,7 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
             case 'bss':
                 setType(bss.type);
                 break;
-            case 'hal':
+            case 'rane':
                 setType(hal.type);
                 break;
             case 'jupiter':
@@ -166,8 +166,8 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                                 <input
                                     id='fader'
                                     type="checkbox"
-                                    disabled='disabled'
-                                    checked/>
+                                    disabled={disabled}
+                                    checked={array[keys]['fader_off']}/>
                                 <label htmlFor='fader'/>
                             </div>
                         </>

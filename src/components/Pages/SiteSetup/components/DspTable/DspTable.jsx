@@ -50,7 +50,7 @@ export const DspTable = ({fields, dspType, setDspType, disabled = true}) => {
                 dispatch(siteSetupActions.setSiteSetup({...bss}));
                 seSiteName(bss.SiteName);
                 break;
-            case 'hal':
+            case 'rane':
                 dispatch(siteSetupActions.setSiteSetup({...hal}));
                 seSiteName(hal.SiteName);
                 break;
@@ -58,7 +58,7 @@ export const DspTable = ({fields, dspType, setDspType, disabled = true}) => {
                 dispatch(siteSetupActions.setSiteSetup({...jupiter}));
                 seSiteName(jupiter.SiteName);
                 break;
-            case 'qsys':
+            case 'q-sys':
                 dispatch(siteSetupActions.setSiteSetup({...qsys}));
                 seSiteName(qsys.SiteName);
                 break;
@@ -82,6 +82,7 @@ export const DspTable = ({fields, dspType, setDspType, disabled = true}) => {
     };
 
     useEffect(() => {
+        seSiteName(data.DspType.name);
         if (data.SiteName === '') {
             setValidation('fill in the field please')
         } else {

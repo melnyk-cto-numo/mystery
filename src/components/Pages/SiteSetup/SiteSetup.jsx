@@ -24,8 +24,8 @@ import {getStatus} from "../../../bus/status/selectors";
 import styles from './SiteSetup.module.scss';
 
 const DSP = {
-    siteName: {label: 'Site name', type: 'text', value: 'QSYS'},
-    dsp: {label: 'DSP', type: 'select', value: ['BSS', 'Hal', 'Jupiter', 'QSYS', 'Symetrix', 'Tesira', 'Xilica']},
+    siteName: {label: 'Site name', type: 'text', value: 'Q-SYS'},
+    dsp: {label: 'DSP', type: 'select', value: ['BSS', 'Rane', 'Jupiter', 'Q-SYS', 'Symetrix', 'Tesira', 'Xilica']},
     DspID: {label: 'ID', type: 'text', value: '0000'},
 };
 
@@ -41,7 +41,7 @@ const headerTableName = {
         hg: ['No', 'Bank', 'Link', 'ON', 'Object ID', 'SV ID'],
         control: ['No', 'Link', 'On Name', 'Type', 'ON', 'Read Only', 'Object ID', 'SV ID'],
     },
-    hal: {
+    rane: {
         faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Control No.'],
         altFader1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         altFader2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
@@ -65,7 +65,7 @@ const headerTableName = {
         hg: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         control: ['No', 'Link', 'Name', 'ON', 'Read Only', 'Type', 'Control No.'],
     },
-    qsys: {
+    'q-sys': {
         faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Control No.'],
         altFader1: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
         altFader2: ['No', 'Bank', 'Link', 'ON', 'Control No.'],
@@ -127,7 +127,7 @@ export const SiteSetup = () => {
     const [disabled, setDisabled] = useState(true);
     const [bank, setBank] = useState('EM4');
     const [dspType, setDspType] = useState(DSP.dsp.value[3].toLowerCase());
-    const [selectedTab, setSelectedTab] = useState(headerTableName.qsys);
+    const [selectedTab, setSelectedTab] = useState(headerTableName['q-sys']);
     const [notice, setNotice] = useState('');
     const [error, setError] = useState('');
     const [fieldValidation, setFieldValidation] = useState(true);
@@ -135,8 +135,10 @@ export const SiteSetup = () => {
 
 
     useEffect(() => {
+        if (data.DspType === undefined) return;
+        setDspType(data.DspType.name.toLowerCase());
         setSelectedTab(headerTableName[dspType]);
-    }, [dspType]);
+    }, [dspType, data]);
 
 
     useEffect(() => {
