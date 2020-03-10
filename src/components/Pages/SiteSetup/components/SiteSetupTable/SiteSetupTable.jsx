@@ -214,7 +214,7 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                     {values.map((value, index) => {
                             if (Array.isArray(array[keys][value])) {
                                 return (
-                                    (value !== 'linkedPairs' && value !== 'updateRate' && value) &&
+                                    (value !== 'linkedPairs' && value !== 'updateRate' && value && value !== 'offNames' && value !== 'types') &&
                                     <div key={index} className={styles.tableRow}>
                                         {(array[keys][value].slice(0, 2 * bank).map((item, index) => {
                                             return (<div key={index} className={styles.tableCell}>
@@ -225,7 +225,7 @@ export const SiteSetupTable = ({keys, array, titles, errors, bank, disabled = tr
                                                         item={item}
                                                         value={value}
                                                         disabled={disabled}/>
-                                                    : (value === 'names' || value === 'controlNo' || value === 'controlNo' || value === 'onNames' || value === 'offNames')
+                                                    : (value === 'names' || value === 'controlNo' || value === 'controlNo' || value === 'onNames')
                                                         ? <Input
                                                             invalid={true}
                                                             index={index}

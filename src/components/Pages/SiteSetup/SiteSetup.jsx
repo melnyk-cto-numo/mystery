@@ -39,7 +39,7 @@ const headerTableName = {
         meter1: ['No', 'Bank', 'Link', 'ON', 'Object ID', 'SV ID'],
         meter2: ['No', 'Bank', 'Link', 'ON', 'Object ID', 'SV ID'],
         hg: ['No', 'Bank', 'Link', 'ON', 'Object ID', 'SV ID'],
-        control: ['No', 'Link', 'On Name', 'Off Name', 'Type', 'Types', 'ON', 'Read Only', 'Object ID', 'SV ID'],
+        control: ['No', 'Link', 'On Name', 'Type', 'ON', 'Read Only', 'Object ID', 'SV ID'],
     },
     hal: {
         faders: ['No', 'Bank', 'Link', 'ON', 'Name', 'Control No.'],

@@ -44,7 +44,7 @@ export const Input = ({invalid, index, item, keys, value, disabled}) => {
 
     return (
         <>
-            {(value !== 'controlNo' && value !== 'names' && value !== 'onNames' && value !== 'offNames')
+            {(value !== 'controlNo' && value !== 'names' && value !== 'onNames')
                 ? <AutosizeInput
                     type="text"
                     value={valueInput}
